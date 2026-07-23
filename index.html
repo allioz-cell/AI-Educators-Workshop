@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompTIA A+ Core 1 Launch Pad | Allison Ward-Osborne | CNM CIS</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Inter Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cnm: {
+                            blue: '#003B71',
+                            gold: '#D97706',
+                            lightBlue: '#0072CE'
+                        },
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F8FAFC;
+            color: #0F172A;
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(241, 245, 249, 0.8) 0px, transparent 100%);
+            background-attachment: fixed;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+        }
+
+        .glass-panel-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(2, 132, 199, 0.4);
+            box-shadow: 0 16px 32px -10px rgba(14, 165, 233, 0.15);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0284C7 0%, #7E22CE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cnm-gradient {
+            background: linear-gradient(135deg, #003B71 0%, #0072CE 100%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0EA5E9;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 glass-panel border-b border-slate-200/80 px-4 lg:px-8 py-3.5">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-sky-500/20">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-slate-900 tracking-tight text-lg block leading-tight">CNM <span class="text-sky-600">CIS</span> A+ Core 1 Portal</span>
+                    <span class="text-xs text-slate-500 font-mono">Central New Mexico Community College</span>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-3">
+                <a href="#activities" class="hidden sm:inline-flex items-center space-x-2 text-xs font-semibold px-3 py-2 rounded-lg bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200 transition border border-slate-200">
+                    <i class="fa-solid fa-layer-group text-sky-600"></i>
+                    <span>10 Modules (Exam 220-1101)</span>
+                </a>
+                <button onclick="toggleSandboxModal()" class="inline-flex items-center space-x-2 text-xs font-semibold px-3.5 py-2 rounded-lg bg-sky-50 text-sky-700 border border-sky-200 hover:bg-sky-100 transition shadow-sm">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span class="hidden md:inline">Exam Practice Simulator</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="max-w-7xl mx-auto px-4 lg:px-8 pt-8 pb-6 w-full">
+        <div class="glass-panel rounded-3xl p-6 md:p-10 relative overflow-hidden bg-white/90">
+            <!-- Decorative Light Glow Background Elements -->
+            <div class="absolute -top-24 -right-24 w-80 h-80 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-purple-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-8 relative z-10">
+                <div class="flex-1 space-y-4">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-xs text-sky-700 font-medium">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>CompTIA A+ Core 1 (220-1101) Certification Preparation</span>
+                    </div>
+                    
+                    <div>
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mb-2">
+                            Allison Ward-Osborne
+                        </h1>
+                        <p class="text-lg sm:text-xl font-semibold text-sky-700 flex items-center gap-2">
+                            <i class="fa-solid fa-award text-amber-500"></i>
+                            <span>Distinguished Faculty Member</span>
+                        </p>
+                    </div>
+
+                    <!-- Professional Certifications Badges -->
+                    <div class="pt-1 space-y-1.5">
+                        <span class="text-[11px] font-mono font-semibold text-slate-500 uppercase tracking-wider block">Verified Industry Certifications</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-lg bg-sky-50 text-sky-800 border border-sky-200/90 shadow-sm font-semibold">
+                                <i class="fa-solid fa-microchip text-sky-600"></i> CompTIA A+
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-lg bg-sky-50 text-sky-800 border border-sky-200/90 shadow-sm">
+                                <i class="fa-solid fa-network-wired text-sky-600"></i> CompTIA Network+
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-lg bg-sky-50 text-sky-800 border border-sky-200/90 shadow-sm">
+                                <i class="fa-solid fa-shield-halved text-sky-600"></i> CompTIA Security+
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-800 border border-indigo-200/90 shadow-sm">
+                                <i class="fa-solid fa-diagram-project text-indigo-600"></i> Cisco CCNA
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200/90 shadow-sm">
+                                <i class="fa-brands fa-aws text-amber-600"></i> AWS Cloud Practitioner
+                            </span>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-600 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        Welcome to the official CompTIA A+ Core 1 (220-1101) interactive study portal! Explore structured learning modules, test your speed in gamified hardware drills, and evaluate your readiness with scenario-based practice assessments.
+                    </p>
+
+                    <!-- Faculty Highlights Tags -->
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-book-open text-sky-600 mr-1.5"></i>4 Learning Activities</span>
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-gamepad text-purple-600 mr-1.5"></i>4 Interactive Games</span>
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clipboard-check text-emerald-600 mr-1.5"></i>2 Practice Assessments</span>
+                    </div>
+                </div>
+
+                <!-- Progress Card Widget -->
+                <div class="w-full md:w-80 glass-panel bg-white rounded-2xl p-5 border border-slate-200/90 space-y-4 shadow-sm">
+                    <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Core 1 Mastery Progress</span>
+                        <span id="progressPercent" class="text-xs font-bold font-mono text-sky-600">0% Completed</span>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5">
+                            <span class="text-slate-700 font-medium">Completed Activities</span>
+                            <span class="font-mono text-slate-900 font-bold"><span id="completedCount">0</span> / 10</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden border border-slate-200">
+                            <div id="progressBar" class="bg-gradient-to-r from-sky-500 to-indigo-600 h-full rounded-full transition-all duration-500 w-0"></div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex gap-2">
+                        <button onclick="resetProgress()" class="text-xs w-full py-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition text-center font-medium border border-slate-200">
+                            <i class="fa-solid fa-rotate-left mr-1"></i> Reset Progress
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main id="activities" class="max-w-7xl mx-auto px-4 lg:px-8 py-6 w-full flex-1 space-y-8">
+        
+        <!-- Filter and Search Header Bar -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 glass-panel p-4 rounded-2xl bg-white/90 border border-slate-200">
+            <div class="relative flex-1">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                <input type="text" id="searchInput" placeholder="Search activities by topic, port number, or hardware concept..." 
+                       class="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition shadow-sm">
+            </div>
+
+            <!-- Filter Category Buttons -->
+            <div class="flex flex-wrap gap-1.5" id="filterContainer">
+                <button onclick="filterCategory('All')" class="filter-btn active-filter text-xs px-3 py-2 rounded-xl bg-sky-600 text-white font-bold transition shadow-sm">All</button>
+                <button onclick="filterCategory('Learning')" class="filter-btn text-xs px-3 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200 transition">Learning Activities</button>
+                <button onclick="filterCategory('Interactive Games')" class="filter-btn text-xs px-3 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200 transition">Interactive Games</button>
+                <button onclick="filterCategory('Assessments')" class="filter-btn text-xs px-3 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200 transition">Assessments</button>
+            </div>
+        </div>
+
+        <!-- Activities Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="activitiesGrid">
+            <!-- Dynamically Rendered Cards go here -->
+        </div>
+
+        <!-- CompTIA A+ Interactive Drill Simulator -->
+        <section class="glass-panel rounded-3xl p-6 md:p-8 border border-slate-200/90 bg-white relative overflow-hidden shadow-sm">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-6 border-b border-slate-100 pb-6">
+                <div>
+                    <span class="text-xs font-mono font-bold text-sky-700 uppercase tracking-widest block mb-1">A+ Core 1 Quick Drill</span>
+                    <h3 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-bolt text-amber-500"></i>
+                        <span>CompTIA Practice Question Simulator</span>
+                    </h3>
+                    <p class="text-slate-500 text-sm mt-1">Practice key port numbers and hardware scenarios before launching Activity 02 & Activity 09.</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="loadSamplePrompt('ports')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition">Ports Drill</button>
+                    <button onclick="loadSamplePrompt('printer')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition">Printer Steps</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="space-y-3">
+                    <label class="text-xs font-mono text-slate-600 block">Select Core 1 Topic Area:</label>
+                    <input type="text" id="sandboxRole" value="CompTIA A+ Core 1 Exam Domain: Networking & Ports (220-1101)" 
+                           class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-mono text-sky-800 focus:outline-none focus:border-sky-500">
+
+                    <label class="text-xs font-mono text-slate-600 block">Scenario / Question:</label>
+                    <textarea id="sandboxInput" rows="4" placeholder="Type or select a question..." 
+                              class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs font-mono text-slate-800 focus:outline-none focus:border-sky-500 resize-none">A technician needs to configure a firewall rule to allow secure remote terminal access to a server. Which port number and protocol should be opened?</textarea>
+                    
+                    <button onclick="runSandboxSimulation()" class="w-full py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs tracking-wide transition shadow-md shadow-sky-600/20 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Check Answer & Explanation</span>
+                    </button>
+                </div>
+
+                <div class="bg-slate-900 rounded-2xl p-4 border border-slate-800 flex flex-col justify-between min-h-[220px] text-slate-100">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-slate-800 pb-2 mb-3">
+                            <span><i class="fa-solid fa-graduation-cap text-sky-400 mr-1"></i> Exam Explanation & Reference</span>
+                            <span id="sandboxStatus" class="text-emerald-400">Ready</span>
+                        </div>
+                        <div id="sandboxOutput" class="text-xs font-mono text-slate-300 leading-relaxed whitespace-pre-wrap">
+                            [Click 'Check Answer & Explanation' to view correct port mapping and exam reasoning...]
+                        </div>
+                    </div>
+                    <div class="text-[10px] text-slate-500 font-mono text-right pt-2 border-t border-slate-800">
+                        CNM CIS CompTIA A+ Prep Toolkit
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CNM & Department Information Banner -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-panel p-5 rounded-2xl border border-slate-200/90 flex items-start space-x-4 bg-white/90">
+                <div class="p-3 bg-sky-50 text-sky-600 rounded-xl border border-sky-100">
+                    <i class="fa-solid fa-landmark text-xl"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-900">CNM CIS Department</h4>
+                    <p class="text-xs text-slate-500 mt-1">Offering certificates and associate degrees in Computer Information Systems.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl border border-slate-200/90 flex items-start space-x-4 bg-white/90">
+                <div class="p-3 bg-purple-50 text-purple-600 rounded-xl border border-purple-100">
+                    <i class="fa-solid fa-user-check text-xl"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-900">Faculty Guidance</h4>
+                    <p class="text-xs text-slate-500 mt-1">Curated directly by Allison Ward-Osborne for CNM students.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl border border-slate-200/90 flex items-start space-x-4 bg-white/90">
+                <div class="p-3 bg-emerald-50 text-emerald-600 rounded-xl border border-emerald-100">
+                    <i class="fa-solid fa-folder-open text-xl"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-900">Direct Access File Naming</h4>
+                    <p class="text-xs text-slate-500 mt-1">Links to local activity files: <code class="text-sky-700 font-mono">activity01.html</code> to <code class="text-sky-700 font-mono">activity10.html</code>.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal Dialog for Activity Overview -->
+    <div id="activityModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm hidden">
+        <div class="glass-panel bg-white border border-slate-200 rounded-3xl max-w-lg w-full p-6 space-y-5 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 text-lg w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="space-y-1">
+                <span id="modalNumber" class="text-xs font-mono font-bold text-sky-700 uppercase tracking-widest">ACTIVITY 01</span>
+                <h3 id="modalTitle" class="text-xl font-bold text-slate-900">Activity Title</h3>
+            </div>
+
+            <div class="space-y-3">
+                <p id="modalDesc" class="text-slate-600 text-sm leading-relaxed">Activity description content goes here.</p>
+                
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                    <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Module Details</div>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div><span class="text-slate-500">Category:</span> <span id="modalCategory" class="text-slate-800 font-medium">Foundations</span></div>
+                        <div><span class="text-slate-500">Est. Time:</span> <span id="modalTime" class="text-slate-800 font-medium">30 mins</span></div>
+                        <div><span class="text-slate-500">Difficulty:</span> <span id="modalDifficulty" class="text-slate-800 font-medium">Beginner</span></div>
+                        <div><span class="text-slate-500">File Path:</span> <code id="modalFile" class="text-sky-700 font-mono">activity01.html</code></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-3 pt-2">
+                <button onclick="closeModal()" class="w-1/2 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 transition">
+                    Close
+                </button>
+                <a id="modalLaunchBtn" href="activity01.html" class="w-1/2 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-md shadow-sky-600/20">
+                    <span>Launch File</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="glass-panel border-t border-slate-200 mt-12 py-8 px-4 lg:px-8 bg-white/80">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+            <div>
+                <p class="text-sm font-semibold text-slate-800">
+                    Allison Ward-Osborne
+                </p>
+                <p class="text-xs text-slate-500 mt-0.5">
+                    Distinguished Faculty &bull; Computer Information Systems &bull; Central New Mexico Community College
+                </p>
+            </div>
+            <div class="text-xs text-slate-500 font-mono">
+                &copy; <span id="currentYear"></span> CNM CIS Department. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Embedded JavaScript Code -->
+    <script>
+        // Activity Database containing metadata for all 10 CompTIA A+ Core 1 activities
+        const activitiesData = [
+            {
+                id: 1,
+                file: "activity01.html",
+                title: "Mobile Devices & Laptop Hardware Architecture",
+                category: "Learning",
+                time: "25 mins",
+                difficulty: "Beginner",
+                desc: "Explore laptop display components (OLED vs LCD), disassembly procedures, SODIMM expansion, and mobile port interfaces for Core 1 Domain 1.0."
+            },
+            {
+                id: 2,
+                file: "activity02.html",
+                title: "Network Ports & Protocols Speed Matcher Game",
+                category: "Interactive Games",
+                time: "20 mins",
+                difficulty: "Intermediate",
+                desc: "Fast-paced interactive matching game to memorize essential TCP/UDP port numbers (HTTP 80, HTTPS 443, SSH 22, DNS 53, DHCP 67/68, RDP 3389)."
+            },
+            {
+                id: 3,
+                file: "activity03.html",
+                title: "Cables, Connectors & Network Tools Lab",
+                category: "Learning",
+                time: "30 mins",
+                difficulty: "Beginner",
+                desc: "Interactive visual guide for twisted-pair copper (Cat 5e/6/6a), T568A/B crimping standards, fiber optic connectors, and diagnostic tools."
+            },
+            {
+                id: 4,
+                file: "activity04.html",
+                title: "Motherboards, CPUs & Memory Architectures",
+                category: "Learning",
+                time: "35 mins",
+                difficulty: "Intermediate",
+                desc: "Learn ATX/ITX form factors, PCIe slot speeds, CPU socket types, BIOS/UEFI settings (Secure Boot, TPM 2.0), and dual-channel DDR4/DDR5 RAM."
+            },
+            {
+                id: 5,
+                file: "activity05.html",
+                title: "RAID Storage Configurator & Strategy Game",
+                category: "Interactive Games",
+                time: "25 mins",
+                difficulty: "Intermediate",
+                desc: "Simulation game where you configure RAID 0, 1, 5, and 10 arrays based on enterprise performance, fault tolerance, and minimum drive counts."
+            },
+            {
+                id: 6,
+                file: "activity06.html",
+                title: "Power Supply Wattage & PC Assembly Virtual Lab",
+                category: "Learning",
+                time: "30 mins",
+                difficulty: "Beginner",
+                desc: "Calculate component wattage requirements, select 80 Plus rated power supplies, and plan optimal thermal cooling airflow configurations."
+            },
+            {
+                id: 7,
+                file: "activity07.html",
+                title: "Cloud Computing Models & Virtualization Simulator",
+                category: "Learning",
+                time: "30 mins",
+                difficulty: "Intermediate",
+                desc: "Compare IaaS, PaaS, SaaS, Type 1 vs Type 2 hypervisors, resource allocation, and virtual machine hardware configuration rules."
+            },
+            {
+                id: 8,
+                file: "activity08.html",
+                title: "Laser Printing 7-Step Imaging Process Game",
+                category: "Interactive Games",
+                time: "25 mins",
+                difficulty: "Intermediate",
+                desc: "Order the 7 steps of laser printing (Processing, Charging, Exposing, Developing, Transferring, Fusing, Cleaning) in a step-by-step drag-and-drop game."
+            },
+            {
+                id: 9,
+                file: "activity09.html",
+                title: "CompTIA 6-Step Hardware Troubleshooting Game",
+                category: "Interactive Games",
+                time: "40 mins",
+                difficulty: "Advanced",
+                desc: "Apply the official CompTIA troubleshooting methodology to diagnose real-world POST failure codes, Overheating, RAID failures, and Network drops."
+            },
+            {
+                id: 10,
+                file: "activity10.html",
+                title: "CompTIA A+ Core 1 (220-1101) Practice Exam",
+                category: "Assessments",
+                time: "60 mins",
+                difficulty: "Advanced",
+                desc: "Comprehensive timed practice examination featuring Performance-Based Questions (PBQs) and multiple-choice items aligned with exam objectives."
+            }
+        ];
+
+        // Global State Variables
+        let activeCategoryFilter = 'All';
+        let searchQuery = '';
+
+        function renderCards() {
+            const grid = document.getElementById('activitiesGrid');
+            const completed = getCompletedState();
+
+            const filtered = activitiesData.filter(act => {
+                const matchesCategory = (activeCategoryFilter === 'All') || (act.category === activeCategoryFilter);
+                const matchesSearch = act.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      act.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      act.file.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center glass-panel rounded-2xl bg-white">
+                        <i class="fa-solid fa-magnifying-glass text-3xl text-slate-400 mb-3"></i>
+                        <p class="text-slate-700 font-semibold">No activities matched your query.</p>
+                        <p class="text-slate-500 text-xs mt-1">Try searching for "RAID", "Ports", "Printers", or "Troubleshooting".</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(act => {
+                const padId = String(act.id).padStart(2, '0');
+                const isDone = completed.includes(act.id);
+
+                const categoryBadge = act.category === 'Learning' ? 'text-sky-700 bg-sky-50 border-sky-200' :
+                                      act.category === 'Interactive Games' ? 'text-purple-700 bg-purple-50 border-purple-200' :
+                                      'text-emerald-700 bg-emerald-50 border-emerald-200';
+
+                const categoryIcon = act.category === 'Learning' ? 'fa-book-open' :
+                                     act.category === 'Interactive Games' ? 'fa-gamepad' : 'fa-clipboard-check';
+
+                return `
+                    <div class="card glass-panel glass-panel-hover rounded-2xl p-5 flex flex-col justify-between border border-slate-200/90 bg-white relative group">
+                        
+                        <!-- Card Header -->
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest bg-sky-50 border border-sky-200 px-2.5 py-0.5 rounded-md">
+                                    ACTIVITY ${padId}
+                                </span>
+                                
+                                <button onclick="toggleComplete(${act.id})" title="${isDone ? 'Mark as incomplete' : 'Mark as completed'}" 
+                                        class="text-xs px-2.5 py-1 rounded-md transition flex items-center gap-1.5 ${isDone ? 'bg-emerald-50 text-emerald-700 border border-emerald-300' : 'bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200'}">
+                                    <i class="fa-solid ${isDone ? 'fa-circle-check text-emerald-600' : 'fa-circle'} text-[10px]"></i>
+                                    <span>${isDone ? 'Completed' : 'Mark Done'}</span>
+                                </button>
+                            </div>
+
+                            <h3 class="text-base font-bold text-slate-900 group-hover:text-sky-700 transition line-clamp-2 mb-2">
+                                ${act.title}
+                            </h3>
+
+                            <p class="text-xs text-slate-600 leading-relaxed line-clamp-3 mb-4">
+                                ${act.desc}
+                            </p>
+                        </div>
+
+                        <!-- Card Footer Metadata & Actions -->
+                        <div class="pt-3 border-t border-slate-100 space-y-3">
+                            <div class="flex items-center justify-between text-[11px]">
+                                <span class="px-2 py-0.5 rounded border text-[10px] font-semibold ${categoryBadge}">
+                                    <i class="fa-solid ${categoryIcon} mr-1"></i>${act.category}
+                                </span>
+                                <span class="text-slate-500 font-mono"><i class="fa-regular fa-clock text-slate-400 mr-1"></i>${act.time}</span>
+                            </div>
+
+                            <div class="flex gap-2">
+                                <button onclick="openModal(${act.id})" class="w-1/3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 transition flex items-center justify-center gap-1">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    <span>Details</span>
+                                </button>
+
+                                <a href="${act.file}" class="w-2/3 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold border border-sky-600 transition flex items-center justify-center gap-1.5 shadow-sm">
+                                    <span>Launch Module</span>
+                                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function loadSamplePrompt(type) {
+            const roleInput = document.getElementById('sandboxRole');
+            const promptInput = document.getElementById('sandboxInput');
+
+            if (type === 'ports') {
+                roleInput.value = "CompTIA A+ Core 1 Domain: Networking & Ports (220-1101)";
+                promptInput.value = "A technician needs to configure a firewall rule to allow secure remote terminal access to a server. Which port number and protocol should be opened?";
+            } else if (type === 'printer') {
+                roleInput.value = "CompTIA A+ Core 1 Domain: Hardware & Printers (220-1101)";
+                promptInput.value = "What is the 2nd step in the laser printer imaging process, and what component performs it?";
+            }
+        }
+
+        function runSandboxSimulation() {
+            const output = document.getElementById('sandboxOutput');
+            const status = document.getElementById('sandboxStatus');
+
+            status.textContent = "Checking Objective...";
+            status.className = "text-amber-400 font-bold animate-pulse";
+            output.textContent = "Querying CompTIA A+ 220-1101 objective key...";
+
+            setTimeout(() => {
+                status.textContent = "Verified";
+                status.className = "text-emerald-400 font-bold";
+                
+                output.textContent = `[CORRECT EXAM ANSWER]:\n\n• Port & Protocol: Port 22 (SSH - Secure Shell)\n• Explanation: SSH provides encrypted console connectivity. Unencrypted Telnet uses Port 23.\n\n• Laser Printing Step 2: Charging (Primary Corona Wire or Charging Roller applies a high negative charge ~-600V to the drum).\n\nReady for Activity 02 (Ports Game) & Activity 08 (Printer Game)!`;
+            }, 600);
+        }
+
+        // LocalStorage Progress Tracker Helpers
+        function getCompletedState() {
+            try {
+                return JSON.parse(localStorage.getItem('cnm_ai_completed') || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function toggleComplete(id) {
+            let current = getCompletedState();
+            if (current.includes(id)) {
+                current = current.filter(item => item !== id);
+            } else {
+                current.push(id);
+            }
+            localStorage.setItem('cnm_ai_completed', JSON.stringify(current));
+            updateProgressStats();
+            renderCards();
+        }
+
+        function resetProgress() {
+            localStorage.removeItem('cnm_ai_completed');
+            updateProgressStats();
+            renderCards();
+        }
+
+        function updateProgressStats() {
+            const completed = getCompletedState();
+            const count = completed.length;
+            const percent = Math.round((count / 10) * 100);
+
+            document.getElementById('completedCount').textContent = count;
+            document.getElementById('progressPercent').textContent = `${percent}% Completed`;
+            document.getElementById('progressBar').style.width = `${percent}%`;
+        }
+
+        // Modal Quick View Handlers
+        function openModal(id) {
+            const act = activitiesData.find(a => a.id === id);
+            if (!act) return;
+
+            const padId = String(act.id).padStart(2, '0');
+            document.getElementById('modalNumber').textContent = `ACTIVITY ${padId}`;
+            document.getElementById('modalTitle').textContent = act.title;
+            document.getElementById('modalDesc').textContent = act.desc;
+            document.getElementById('modalCategory').textContent = act.category;
+            document.getElementById('modalTime').textContent = act.time;
+            document.getElementById('modalDifficulty').textContent = act.difficulty;
+            document.getElementById('modalFile').textContent = act.file;
+            document.getElementById('modalLaunchBtn').href = act.file;
+
+            document.getElementById('activityModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('activityModal').classList.add('hidden');
+        }
+
+        // Category Filter Logic
+        function filterCategory(cat) {
+            activeCategoryFilter = cat;
+            
+            // Update button styles
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                if (btn.textContent.trim().includes(cat) || (cat === 'All' && btn.textContent.trim() === 'All')) {
+                    btn.className = "filter-btn active-filter text-xs px-3 py-2 rounded-xl bg-sky-600 text-white font-bold transition shadow-sm";
+                } else {
+                    btn.className = "filter-btn text-xs px-3 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200 transition";
+                }
+            });
+
+            renderCards();
+        }
+
+        // Search Input Event Listener
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderCards();
+        });
+
+        function toggleSandboxModal() {
+            const el = document.querySelector('section');
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Initialize App on DOM Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCards();
+            updateProgressStats();
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
