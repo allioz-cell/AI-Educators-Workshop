@@ -111,8 +111,8 @@
                     <span>11 Modules (Exam 220-1201)</span>
                 </a>
                 <button onclick="toggleSandboxModal()" class="inline-flex items-center space-x-2 text-xs font-semibold px-3.5 py-2 rounded-lg bg-sky-50 text-sky-700 border border-sky-200 hover:bg-sky-100 transition shadow-sm">
-                    <i class="fa-solid fa-gamepad"></i>
-                    <span class="hidden md:inline">Exam Practice Simulator</span>
+                    <i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i>
+                    <span class="hidden md:inline">AI Prompt Generator</span>
                 </button>
             </div>
         </div>
@@ -172,9 +172,9 @@
                     <div class="flex flex-wrap gap-2 pt-2">
                         <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-book-open text-sky-600 mr-1.5"></i>5 Learning Activities</span>
                         <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-gamepad text-purple-600 mr-1.5"></i>4 Interactive Games</span>
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-wand-magic-sparkles text-amber-600 mr-1.5"></i>1 AI Tool</span>
                         <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clipboard-check text-emerald-600 mr-1.5"></i>1 Practice Assessment</span>
-                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clipboard-check text-emerald-600 mr-1.5"></i>1 Prompt Generator</span>
-  </div>
+                    </div>
                 </div>
 
                 <!-- Progress Card Widget -->
@@ -220,6 +220,7 @@
                 <button onclick="filterCategory('All')" class="filter-btn active-filter text-xs px-3 py-2 rounded-xl bg-sky-600 text-white font-bold transition shadow-sm">All</button>
                 <button onclick="filterCategory('Learning')" class="filter-btn text-xs px-3 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200 transition">Learning Activities</button>
                 <button onclick="filterCategory('Interactive Games')" class="filter-btn text-xs px-3 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200 transition">Interactive Games</button>
+                <button onclick="filterCategory('AI Tools')" class="filter-btn text-xs px-3 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200 transition">AI Tools</button>
                 <button onclick="filterCategory('Assessments')" class="filter-btn text-xs px-3 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200 transition">Assessments</button>
             </div>
         </div>
@@ -229,52 +230,76 @@
             <!-- Dynamically Rendered Cards go here -->
         </div>
 
-        <!-- CompTIA A+ Interactive Drill Simulator -->
+        <!-- CompTIA A+ Interactive Drill & AI Prompt Generator Simulator -->
         <section class="glass-panel rounded-3xl p-6 md:p-8 border border-slate-200/90 bg-white relative overflow-hidden shadow-sm">
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-6 border-b border-slate-100 pb-6">
                 <div>
-                    <span class="text-xs font-mono font-bold text-sky-700 uppercase tracking-widest block mb-1">A+ Core 1 (220-1201) Quick Drill</span>
+                    <span class="text-xs font-mono font-bold text-amber-600 uppercase tracking-widest block mb-1">Interactive Module 11 Preview & Generator</span>
                     <h3 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
-                        <i class="fa-solid fa-bolt text-amber-500"></i>
-                        <span>CompTIA Practice Question Simulator</span>
+                        <i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i>
+                        <span>AI CompTIA Study Prompt Generator</span>
                     </h3>
-                    <p class="text-slate-500 text-sm mt-1">Practice key port numbers and hardware scenarios for the updated 220-1201 objectives before launching Activity 02 & Activity 09.</p>
+                    <p class="text-slate-500 text-sm mt-1">Configure specialized AI prompts for LLMs (ChatGPT / Gemini / Claude) to generate customized PBQs, flashcards, or troubleshooting drills.</p>
                 </div>
-                <div class="flex gap-2">
-                    <button onclick="loadSamplePrompt('ports')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition">Ports Drill</button>
-                    <button onclick="loadSamplePrompt('printer')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition">Printer Steps</button>
-                    <button onclick="loadSamplePrompt('cloud')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition">Cloud & Virtualization</button>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="loadPromptTemplate('pbq')" class="text-xs px-3 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition"><i class="fa-solid fa-cubes text-amber-600 mr-1"></i>PBQ Builder</button>
+                    <button onclick="loadPromptTemplate('ports')" class="text-xs px-3 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 transition"><i class="fa-solid fa-network-wired text-sky-600 mr-1"></i>Port Quizzer</button>
+                    <button onclick="loadPromptTemplate('troubleshoot')" class="text-xs px-3 py-1.5 rounded-lg bg-purple-50 hover:bg-purple-100 text-purple-800 border border-purple-200 transition"><i class="fa-solid fa-wrench text-purple-600 mr-1"></i>Troubleshooter</button>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="space-y-3">
-                    <label class="text-xs font-mono text-slate-600 block">Select Core 1 Topic Area:</label>
-                    <input type="text" id="sandboxRole" value="CompTIA A+ Core 1 Exam Domain: Networking & Ports (220-1201)" 
-                           class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-mono text-sky-800 focus:outline-none focus:border-sky-500">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-xs font-mono text-slate-600 block mb-1">Target Domain:</label>
+                            <select id="promptDomain" onchange="generateCustomPrompt()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono text-slate-800 focus:outline-none focus:border-sky-500">
+                                <option value="1.0 Mobile Devices & Displays">Domain 1: Mobile Devices</option>
+                                <option value="2.0 Networking & Port Protocols" selected>Domain 2: Networking & Ports</option>
+                                <option value="3.0 Hardware & Storage Architecture">Domain 3: Hardware & Storage</option>
+                                <option value="4.0 Cloud & Virtualization">Domain 4: Cloud & Virtualization</option>
+                                <option value="5.0 Hardware & Network Troubleshooting">Domain 5: Troubleshooting</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs font-mono text-slate-600 block mb-1">Output Format:</label>
+                            <select id="promptFormat" onchange="generateCustomPrompt()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono text-slate-800 focus:outline-none focus:border-sky-500">
+                                <option value="Interactive PBQ Scenario with step-by-step grading">PBQ Scenario Drill</option>
+                                <option value="Socratic Flashcard Quiz with immediate feedback">Socratic Quiz</option>
+                                <option value="Real-world Helpdesk Support Case Study">Helpdesk Case Study</option>
+                                <option value="Memory Mnemonics & Exam Traps Summary">Mnemonics & Traps</option>
+                            </select>
+                        </div>
+                    </div>
 
-                    <label class="text-xs font-mono text-slate-600 block">Scenario / Question:</label>
-                    <textarea id="sandboxInput" rows="4" placeholder="Type or select a question..." 
-                              class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs font-mono text-slate-800 focus:outline-none focus:border-sky-500 resize-none">A technician needs to configure a firewall rule to allow secure remote terminal access to a server. Which port number and protocol should be opened under 220-1201 networking objectives?</textarea>
+                    <label class="text-xs font-mono text-slate-600 block">Generated Master Prompt:</label>
+                    <textarea id="sandboxInput" rows="5" readonly 
+                              class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs font-mono text-slate-800 focus:outline-none focus:border-sky-500 resize-none">Act as an expert CompTIA A+ Core 1 (220-1201) instructor. Create an interactive PBQ scenario drill focusing on Domain 2.0 Networking & Port Protocols. Present a scenario where a technician must configure firewall ports for secure remote access (SSH 22, RDP 3389, HTTPS 443). Wait for my answer before providing feedback.</textarea>
                     
-                    <button onclick="runSandboxSimulation()" class="w-full py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs tracking-wide transition shadow-md shadow-sky-600/20 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-check"></i>
-                        <span>Check Answer & Explanation</span>
-                    </button>
+                    <div class="flex gap-2">
+                        <button onclick="copyGeneratedPrompt()" class="w-1/2 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs tracking-wide transition shadow-md shadow-amber-600/20 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-copy"></i>
+                            <span>Copy Prompt to Clipboard</span>
+                        </button>
+                        <button onclick="runSandboxSimulation()" class="w-1/2 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs tracking-wide transition shadow-md shadow-sky-600/20 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-play"></i>
+                            <span>Simulate AI Response</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="bg-slate-900 rounded-2xl p-4 border border-slate-800 flex flex-col justify-between min-h-[220px] text-slate-100">
                     <div>
                         <div class="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-slate-800 pb-2 mb-3">
-                            <span><i class="fa-solid fa-graduation-cap text-sky-400 mr-1"></i> Exam Explanation & Reference</span>
+                            <span><i class="fa-solid fa-robot text-amber-400 mr-1"></i> Simulated LLM Execution Preview</span>
                             <span id="sandboxStatus" class="text-emerald-400">Ready</span>
                         </div>
                         <div id="sandboxOutput" class="text-xs font-mono text-slate-300 leading-relaxed whitespace-pre-wrap">
-                            [Click 'Check Answer & Explanation' to view correct port mapping and exam reasoning...]
+[Click 'Simulate AI Response' to preview how an AI model executes this custom prompt, or click 'Copy Prompt' to use in ChatGPT / Gemini!]
                         </div>
                     </div>
                     <div class="text-[10px] text-slate-500 font-mono text-right pt-2 border-t border-slate-800">
-                        CNM CIS CompTIA A+ Prep Toolkit (220-1201 Edition)
+                        Module 11 Tool: CNM CIS AI Study Engineer
                     </div>
                 </div>
             </div>
@@ -372,7 +397,7 @@
 
     <!-- Embedded JavaScript Code -->
     <script>
-        // Activity Database containing metadata for all 10 CompTIA A+ Core 1 (220-1201) activities
+        // Activity Database containing metadata for all 11 CompTIA A+ Core 1 (220-1201) activities
         const activitiesData = [
             {
                 id: 1,
@@ -467,10 +492,11 @@
             {
                 id: 11,
                 file: "activity11.html",
-                category: "Prompt Generator",
-                time: "unlimited",
-                difficulty: "Advanced",
-                desc: "Generates AI Prompts"
+                title: "AI Study Prompt Generator & Assistant",
+                category: "AI Tools",
+                time: "Interactive",
+                difficulty: "All Levels",
+                desc: "An intelligent AI prompt engineering tool designed to build targeted CompTIA A+ Core 1 study prompts, PBQs, port flashcards, and scenario case studies for LLMs."
             }
         ];
 
@@ -495,7 +521,7 @@
                     <div class="col-span-full py-12 text-center glass-panel rounded-2xl bg-white">
                         <i class="fa-solid fa-magnifying-glass text-3xl text-slate-400 mb-3"></i>
                         <p class="text-slate-700 font-semibold">No activities matched your query.</p>
-                        <p class="text-slate-500 text-xs mt-1">Try searching for "RAID", "Ports", "Printers", "220-1201", or "Troubleshooting".</p>
+                        <p class="text-slate-500 text-xs mt-1">Try searching for "RAID", "Ports", "Printers", "AI Tool", "220-1201", or "Troubleshooting".</p>
                     </div>
                 `;
                 return;
@@ -507,10 +533,12 @@
 
                 const categoryBadge = act.category === 'Learning' ? 'text-sky-700 bg-sky-50 border-sky-200' :
                                       act.category === 'Interactive Games' ? 'text-purple-700 bg-purple-50 border-purple-200' :
+                                      act.category === 'AI Tools' ? 'text-amber-700 bg-amber-50 border-amber-200' :
                                       'text-emerald-700 bg-emerald-50 border-emerald-200';
 
                 const categoryIcon = act.category === 'Learning' ? 'fa-book-open' :
-                                     act.category === 'Interactive Games' ? 'fa-gamepad' : 'fa-clipboard-check';
+                                     act.category === 'Interactive Games' ? 'fa-gamepad' :
+                                     act.category === 'AI Tools' ? 'fa-wand-magic-sparkles' : 'fa-clipboard-check';
 
                 return `
                     <div class="card glass-panel glass-panel-hover rounded-2xl p-5 flex flex-col justify-between border border-slate-200/90 bg-white relative group">
@@ -564,36 +592,61 @@
             }).join('');
         }
 
-        // Sample Drills for Interactive Simulator
-        function loadSamplePrompt(type) {
-            const roleInput = document.getElementById('sandboxRole');
-            const promptInput = document.getElementById('sandboxInput');
+        // Prompt Generator logic for Module 11 Preview
+        function generateCustomPrompt() {
+            const domain = document.getElementById('promptDomain').value;
+            const format = document.getElementById('promptFormat').value;
+            const promptBox = document.getElementById('sandboxInput');
 
-            if (type === 'ports') {
-                roleInput.value = "CompTIA A+ Core 1 Domain: Networking & Ports (220-1201)";
-                promptInput.value = "A technician needs to configure a firewall rule to allow secure remote terminal access to a server. Which port number and protocol should be opened under 220-1201 objectives?";
-            } else if (type === 'printer') {
-                roleInput.value = "CompTIA A+ Core 1 Domain: Hardware & Peripherals (220-1201)";
-                promptInput.value = "What is the 2nd step in the laser printer imaging process, and what voltage/component performs it?";
-            } else if (type === 'cloud') {
-                roleInput.value = "CompTIA A+ Core 1 Domain: Cloud Computing & Virtualization (220-1201)";
-                promptInput.value = "Which cloud service model provides virtualized computing infrastructure like servers, storage, and networking (IaaS, PaaS, or SaaS)?";
+            promptBox.value = `Act as an expert CompTIA A+ Core 1 (220-1201) professor. Construct a high-yield ${format} for Domain ${domain}. Ensure it incorporates recent 220-1201 exam objectives, realistic technical scenarios, and asks me to respond step-by-step before revealing the full answer and explanation.`;
+        }
+
+        function loadPromptTemplate(type) {
+            const domainSelect = document.getElementById('promptDomain');
+            const formatSelect = document.getElementById('promptFormat');
+
+            if (type === 'pbq') {
+                domainSelect.value = "2.0 Networking & Port Protocols";
+                formatSelect.value = "Interactive PBQ Scenario with step-by-step grading";
+            } else if (type === 'ports') {
+                domainSelect.value = "2.0 Networking & Port Protocols";
+                formatSelect.value = "Socratic Flashcard Quiz with immediate feedback";
+            } else if (type === 'troubleshoot') {
+                domainSelect.value = "5.0 Hardware & Network Troubleshooting";
+                formatSelect.value = "Real-world Helpdesk Support Case Study";
             }
+            generateCustomPrompt();
+        }
+
+        function copyGeneratedPrompt() {
+            const promptBox = document.getElementById('sandboxInput');
+            const status = document.getElementById('sandboxStatus');
+            
+            // Legacy copy support
+            promptBox.select();
+            document.execCommand('copy');
+
+            status.textContent = "Copied to Clipboard!";
+            status.className = "text-amber-400 font-bold";
+            setTimeout(() => {
+                status.textContent = "Ready";
+                status.className = "text-emerald-400 font-bold";
+            }, 2000);
         }
 
         function runSandboxSimulation() {
             const output = document.getElementById('sandboxOutput');
             const status = document.getElementById('sandboxStatus');
 
-            status.textContent = "Checking Objective...";
+            status.textContent = "Processing LLM Prompt...";
             status.className = "text-amber-400 font-bold animate-pulse";
-            output.textContent = "Querying CompTIA A+ 220-1201 objective key...";
+            output.textContent = "Simulating response generation from prompt structure...";
 
             setTimeout(() => {
-                status.textContent = "Verified";
+                status.textContent = "Generated Successfully";
                 status.className = "text-emerald-400 font-bold";
                 
-                output.textContent = `[CORRECT EXAM ANSWER - 220-1201 ALIGNED]:\n\n• Port & Protocol: Port 22 (SSH - Secure Shell)\n• Explanation: SSH provides encrypted console connectivity. Telnet uses unencrypted Port 23.\n\n• Laser Printing Step 2: Charging (Primary Corona Wire or Charging Roller applies a high negative charge ~-600V to the electrophotographic drum).\n\n• Cloud Service Models: IaaS (Infrastructure as a Service) provides virtual machines, raw storage, and virtual networking infrastructure.\n\nReady for Activity 02 (Ports Game), Activity 07 (Cloud), & Activity 08 (Printer Game)!`;
+                output.textContent = `[SIMULATED AI RESPONSE (Gemini / ChatGPT)]:\n\n"Hello! Here is your CompTIA A+ Core 1 Practice Drill based on your prompt:\n\nScenario: A small business user reports that after a network switch upgrade, their local PC can browse internal file shares, but cannot open secure website URLs (https://...). Another workstation in the same subnet works fine.\n\nQuestions for you:\n1. Which TCP port is required for HTTPS connection?\n2. What primary network configuration setting should you verify on the affected workstation?\n\nType your answer below and I will grade your explanation!"`;
             }, 600);
         }
 
