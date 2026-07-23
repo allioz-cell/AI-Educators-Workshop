@@ -173,7 +173,8 @@
                         <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-book-open text-sky-600 mr-1.5"></i>5 Learning Activities</span>
                         <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-gamepad text-purple-600 mr-1.5"></i>4 Interactive Games</span>
                         <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clipboard-check text-emerald-600 mr-1.5"></i>1 Practice Assessment</span>
-                    </div>
+                        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clipboard-check text-emerald-600 mr-1.5"></i>1 Prompt Generator</span>
+  </div>
                 </div>
 
                 <!-- Progress Card Widget -->
@@ -186,7 +187,7 @@
                     <div>
                         <div class="flex justify-between text-sm mb-1.5">
                             <span class="text-slate-700 font-medium">Completed Activities</span>
-                            <span class="font-mono text-slate-900 font-bold"><span id="completedCount">0</span> / 10</span>
+                            <span class="font-mono text-slate-900 font-bold"><span id="completedCount">0</span> / 11</span>
                         </div>
                         <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden border border-slate-200">
                             <div id="progressBar" class="bg-gradient-to-r from-sky-500 to-indigo-600 h-full rounded-full transition-all duration-500 w-0"></div>
@@ -470,7 +471,7 @@
                 time: "unlimited",
                 difficulty: "Advanced",
                 desc: "Generates AI Prompts"
-            },
+            }
         ];
 
         // Global State Variables
@@ -626,7 +627,7 @@
         function updateProgressStats() {
             const completed = getCompletedState();
             const count = completed.length;
-            const percent = Math.round((count / 10) * 100);
+            const percent = Math.round((count / 11) * 100);
 
             document.getElementById('completedCount').textContent = count;
             document.getElementById('progressPercent').textContent = `${percent}% Completed`;
