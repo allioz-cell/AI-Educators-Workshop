@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity 07 &middot; Cloud Models &amp; Virtualization | CNM CIS A+ Core 1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: {
+  sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] } } } }
+</script>
+<style>
+  body{
+    background-color:#F8FAFC;color:#0F172A;
+    background-image:
+      radial-gradient(at 10% 10%, rgba(14,165,233,.08) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(168,85,247,.08) 0px, transparent 50%);
+    background-attachment:fixed;
+  }
+  .glass{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(226,232,240,.9);
+    box-shadow:0 4px 20px -2px rgba(15,23,42,.04);
+  }
+  :focus-visible{outline:2px solid #0284c7;outline-offset:2px;border-radius:4px}
+  ::-webkit-scrollbar{width:8px}
+  ::-webkit-scrollbar-track{background:#F1F5F9}
+  ::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+  table.ref{width:100%;border-collapse:collapse;font-size:.78rem}
+  table.ref th{background:#F1F5F9;color:#334155;font-weight:600;text-align:left;padding:.55rem .7rem;border:1px solid #E2E8F0;white-space:nowrap}
+  table.ref td{padding:.55rem .7rem;border:1px solid #E2E8F0;vertical-align:top;color:#334155}
+  table.ref tbody tr:nth-child(even){background:#F8FAFC}
+  .tbl-wrap{overflow-x:auto;border-radius:1rem;border:1px solid #E2E8F0;background:#fff}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="sticky top-0 z-40 glass border-b border-slate-200/80 px-4 lg:px-8 py-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2.5 group min-w-0">
+      <span class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+        <i class="fa-solid fa-arrow-left text-sm"></i>
+      </span>
+      <span class="min-w-0">
+        <span class="block text-sm font-bold text-slate-900 group-hover:text-sky-700 transition leading-tight truncate">Back to Launch Pad</span>
+        <span class="block text-[11px] text-slate-500 font-mono truncate">Activity 07 of 10 &middot; 220-1201</span>
+      </span>
+    </a>
+    <button id="doneBtn" type="button" onclick="toggleDone()"
+      class="shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2">
+      <i id="doneIcon" class="fa-solid fa-circle text-[10px]"></i><span id="doneLabel">Mark done</span>
+    </button>
+  </div>
+</nav>
+
+<header class="max-w-6xl mx-auto px-4 lg:px-8 pt-8 pb-2 w-full">
+  <div class="glass rounded-3xl p-6 md:p-8 bg-white/90 relative overflow-hidden">
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 space-y-3">
+      <span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Domain 4.0 &middot; Virtualization and Cloud Computing (11% of the exam)</span>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">Cloud Models &amp; Virtualization</h1>
+      <p class="text-slate-600 text-sm sm:text-base max-w-3xl leading-relaxed">The smallest Core 1 domain, and the one students most often lose easy points on because the models blur together. Anchor them to a single question &mdash; where does your responsibility stop &mdash; and the rest of the domain follows.</p>
+      <div class="flex flex-wrap gap-2 pt-1"><span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-book-open text-sky-600 mr-1.5"></i>Learning activity</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clock text-slate-500 mr-1.5"></i>30 minutes</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-signal text-amber-600 mr-1.5"></i>Intermediate</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-layer-group text-purple-600 mr-1.5"></i>Responsibility matrix</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 lg:px-8 py-6 w-full flex-1 space-y-6">
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-layer-group text-sky-600"></i><span>Who manages what</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Infrastructure, platform and software as a service, side by side with on-premises.</p>
+  </div>
+<p class="text-sm text-slate-600 mb-5 leading-relaxed">The difference between the service models is not what they can do &mdash; it is where responsibility stops. Switch models and watch the boundary move.</p><div class="flex flex-wrap gap-2 mb-5" id="modelBtns"></div><div class="grid gap-4 lg:grid-cols-3">  <div class="lg:col-span-2 space-y-1.5" id="stackRows"></div>  <div id="modelNote" class="rounded-2xl border border-slate-200 bg-slate-50 p-5"></div></div><div class="flex flex-wrap gap-4 mt-5 text-xs text-slate-600">  <span class="flex items-center gap-2"><span class="w-4 h-4 rounded bg-sky-600 inline-block"></span>You manage it</span>  <span class="flex items-center gap-2"><span class="w-4 h-4 rounded bg-slate-300 inline-block"></span>The provider manages it</span></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-server text-sky-600"></i><span>Hypervisors</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Where the hypervisor sits determines the performance and the use case.</p>
+  </div>
+<div class="grid gap-4 md:grid-cols-2"><div class="rounded-2xl border border-sky-200 bg-sky-50 p-5"><h3 class="font-bold text-sm text-sky-900 mb-1">Type 1 &mdash; bare metal</h3><p class="text-[11px] font-mono text-sky-700 mb-3">Hardware &rarr; hypervisor &rarr; virtual machines</p><p class="text-xs text-sky-900 leading-relaxed mb-3">The hypervisor is the operating system. It installs straight onto the hardware, so there is no host OS competing for resources. This is what runs production servers.</p><p class="text-xs text-sky-900"><b>Examples:</b> VMware ESXi, Microsoft Hyper-V Server, Proxmox VE, XCP-ng</p></div><div class="rounded-2xl border border-slate-200 bg-white p-5"><h3 class="font-bold text-sm text-slate-900 mb-1">Type 2 &mdash; hosted</h3><p class="text-[11px] font-mono text-slate-500 mb-3">Hardware &rarr; host OS &rarr; hypervisor &rarr; virtual machines</p><p class="text-xs text-slate-600 leading-relaxed mb-3">Runs as an application on top of Windows, macOS or Linux. Slower, because everything passes through the host OS, but perfect for a technician testing on a laptop.</p><p class="text-xs text-slate-600"><b>Examples:</b> VirtualBox, VMware Workstation, Parallels Desktop</p></div></div><div class="mt-4"><div class="bg-amber-50 border-amber-200 text-amber-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-sliders text-amber-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Resource requirements</span>Every virtual machine needs its own allocation of CPU cores, RAM and disk, plus a valid license for its guest operating system. Virtualization also requires <b>hardware support enabled in firmware</b> &mdash; Intel VT-x or AMD-V. A machine that refuses to start a 64-bit guest almost always has that setting turned off.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-cubes text-sky-600"></i><span>Containers are not virtual machines</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Both provide isolation; only one carries an entire operating system with it.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th></th><th>Virtual machine</th><th>Container</th></tr></thead><tbody><tr><td>What it packages</td><td>A full guest operating system plus the app</td><td>Just the app and its dependencies</td></tr><tr><td>What it shares</td><td>Nothing &mdash; each VM has its own kernel</td><td>The host operating system kernel</td></tr><tr><td>Typical size</td><td>Gigabytes</td><td>Megabytes</td></tr><tr><td>Start time</td><td>Tens of seconds to minutes</td><td>Under a second</td></tr><tr><td>Isolation</td><td>Strong &mdash; a full hardware boundary</td><td>Lighter &mdash; process-level isolation</td></tr><tr><td>Good for</td><td>Running different operating systems, strict isolation</td><td>Packing many instances of one app density-efficiently</td></tr></tbody></table></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-cloud text-sky-600"></i><span>Cloud characteristics and deployment models</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Rapid elasticity, metered billing and tenancy are the three ideas that generate most cloud questions.</p>
+  </div>
+<div class="grid gap-4 md:grid-cols-2"><div class="rounded-2xl border border-slate-200 bg-white p-5"><h3 class="font-bold text-sm text-slate-900 mb-3">Characteristics the exam names</h3><ul class="text-xs text-slate-600 space-y-2.5 leading-relaxed"><li><b class="text-slate-800">On-demand self-service:</b> a user provisions resources through a portal without waiting on a person.</li><li><b class="text-slate-800">Rapid elasticity:</b> capacity scales up during a spike and back down afterward.</li><li><b class="text-slate-800">Measured / metered service:</b> you are billed for exactly what you consume.</li><li><b class="text-slate-800">Resource pooling:</b> one physical infrastructure serves many tenants.</li><li><b class="text-slate-800">High availability:</b> workloads run across zones so one failure does not take the service down.</li><li><b class="text-slate-800">File synchronization:</b> changes propagate to every device signed into the account.</li></ul></div><div class="rounded-2xl border border-slate-200 bg-white p-5"><h3 class="font-bold text-sm text-slate-900 mb-3">Deployment models</h3><ul class="text-xs text-slate-600 space-y-2.5 leading-relaxed"><li><b class="text-slate-800">Public:</b> a provider's shared infrastructure, open to any customer.</li><li><b class="text-slate-800">Private:</b> infrastructure dedicated to one organization, on site or hosted. The answer whenever regulation demands sole tenancy.</li><li><b class="text-slate-800">Hybrid:</b> private and public joined, so sensitive data stays in and bursty workloads go out.</li><li><b class="text-slate-800">Community:</b> shared by several organizations with the same compliance needs, such as a group of hospitals.</li></ul></div></div><div class="mt-4"><div class="bg-emerald-50 border-emerald-200 text-emerald-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-desktop text-emerald-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Desktop virtualization</span><b>VDI</b> puts the desktop itself in the data center; the endpoint becomes a thin client that streams the screen. It keeps data off the device entirely, which is why questions about lost laptops and contractor access tend to land here.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-circle-question text-sky-600"></i><span>Check your understanding</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Immediate feedback with the reasoning the exam expects.</p>
+  </div>
+<div id="q7"></div>
+</section>
+</main>
+
+<footer class="glass border-t border-slate-200 mt-10 py-7 px-4 lg:px-8 bg-white/80">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+    <div>
+      <p class="text-sm font-semibold text-slate-800">Allison Ward-Osborne</p>
+      <p class="text-xs text-slate-500 mt-0.5">Computer Information Systems &bull; Central New Mexico Community College</p>
+    </div>
+    <a href="index.html" class="text-xs font-semibold text-sky-700 hover:text-sky-900 font-mono">&larr; All 10 activities</a>
+  </div>
+</footer>
+
+<script>
+/* ---- progress tracking, shared with the launch pad ---- */
+var ACT_ID = 7;
+function getDone(){ try { return JSON.parse(localStorage.getItem('cnm_ai_completed') || '[]'); } catch(e){ return []; } }
+function paintDone(){
+  var on = getDone().indexOf(ACT_ID) !== -1;
+  var b = document.getElementById('doneBtn');
+  b.className = 'shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2 ' +
+    (on ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200');
+  document.getElementById('doneIcon').className = 'fa-solid text-[10px] ' + (on ? 'fa-circle-check text-emerald-600' : 'fa-circle');
+  document.getElementById('doneLabel').textContent = on ? 'Completed' : 'Mark done';
+}
+function toggleDone(){
+  var d = getDone(), i = d.indexOf(ACT_ID);
+  if (i === -1) d.push(ACT_ID); else d.splice(i,1);
+  localStorage.setItem('cnm_ai_completed', JSON.stringify(d));
+  paintDone();
+}
+
+/* ---- shared quiz engine ---- */
+function buildQuiz(containerId, questions){
+  var c = document.getElementById(containerId);
+  var state = { answered: 0, correct: 0, total: questions.length };
+  var html = '<div class="flex items-center justify-between gap-3 mb-4 px-1">' +
+    '<span class="text-xs font-mono text-slate-500">Answer each question &mdash; feedback appears immediately.</span>' +
+    '<span id="' + containerId + '-score" class="text-xs font-mono font-bold text-slate-500 whitespace-nowrap">0 / ' + questions.length + '</span></div>';
+  html += questions.map(function(q, i){
+    return '<div class="glass rounded-2xl p-5 mb-3.5 bg-white" data-i="' + i + '">' +
+      '<p class="text-sm font-semibold text-slate-900 mb-3 leading-relaxed">' +
+        '<span class="font-mono text-sky-700 mr-2">Q' + (i+1) + '</span>' + q.q + '</p>' +
+      '<div class="space-y-2">' + q.a.map(function(opt, j){
+        return '<button type="button" data-j="' + j + '" class="opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-sky-300 text-slate-700 transition flex items-start gap-2.5">' +
+          '<span class="font-mono text-[10px] text-slate-400 mt-0.5 shrink-0">' + 'ABCDE'.charAt(j) + '</span><span>' + opt + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="exp hidden mt-3 text-xs leading-relaxed rounded-xl p-3.5 border"></div></div>';
+  }).join('');
+  c.innerHTML = html;
+
+  c.addEventListener('click', function(ev){
+    var btn = ev.target.closest('.opt');
+    if (!btn) return;
+    var card = btn.closest('[data-i]');
+    if (card.dataset.locked) return;
+    card.dataset.locked = '1';
+    var q = questions[+card.dataset.i];
+    var picked = +btn.dataset.j;
+    var opts = card.querySelectorAll('.opt');
+    for (var k = 0; k < opts.length; k++){
+      opts[k].disabled = true;
+      if (k === q.c) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold flex items-start gap-2.5';
+      else if (k === picked) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-900 flex items-start gap-2.5';
+      else opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-400 flex items-start gap-2.5';
+    }
+    var right = picked === q.c;
+    var exp = card.querySelector('.exp');
+    exp.className = 'exp mt-3 text-xs leading-relaxed rounded-xl p-3.5 border ' +
+      (right ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900');
+    exp.innerHTML = '<span class="font-bold">' + (right ? 'Correct. ' : 'Not quite. ') + '</span>' + q.e;
+    state.answered++; if (right) state.correct++;
+    var s = document.getElementById(containerId + '-score');
+    s.textContent = state.correct + ' / ' + state.total;
+    s.className = 'text-xs font-mono font-bold whitespace-nowrap ' +
+      (state.answered < state.total ? 'text-sky-700' : (state.correct === state.total ? 'text-emerald-600' : 'text-slate-700'));
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  paintDone();
+  if (typeof pageInit === 'function') pageInit();
+});
+</script>
+<script>
+
+var LAYERS7 = ["Applications","Data and user access","Runtime","Middleware","Operating system","Virtualization","Physical servers","Storage and networking"];
+var MODELS = {
+  onprem:{ label:"On-premises", you:8,
+    note:"You own and manage the entire stack, from the building's power to the application code. Maximum control, maximum capital cost, and every upgrade is your problem." },
+  iaas:{ label:"IaaS", you:5,
+    note:"The provider rents you virtual machines, storage and networking. You still install and patch the operating system and everything above it. Think of it as a data center you never have to visit." },
+  paas:{ label:"PaaS", you:2,
+    note:"The provider hands you a ready runtime environment. You deploy code and manage your data; operating system patching, scaling and middleware are no longer yours." },
+  saas:{ label:"SaaS", you:1,
+    note:"You use a finished application in a browser. The provider runs everything, but your data and who has access to it remain your responsibility \u2014 that boundary is the one exam questions probe." }
+};
+var model = 'iaas';
+
+function setModel(k){
+  model = k;
+  document.getElementById('modelBtns').innerHTML = Object.keys(MODELS).map(function(m){
+    return '<button type="button" onclick="setModel(\'' + m + '\')" class="px-4 py-2.5 rounded-xl text-xs font-bold border transition ' +
+      (m===model ? 'bg-sky-600 text-white border-sky-600 shadow-sm' : 'bg-white text-slate-700 border-slate-200 hover:border-sky-300 hover:bg-slate-50') +
+      '">' + MODELS[m].label + '</button>';
+  }).join('');
+  var yours = MODELS[k].you;
+  document.getElementById('stackRows').innerHTML = LAYERS7.map(function(L, i){
+    var mine = i < yours;
+    return '<div class="flex items-center gap-3 px-4 py-2.5 rounded-xl border transition ' +
+      (mine ? 'bg-sky-600 border-sky-600 text-white' : 'bg-slate-100 border-slate-200 text-slate-500') + '">' +
+      '<i class="fa-solid ' + (mine ? 'fa-user-gear' : 'fa-cloud') + ' text-xs w-4"></i>' +
+      '<span class="text-xs font-semibold flex-1">' + L + '</span>' +
+      '<span class="text-[10px] font-mono uppercase tracking-wider ' + (mine ? 'text-sky-100' : 'text-slate-400') + '">' + (mine ? 'you' : 'provider') + '</span></div>';
+  }).join('');
+  document.getElementById('modelNote').innerHTML =
+    '<h3 class="font-bold text-slate-900 mb-2">' + MODELS[k].label + '</h3>' +
+    '<p class="text-xs text-slate-600 leading-relaxed">' + MODELS[k].note + '</p>' +
+    '<div class="mt-4 pt-3 border-t border-slate-200"><span class="text-[11px] font-mono text-slate-500">You manage</span>' +
+    '<p class="text-2xl font-extrabold text-sky-700">' + yours + ' of 8 <span class="text-sm font-medium text-slate-400">layers</span></p></div>';
+}
+
+function pageInit(){
+  setModel('iaas');
+  buildQuiz('q7', [
+    { q:"A startup wants to deploy a web application without patching operating systems or managing servers, but they still write and control the code. Which service model fits?",
+      a:["IaaS","PaaS","SaaS","On-premises"], c:1,
+      e:"PaaS supplies a managed runtime. The customer deploys their own application and data while the provider handles the operating system, middleware and scaling underneath." },
+    { q:"An accounting firm subscribes to a payroll product used entirely through a browser. Which model is this, and what remains their responsibility?",
+      a:["IaaS; they manage the OS","SaaS; they remain responsible for their data and who can access it","PaaS; they manage middleware","Private cloud; they manage the hardware"], c:1,
+      e:"A finished application delivered over the web is SaaS. The provider runs the whole stack, but data ownership and access control stay with the customer, which is where most SaaS security incidents originate." },
+    { q:"A technician needs to test software on Windows, Linux and an older Windows build from one laptop. Which solution is appropriate?",
+      a:["A Type 1 hypervisor on the laptop","A Type 2 hypervisor such as VirtualBox","A container runtime","A thin client"], c:1,
+      e:"A Type 2 hypervisor installs as an application on the existing operating system, which is exactly right for a technician's workstation. Type 1 would replace the laptop's OS entirely." },
+    { q:"A virtual machine will not start, and the hypervisor reports that hardware virtualization is unavailable. What should you check?",
+      a:["The guest operating system license","Intel VT-x or AMD-V in the UEFI firmware","The RAID configuration","The DNS server address"], c:1,
+      e:"Hardware-assisted virtualization is a firmware setting, and it is disabled by default on many machines. Without it, most hypervisors refuse to run 64-bit guests." },
+    { q:"A hospital must keep patient records on infrastructure that no other organization shares, but wants public cloud capacity for a seasonal analytics workload. Which deployment model describes this?",
+      a:["Public cloud","Private cloud","Hybrid cloud","Community cloud"], c:2,
+      e:"Hybrid joins a private environment to public capacity, letting regulated data stay in the private side while burst workloads run externally." },
+    { q:"An online retailer's traffic increases tenfold on one day each year, then returns to normal. Which cloud characteristic addresses this?",
+      a:["Resource pooling","Rapid elasticity","Measured service","On-demand self-service"], c:1,
+      e:"Rapid elasticity scales capacity up to meet the spike and back down afterward, so the retailer never pays year-round for peak-day hardware." },
+    { q:"Which statement correctly distinguishes a container from a virtual machine?",
+      a:["Containers include a full guest operating system","Containers share the host kernel and package only the app and its dependencies","Virtual machines start faster than containers","Containers cannot be isolated from each other"], c:1,
+      e:"A container ships the application and its dependencies and borrows the host kernel, which is why it measures in megabytes and starts in under a second. A VM carries an entire operating system." },
+    { q:"A company issues thin clients to a call center so that no customer data is ever stored on an endpoint. Which technology is being described?",
+      a:["Virtual desktop infrastructure","Infrastructure as a Service","A community cloud","A Type 2 hypervisor"], c:0,
+      e:"VDI hosts the desktop in the data center and streams only the display to the endpoint. A lost or stolen thin client carries no data with it." },
+  ]);
+}
+
+</script>
+</body>
+</html>

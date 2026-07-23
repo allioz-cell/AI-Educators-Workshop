@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity 06 &middot; Power Supplies &amp; PC Assembly | CNM CIS A+ Core 1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: {
+  sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] } } } }
+</script>
+<style>
+  body{
+    background-color:#F8FAFC;color:#0F172A;
+    background-image:
+      radial-gradient(at 10% 10%, rgba(14,165,233,.08) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(168,85,247,.08) 0px, transparent 50%);
+    background-attachment:fixed;
+  }
+  .glass{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(226,232,240,.9);
+    box-shadow:0 4px 20px -2px rgba(15,23,42,.04);
+  }
+  :focus-visible{outline:2px solid #0284c7;outline-offset:2px;border-radius:4px}
+  ::-webkit-scrollbar{width:8px}
+  ::-webkit-scrollbar-track{background:#F1F5F9}
+  ::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+  table.ref{width:100%;border-collapse:collapse;font-size:.78rem}
+  table.ref th{background:#F1F5F9;color:#334155;font-weight:600;text-align:left;padding:.55rem .7rem;border:1px solid #E2E8F0;white-space:nowrap}
+  table.ref td{padding:.55rem .7rem;border:1px solid #E2E8F0;vertical-align:top;color:#334155}
+  table.ref tbody tr:nth-child(even){background:#F8FAFC}
+  .tbl-wrap{overflow-x:auto;border-radius:1rem;border:1px solid #E2E8F0;background:#fff}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="sticky top-0 z-40 glass border-b border-slate-200/80 px-4 lg:px-8 py-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2.5 group min-w-0">
+      <span class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+        <i class="fa-solid fa-arrow-left text-sm"></i>
+      </span>
+      <span class="min-w-0">
+        <span class="block text-sm font-bold text-slate-900 group-hover:text-sky-700 transition leading-tight truncate">Back to Launch Pad</span>
+        <span class="block text-[11px] text-slate-500 font-mono truncate">Activity 06 of 10 &middot; 220-1201</span>
+      </span>
+    </a>
+    <button id="doneBtn" type="button" onclick="toggleDone()"
+      class="shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2">
+      <i id="doneIcon" class="fa-solid fa-circle text-[10px]"></i><span id="doneLabel">Mark done</span>
+    </button>
+  </div>
+</nav>
+
+<header class="max-w-6xl mx-auto px-4 lg:px-8 pt-8 pb-2 w-full">
+  <div class="glass rounded-3xl p-6 md:p-8 bg-white/90 relative overflow-hidden">
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 space-y-3">
+      <span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Domain 3.0 &middot; Hardware (25% of the exam)</span>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">Power Supplies &amp; PC Assembly</h1>
+      <p class="text-slate-600 text-sm sm:text-base max-w-3xl leading-relaxed">Undersize a power supply and the fault only shows up under load, which makes it one of the most misdiagnosed problems in the field. Build a parts list to see how the wattage math works, learn what the 80 Plus badge actually promises, and lock in the safety procedure the exam scores as a sequence.</p>
+      <div class="flex flex-wrap gap-2 pt-1"><span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-book-open text-sky-600 mr-1.5"></i>Learning activity</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clock text-slate-500 mr-1.5"></i>30 minutes</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-signal text-emerald-600 mr-1.5"></i>Beginner</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-calculator text-purple-600 mr-1.5"></i>Wattage calculator</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 lg:px-8 py-6 w-full flex-1 space-y-6">
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-plug-circle-bolt text-sky-600"></i><span>Size a power supply</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Build a parts list and watch the recommended wattage move.</p>
+  </div>
+<div class="grid gap-5 lg:grid-cols-2">  <div class="space-y-4" id="psuControls"></div>  <div id="psuOut" class="rounded-2xl border border-slate-200 bg-slate-50 p-5"></div></div><div class="mt-5"><div class="bg-sky-50 border-sky-200 text-sky-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-calculator text-sky-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">The rule to remember</span>Add up the draw of every component, then choose a unit with roughly <b>30% headroom</b>. Supplies run most efficiently near half load, transient GPU spikes need room, and capacitors lose capacity as they age.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-leaf text-sky-600"></i><span>80 Plus efficiency ratings</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Higher rating means less energy wasted as heat, not more power available.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th>Rating</th><th>Efficiency at 50% load (115 V)</th><th>What it means in practice</th></tr></thead><tbody><tr><td>80 Plus (White)</td><td>80%</td><td>The entry certification. 500 W to the components draws 625 W from the wall.</td></tr><tr><td>Bronze</td><td>85%</td><td>The common value choice for office and home builds.</td></tr><tr><td>Silver</td><td>88%</td><td>Uncommon; usually skipped in favor of Gold.</td></tr><tr><td>Gold</td><td>90%</td><td>The sweet spot for most builds &mdash; noticeably cooler and quieter.</td></tr><tr><td>Platinum</td><td>92%</td><td>Servers and systems that run continuously.</td></tr><tr><td>Titanium</td><td>94%</td><td>Data center efficiency, priced accordingly.</td></tr></tbody></table></div><div class="mt-4"><div class="bg-amber-50 border-amber-200 text-amber-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-temperature-half text-amber-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Read the question carefully</span>Efficiency describes <b>waste heat, not capability</b>. A Gold 650 W supply and a Bronze 650 W supply both deliver 650 W; the Gold unit just pulls less from the wall and dumps less heat into the case.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-diagram-project text-sky-600"></i><span>Connectors on a modern supply</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Every cable has one job, and the shapes are keyed so that mistakes are hard but not impossible.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th>Connector</th><th>Pins</th><th>Goes to</th></tr></thead><tbody><tr><td>Main ATX power</td><td>24-pin (20+4)</td><td>The motherboard</td></tr><tr><td>EPS12V CPU power</td><td>4 or 8-pin (4+4)</td><td>The header beside the CPU socket &mdash; separate from the 24-pin</td></tr><tr><td>PCIe power</td><td>6 or 8-pin (6+2)</td><td>Graphics cards</td></tr><tr><td>12VHPWR / 12V-2x6</td><td>16-pin</td><td>Current high-power graphics cards, up to 600 W on one cable</td></tr><tr><td>SATA power</td><td>15-pin</td><td>Drives, and some RGB or fan controllers</td></tr><tr><td>Molex</td><td>4-pin</td><td>Legacy fans, older accessories, some case hardware</td></tr></tbody></table></div><div class="mt-4 grid gap-4 md:grid-cols-2"><div class="bg-rose-50 border-rose-200 text-rose-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-fire text-rose-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Do not improvise</span><b>Never</b> use daisy-chained adapters to fake a missing GPU connector. Each cable is rated for a specific current, and forcing more through a splitter melts connectors &mdash; a documented failure mode on high-wattage cards.</div></div><div class="bg-emerald-50 border-emerald-200 text-emerald-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-wind text-emerald-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Modular vs fixed</span>A <b>modular</b> supply lets you attach only the cables you need, which improves airflow. Cables are keyed to the manufacturer, so never reuse modular cables from a different brand of supply.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-helmet-safety text-sky-600"></i><span>Safety and assembly order</span></h2>
+    <p class="text-xs text-slate-500 mt-1">The safety rules and the build order that CompTIA scores as procedure.</p>
+  </div>
+<div class="grid gap-4 md:grid-cols-2"><div class="rounded-2xl border border-rose-200 bg-rose-50 p-5"><h3 class="font-bold text-sm text-rose-900 mb-3"><i class="fa-solid fa-bolt text-rose-600 mr-2"></i>Electrostatic discharge</h3><ul class="text-xs text-rose-900 space-y-2 leading-relaxed"><li>Wear an anti-static wrist strap connected to the chassis, and work on an anti-static mat.</li><li>Transport boards and cards in anti-static bags, never on carpet or in a plastic grocery bag.</li><li>Unplug the system and hold the power button for several seconds to drain residual charge.</li><li>Handle cards by the edges and the bracket, never by the contacts or chips.</li><li><b>Never</b> open a power supply or a CRT monitor. Their capacitors hold a lethal charge long after unplugging, and a wrist strap makes that worse, not better.</li></ul></div><div class="rounded-2xl border border-slate-200 bg-white p-5"><h3 class="font-bold text-sm text-slate-900 mb-3"><i class="fa-solid fa-list-ol text-sky-600 mr-2"></i>Assembly order that avoids rework</h3><ol class="text-xs text-slate-600 space-y-2 list-decimal list-inside leading-relaxed"><li>Install the CPU, memory and M.2 drives while the board is out of the case &mdash; far easier access.</li><li>Mount the I/O shield, then stand the board on the case standoffs.</li><li>Install the power supply and route the 24-pin and EPS cables behind the tray.</li><li>Connect the front panel header, USB and audio before large cards block the pins.</li><li>Install the graphics card and connect its dedicated power cables.</li><li>Attach storage and its data cables, then tidy the routing for airflow.</li><li>Test outside the case or with the side panel off before final cable management.</li></ol></div></div><div class="mt-4"><div class="bg-sky-50 border-sky-200 text-sky-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-wind text-sky-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Thermal design</span>Airflow works when intake and exhaust are balanced. Front and bottom fans pull cool air in, rear and top fans push hot air out, and a case with slightly more intake than exhaust holds <b>positive pressure</b>, which keeps dust out of the unfiltered gaps.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-circle-question text-sky-600"></i><span>Check your understanding</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Immediate feedback with the reasoning the exam expects.</p>
+  </div>
+<div id="q6"></div>
+</section>
+</main>
+
+<footer class="glass border-t border-slate-200 mt-10 py-7 px-4 lg:px-8 bg-white/80">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+    <div>
+      <p class="text-sm font-semibold text-slate-800">Allison Ward-Osborne</p>
+      <p class="text-xs text-slate-500 mt-0.5">Computer Information Systems &bull; Central New Mexico Community College</p>
+    </div>
+    <a href="index.html" class="text-xs font-semibold text-sky-700 hover:text-sky-900 font-mono">&larr; All 10 activities</a>
+  </div>
+</footer>
+
+<script>
+/* ---- progress tracking, shared with the launch pad ---- */
+var ACT_ID = 6;
+function getDone(){ try { return JSON.parse(localStorage.getItem('cnm_ai_completed') || '[]'); } catch(e){ return []; } }
+function paintDone(){
+  var on = getDone().indexOf(ACT_ID) !== -1;
+  var b = document.getElementById('doneBtn');
+  b.className = 'shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2 ' +
+    (on ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200');
+  document.getElementById('doneIcon').className = 'fa-solid text-[10px] ' + (on ? 'fa-circle-check text-emerald-600' : 'fa-circle');
+  document.getElementById('doneLabel').textContent = on ? 'Completed' : 'Mark done';
+}
+function toggleDone(){
+  var d = getDone(), i = d.indexOf(ACT_ID);
+  if (i === -1) d.push(ACT_ID); else d.splice(i,1);
+  localStorage.setItem('cnm_ai_completed', JSON.stringify(d));
+  paintDone();
+}
+
+/* ---- shared quiz engine ---- */
+function buildQuiz(containerId, questions){
+  var c = document.getElementById(containerId);
+  var state = { answered: 0, correct: 0, total: questions.length };
+  var html = '<div class="flex items-center justify-between gap-3 mb-4 px-1">' +
+    '<span class="text-xs font-mono text-slate-500">Answer each question &mdash; feedback appears immediately.</span>' +
+    '<span id="' + containerId + '-score" class="text-xs font-mono font-bold text-slate-500 whitespace-nowrap">0 / ' + questions.length + '</span></div>';
+  html += questions.map(function(q, i){
+    return '<div class="glass rounded-2xl p-5 mb-3.5 bg-white" data-i="' + i + '">' +
+      '<p class="text-sm font-semibold text-slate-900 mb-3 leading-relaxed">' +
+        '<span class="font-mono text-sky-700 mr-2">Q' + (i+1) + '</span>' + q.q + '</p>' +
+      '<div class="space-y-2">' + q.a.map(function(opt, j){
+        return '<button type="button" data-j="' + j + '" class="opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-sky-300 text-slate-700 transition flex items-start gap-2.5">' +
+          '<span class="font-mono text-[10px] text-slate-400 mt-0.5 shrink-0">' + 'ABCDE'.charAt(j) + '</span><span>' + opt + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="exp hidden mt-3 text-xs leading-relaxed rounded-xl p-3.5 border"></div></div>';
+  }).join('');
+  c.innerHTML = html;
+
+  c.addEventListener('click', function(ev){
+    var btn = ev.target.closest('.opt');
+    if (!btn) return;
+    var card = btn.closest('[data-i]');
+    if (card.dataset.locked) return;
+    card.dataset.locked = '1';
+    var q = questions[+card.dataset.i];
+    var picked = +btn.dataset.j;
+    var opts = card.querySelectorAll('.opt');
+    for (var k = 0; k < opts.length; k++){
+      opts[k].disabled = true;
+      if (k === q.c) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold flex items-start gap-2.5';
+      else if (k === picked) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-900 flex items-start gap-2.5';
+      else opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-400 flex items-start gap-2.5';
+    }
+    var right = picked === q.c;
+    var exp = card.querySelector('.exp');
+    exp.className = 'exp mt-3 text-xs leading-relaxed rounded-xl p-3.5 border ' +
+      (right ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900');
+    exp.innerHTML = '<span class="font-bold">' + (right ? 'Correct. ' : 'Not quite. ') + '</span>' + q.e;
+    state.answered++; if (right) state.correct++;
+    var s = document.getElementById(containerId + '-score');
+    s.textContent = state.correct + ' / ' + state.total;
+    s.className = 'text-xs font-mono font-bold whitespace-nowrap ' +
+      (state.answered < state.total ? 'text-sky-700' : (state.correct === state.total ? 'text-emerald-600' : 'text-slate-700'));
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  paintDone();
+  if (typeof pageInit === 'function') pageInit();
+});
+</script>
+<script>
+
+var PARTS6 = [
+  { id:"cpu", label:"Processor", opts:[
+      { n:"Efficient laptop-class or low-power desktop CPU", w:45 },
+      { n:"Mainstream desktop CPU (6 to 8 cores)", w:95 },
+      { n:"High-end desktop CPU (12 to 16 cores)", w:170 },
+      { n:"Workstation or overclocked enthusiast CPU", w:250 } ], sel:1 },
+  { id:"gpu", label:"Graphics", opts:[
+      { n:"Integrated graphics only", w:0 },
+      { n:"Entry discrete card", w:75 },
+      { n:"Mid-range gaming card", w:220 },
+      { n:"High-end gaming or rendering card", w:400 } ], sel:2 },
+  { id:"ram", label:"Memory", opts:[
+      { n:"2 modules", w:6 }, { n:"4 modules", w:12 }, { n:"8 modules", w:24 } ], sel:1 },
+  { id:"ssd", label:"NVMe solid state drives", opts:[
+      { n:"1 drive", w:8 }, { n:"2 drives", w:16 }, { n:"4 drives", w:32 } ], sel:0 },
+  { id:"hdd", label:"Mechanical hard drives", opts:[
+      { n:"None", w:0 }, { n:"2 drives", w:20 }, { n:"4 drives", w:40 }, { n:"8 drives (small NAS)", w:80 } ], sel:0 },
+  { id:"fan", label:"Case fans and cooling", opts:[
+      { n:"3 case fans, air cooler", w:9 }, { n:"6 fans plus lighting", w:25 }, { n:"All-in-one liquid cooler and 6 fans", w:40 } ], sel:0 }
+];
+
+function paintControls(){
+  document.getElementById('psuControls').innerHTML = PARTS6.map(function(p, pi){
+    return '<div><span class="text-xs font-mono text-slate-500 block mb-1.5">' + p.label + '</span>' +
+      '<select onchange="setPart(' + pi + ', this.value)" class="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500">' +
+      p.opts.map(function(o, oi){
+        return '<option value="' + oi + '"' + (oi===p.sel ? ' selected' : '') + '>' + o.n + ' \u2014 ' + o.w + ' W</option>';
+      }).join('') + '</select></div>';
+  }).join('');
+}
+function setPart(pi, v){ PARTS6[pi].sel = +v; calcPsu(); }
+
+function calcPsu(){
+  var total = 0, rows = '';
+  PARTS6.forEach(function(p){
+    var o = p.opts[p.sel];
+    total += o.w;
+    rows += '<div class="flex justify-between text-xs py-1.5 border-b border-slate-100"><span class="text-slate-500">' + p.label + '</span><span class="font-mono font-semibold text-slate-800">' + o.w + ' W</span></div>';
+  });
+  total += 15; // board, chipset, peripherals
+  rows += '<div class="flex justify-between text-xs py-1.5 border-b border-slate-100"><span class="text-slate-500">Motherboard and peripherals</span><span class="font-mono font-semibold text-slate-800">15 W</span></div>';
+  var withHead = Math.ceil(total * 1.3);
+  var sizes = [400,450,500,550,600,650,750,850,1000,1200,1600];
+  var rec = sizes.find(function(s){ return s >= withHead; }) || 1600;
+  document.getElementById('psuOut').innerHTML =
+    '<span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Estimated load</span>' +
+    '<div class="mt-3 mb-4">' + rows + '</div>' +
+    '<div class="grid grid-cols-2 gap-3 mb-4">' +
+      '<div class="rounded-xl bg-white border border-slate-200 p-3.5 text-center">' +
+        '<span class="text-[11px] font-mono text-slate-500 block">Peak draw</span>' +
+        '<span class="text-2xl font-extrabold text-slate-900">' + total + ' W</span></div>' +
+      '<div class="rounded-xl bg-white border border-slate-200 p-3.5 text-center">' +
+        '<span class="text-[11px] font-mono text-slate-500 block">Plus 30% headroom</span>' +
+        '<span class="text-2xl font-extrabold text-slate-900">' + withHead + ' W</span></div></div>' +
+    '<div class="rounded-2xl bg-sky-600 text-white p-4 text-center">' +
+      '<span class="text-[11px] font-mono uppercase tracking-widest text-sky-100 block">Specify this supply</span>' +
+      '<span class="text-3xl font-extrabold">' + rec + ' W</span>' +
+      '<span class="text-[11px] text-sky-100 block mt-1">80 Plus Gold or better recommended</span></div>' +
+    '<p class="text-[11px] text-slate-500 leading-relaxed mt-3">At ' + rec + ' W the system sits near ' +
+      Math.round(total/rec*100) + '% load, which is close to the efficiency peak of a modern supply.</p>';
+}
+
+function pageInit(){
+  paintControls(); calcPsu();
+  buildQuiz('q6', [
+    { q:"A build draws roughly 480 W at peak. Which power supply should a technician specify?",
+      a:["A 500 W unit, since it exceeds the draw","A 650 W unit","A 400 W unit with a Gold rating","A 1200 W unit"], c:1,
+      e:"Aim for about 30% headroom, which puts this build near 625 W, so a 650 W unit is the sensible size. A 500 W unit leaves nothing for transient spikes or capacitor aging, and 1200 W is wasteful and runs inefficiently at such a light load." },
+    { q:"A customer asks whether an 80 Plus Titanium 750 W supply will let them run a more powerful graphics card than a Bronze 750 W supply. What do you tell them?",
+      a:["Yes, Titanium delivers more power","No, both deliver 750 W; the rating describes efficiency","Yes, but only with a modular unit","Only if the card uses 12VHPWR"], c:1,
+      e:"The wattage number is the capability. The 80 Plus rating describes how much energy is wasted as heat converting AC to DC, so the Titanium unit pulls less from the wall for the same output." },
+    { q:"A new build powers on and the case fans spin, but there is no video output and no POST. The graphics card is seated and the 24-pin is connected. What should you check next?",
+      a:["The SATA data cable","The EPS 12V CPU power connector","The front panel audio header","The CMOS battery"], c:1,
+      e:"The 24-pin powers the board but not the processor. The separate 4 or 8-pin EPS connector beside the socket is the most commonly forgotten cable on a first build." },
+    { q:"Which practice is correct when handling a motherboard?",
+      a:["Wear an anti-static wrist strap grounded to the chassis","Wear a wrist strap while servicing the inside of a power supply","Carry the board in a plastic grocery bag","Hold the board by its contacts to avoid touching the surface"], c:0,
+      e:"A wrist strap bonded to the chassis equalizes potential and prevents ESD damage. Never wear one near a power supply or CRT, where stored charge makes grounding yourself dangerous, and never handle contacts directly." },
+    { q:"A graphics card requires two 8-pin PCIe connectors, but the supply only has one cable with a 6+2 end. What is the correct action?",
+      a:["Use a Molex-to-PCIe splitter adapter","Daisy-chain the single cable to both sockets","Install a power supply with enough native PCIe cables","Run the card with one connector attached"], c:2,
+      e:"Each cable is rated for a specific current, and splitters or daisy-chaining push more through a connector than it was designed for, which is a documented cause of melted connectors and fires. Use a supply with the correct native cables." },
+    { q:"A technician wants to reduce dust buildup inside a customer's case. Which airflow configuration helps?",
+      a:["More exhaust than intake, creating negative pressure","More intake than exhaust, creating positive pressure with filtered intakes","Removing all case fans","Reversing the CPU cooler"], c:1,
+      e:"Positive pressure means air leaves through the unfiltered gaps rather than entering through them, so dust comes in mainly through the filtered intakes where you can clean it." },
+    { q:"After adding a second graphics card, a workstation shuts down abruptly under heavy load but runs fine when idle. What is the most likely cause?",
+      a:["Insufficient power supply capacity","A failed CMOS battery","An incorrect boot order","A missing device driver"], c:0,
+      e:"A shutdown that only happens under load points at a supply that cannot sustain peak draw. Idle draw stays within its capability, so the fault only appears when demand rises." },
+    { q:"Which statement about a modular power supply is accurate?",
+      a:["Cables from any brand of modular supply are interchangeable","Only the cables you need are attached, which improves airflow","Modular supplies are always 80 Plus Gold","Modular supplies do not need an EPS connector"], c:1,
+      e:"Leaving unused cables out of the case improves airflow and tidiness. Modular connectors are keyed per manufacturer, and mixing brands can put voltage on the wrong pins and destroy components." },
+  ]);
+}
+
+</script>
+</body>
+</html>

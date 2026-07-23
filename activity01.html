@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity 01 &middot; Mobile Devices &amp; Display Technology | CNM CIS A+ Core 1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: {
+  sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] } } } }
+</script>
+<style>
+  body{
+    background-color:#F8FAFC;color:#0F172A;
+    background-image:
+      radial-gradient(at 10% 10%, rgba(14,165,233,.08) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(168,85,247,.08) 0px, transparent 50%);
+    background-attachment:fixed;
+  }
+  .glass{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(226,232,240,.9);
+    box-shadow:0 4px 20px -2px rgba(15,23,42,.04);
+  }
+  :focus-visible{outline:2px solid #0284c7;outline-offset:2px;border-radius:4px}
+  ::-webkit-scrollbar{width:8px}
+  ::-webkit-scrollbar-track{background:#F1F5F9}
+  ::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+  table.ref{width:100%;border-collapse:collapse;font-size:.78rem}
+  table.ref th{background:#F1F5F9;color:#334155;font-weight:600;text-align:left;padding:.55rem .7rem;border:1px solid #E2E8F0;white-space:nowrap}
+  table.ref td{padding:.55rem .7rem;border:1px solid #E2E8F0;vertical-align:top;color:#334155}
+  table.ref tbody tr:nth-child(even){background:#F8FAFC}
+  .tbl-wrap{overflow-x:auto;border-radius:1rem;border:1px solid #E2E8F0;background:#fff}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="sticky top-0 z-40 glass border-b border-slate-200/80 px-4 lg:px-8 py-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2.5 group min-w-0">
+      <span class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+        <i class="fa-solid fa-arrow-left text-sm"></i>
+      </span>
+      <span class="min-w-0">
+        <span class="block text-sm font-bold text-slate-900 group-hover:text-sky-700 transition leading-tight truncate">Back to Launch Pad</span>
+        <span class="block text-[11px] text-slate-500 font-mono truncate">Activity 01 of 10 &middot; 220-1201</span>
+      </span>
+    </a>
+    <button id="doneBtn" type="button" onclick="toggleDone()"
+      class="shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2">
+      <i id="doneIcon" class="fa-solid fa-circle text-[10px]"></i><span id="doneLabel">Mark done</span>
+    </button>
+  </div>
+</nav>
+
+<header class="max-w-6xl mx-auto px-4 lg:px-8 pt-8 pb-2 w-full">
+  <div class="glass rounded-3xl p-6 md:p-8 bg-white/90 relative overflow-hidden">
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 space-y-3">
+      <span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Domain 1.0 &middot; Mobile Devices (13% of the exam)</span>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">Mobile Devices &amp; Display Technology</h1>
+      <p class="text-slate-600 text-sm sm:text-base max-w-3xl leading-relaxed">Laptop and phone hardware is where Core 1 starts, and most of it comes down to knowing which layer of a device produces which symptom. Work through the panel technologies, take apart a display assembly, then check yourself on the connectivity settings the exam keeps returning to.</p>
+      <div class="flex flex-wrap gap-2 pt-1"><span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-book-open text-sky-600 mr-1.5"></i>Learning activity</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clock text-slate-500 mr-1.5"></i>25 minutes</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-signal text-emerald-600 mr-1.5"></i>Beginner</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-circle-question text-purple-600 mr-1.5"></i>8 practice questions</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 lg:px-8 py-6 w-full flex-1 space-y-6">
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-tv text-sky-600"></i><span>Display panel technologies</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Know what emits the light, because that single fact drives every strength and weakness on the exam.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th>Panel</th><th>How it makes light</th><th>Strengths</th><th>Weaknesses</th><th>Typically found in</th></tr></thead><tbody><tr><td><b>IPS</b><br><span class='text-slate-400 font-mono text-[10px]'>in-plane switching</span></td><td>LCD crystals lit by an edge or array backlight</td><td>Accurate color, ~178&deg; viewing angles</td><td>Costs more than TN, slower than TN, backlight bleed</td><td>Design laptops, tablets, quality monitors</td></tr><tr><td><b>TN</b><br><span class='text-slate-400 font-mono text-[10px]'>twisted nematic</span></td><td>LCD crystals lit by a backlight</td><td>Cheapest, fastest response times, high refresh</td><td>Color shifts badly off-axis, weaker color depth</td><td>Budget laptops, esports monitors</td></tr><tr><td><b>VA</b><br><span class='text-slate-400 font-mono text-[10px]'>vertical alignment</span></td><td>LCD crystals lit by a backlight</td><td>Best LCD contrast, deep blacks for the price</td><td>Ghosting on fast motion</td><td>All-in-ones, TVs, curved monitors</td></tr><tr><td><b>OLED</b><br><span class='text-slate-400 font-mono text-[10px]'>organic LED</span></td><td>Every pixel emits its own light &mdash; no backlight</td><td>True black, thin, flexible, low power on dark content</td><td>Burn-in risk from static images, higher cost</td><td>Flagship phones, premium laptops</td></tr><tr><td><b>Mini-LED</b></td><td>Still an LCD, but the backlight is split into thousands of dimming zones</td><td>Near-OLED contrast without burn-in, very bright</td><td>Blooming/halo around bright objects</td><td>High-end tablets and creator laptops</td></tr></tbody></table></div><div class="mt-4"><div class="bg-sky-50 border-sky-200 text-sky-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-lightbulb text-sky-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Exam tip</span>If a question mentions <b>viewing angle or color accuracy</b>, the answer is IPS. If it mentions <b>perfect blacks or a pixel that is simply off</b>, the answer is OLED. If it mentions <b>lowest cost or fastest response</b>, it is TN.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-layer-group text-sky-600"></i><span>Inside the display assembly</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Digitizer, panel, backlight, inverter, camera and antennas all share one hinge.</p>
+  </div>
+<p class="text-sm text-slate-600 mb-4 leading-relaxed">A laptop or phone screen is a stack of parts, and each one fails differently. Pick a layer to see what it does and what a technician sees when it breaks.</p><div class="grid gap-4 lg:grid-cols-5">  <div class="lg:col-span-2 space-y-2" id="layerBtns"></div>  <div class="lg:col-span-3 rounded-2xl border border-slate-200 bg-slate-50 p-5" id="layerDetail"></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-plug text-sky-600"></i><span>Ports, cables and charging</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Power Delivery negotiates voltage; the shape of the plug tells you almost nothing about speed.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th>Connector</th><th>Data rate</th><th>Notes for the exam</th></tr></thead><tbody><tr><td>USB 2.0 (Type-A, micro-B)</td><td>480 Mbps</td><td>Still the default for keyboards, mice and cheap peripherals</td></tr><tr><td>USB 3.2 Gen 1 (was 3.0)</td><td>5 Gbps</td><td>Blue plastic tongue on Type-A ports</td></tr><tr><td>USB 3.2 Gen 2</td><td>10 Gbps</td><td>Teal or red tongue; often labelled with the speed</td></tr><tr><td>USB 3.2 Gen 2x2</td><td>20 Gbps</td><td>Type-C only &mdash; needs both lane pairs</td></tr><tr><td>USB4 / Thunderbolt 4</td><td>40 Gbps</td><td>Type-C connector, carries data, video and up to 100&nbsp;W of power</td></tr><tr><td>Thunderbolt 3</td><td>40 Gbps</td><td>Type-C shape; look for the lightning-bolt icon next to the port</td></tr><tr><td>Lightning</td><td>USB 2.0 speeds</td><td>Apple's 8-pin reversible connector, being replaced by USB-C</td></tr><tr><td>USB-C (the shape)</td><td>depends on the controller</td><td>A shape, not a speed &mdash; always check what is behind the port</td></tr></tbody></table></div><div class="mt-4"><div class="bg-amber-50 border-amber-200 text-amber-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Common trap</span>USB-C is a <b>connector shape</b>. Thunderbolt, USB4 and DisplayPort Alt Mode are <b>protocols</b> that can run over it. A cable that fits is not proof that the feature works &mdash; that is the trap in most cable questions.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-tower-broadcast text-sky-600"></i><span>Connectivity and configuration</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Mobile radios, sharing options and corporate mail settings.</p>
+  </div>
+<div class="grid gap-4 md:grid-cols-2"><div class="rounded-2xl border border-slate-200 p-5 bg-white"><h3 class="font-bold text-sm text-slate-900 mb-3"><i class="fa-brands fa-bluetooth-b text-sky-600 mr-2"></i>Bluetooth pairing, in order</h3><ol class="text-xs text-slate-600 space-y-2 list-decimal list-inside leading-relaxed"><li>Turn Bluetooth on for both devices</li><li>Put the accessory into discoverable/pairing mode</li><li>Select the device from the scan list</li><li>Enter or confirm the pairing code</li><li>Test that it actually connects and passes audio or input</li></ol><p class="text-[11px] text-slate-400 mt-3 font-mono">The final step is testing &mdash; CompTIA scores that as part of the procedure.</p></div><div class="rounded-2xl border border-slate-200 p-5 bg-white"><h3 class="font-bold text-sm text-slate-900 mb-3"><i class="fa-solid fa-wifi text-sky-600 mr-2"></i>Sharing a connection</h3><ul class="text-xs text-slate-600 space-y-2 leading-relaxed"><li><b class="text-slate-800">Hotspot:</b> the phone becomes a Wi-Fi access point for several devices at once.</li><li><b class="text-slate-800">Tethering:</b> one device shares the cellular link over USB or Bluetooth.</li><li><b class="text-slate-800">Airplane mode:</b> kills every radio at once, then Wi-Fi or Bluetooth can be switched back on individually.</li><li><b class="text-slate-800">NFC:</b> only works within a few centimeters &mdash; contactless payment and tap-to-pair.</li></ul></div></div><div class="mt-4"><div class="tbl-wrap"><table class="ref"><thead><tr><th>Mail protocol</th><th>Port</th><th>Secure port</th><th>What it does</th></tr></thead><tbody><tr><td>POP3</td><td>110</td><td>995</td><td>Downloads mail and traditionally deletes it from the server</td></tr><tr><td>IMAP</td><td>143</td><td>993</td><td>Keeps mail on the server and syncs across devices</td></tr><tr><td>SMTP</td><td>25</td><td>587 (submission) / 465</td><td>Sends outgoing mail only</td></tr></tbody></table></div></div><div class="mt-4"><div class="bg-emerald-50 border-emerald-200 text-emerald-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-shield-halved text-emerald-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Corporate accounts</span>Corporate accounts add a device policy layer. <b>MDM</b> enrolls a company-owned device and can push settings and remote-wipe it; <b>MAM</b> manages only the corporate apps and data on a personal device. Exchange accounts commonly require both a screen lock and encryption before mail will sync.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-circle-question text-sky-600"></i><span>Check your understanding</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Immediate feedback with the reasoning the exam expects.</p>
+  </div>
+<div id="q1"></div>
+</section>
+</main>
+
+<footer class="glass border-t border-slate-200 mt-10 py-7 px-4 lg:px-8 bg-white/80">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+    <div>
+      <p class="text-sm font-semibold text-slate-800">Allison Ward-Osborne</p>
+      <p class="text-xs text-slate-500 mt-0.5">Computer Information Systems &bull; Central New Mexico Community College</p>
+    </div>
+    <a href="index.html" class="text-xs font-semibold text-sky-700 hover:text-sky-900 font-mono">&larr; All 10 activities</a>
+  </div>
+</footer>
+
+<script>
+/* ---- progress tracking, shared with the launch pad ---- */
+var ACT_ID = 1;
+function getDone(){ try { return JSON.parse(localStorage.getItem('cnm_ai_completed') || '[]'); } catch(e){ return []; } }
+function paintDone(){
+  var on = getDone().indexOf(ACT_ID) !== -1;
+  var b = document.getElementById('doneBtn');
+  b.className = 'shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2 ' +
+    (on ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200');
+  document.getElementById('doneIcon').className = 'fa-solid text-[10px] ' + (on ? 'fa-circle-check text-emerald-600' : 'fa-circle');
+  document.getElementById('doneLabel').textContent = on ? 'Completed' : 'Mark done';
+}
+function toggleDone(){
+  var d = getDone(), i = d.indexOf(ACT_ID);
+  if (i === -1) d.push(ACT_ID); else d.splice(i,1);
+  localStorage.setItem('cnm_ai_completed', JSON.stringify(d));
+  paintDone();
+}
+
+/* ---- shared quiz engine ---- */
+function buildQuiz(containerId, questions){
+  var c = document.getElementById(containerId);
+  var state = { answered: 0, correct: 0, total: questions.length };
+  var html = '<div class="flex items-center justify-between gap-3 mb-4 px-1">' +
+    '<span class="text-xs font-mono text-slate-500">Answer each question &mdash; feedback appears immediately.</span>' +
+    '<span id="' + containerId + '-score" class="text-xs font-mono font-bold text-slate-500 whitespace-nowrap">0 / ' + questions.length + '</span></div>';
+  html += questions.map(function(q, i){
+    return '<div class="glass rounded-2xl p-5 mb-3.5 bg-white" data-i="' + i + '">' +
+      '<p class="text-sm font-semibold text-slate-900 mb-3 leading-relaxed">' +
+        '<span class="font-mono text-sky-700 mr-2">Q' + (i+1) + '</span>' + q.q + '</p>' +
+      '<div class="space-y-2">' + q.a.map(function(opt, j){
+        return '<button type="button" data-j="' + j + '" class="opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-sky-300 text-slate-700 transition flex items-start gap-2.5">' +
+          '<span class="font-mono text-[10px] text-slate-400 mt-0.5 shrink-0">' + 'ABCDE'.charAt(j) + '</span><span>' + opt + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="exp hidden mt-3 text-xs leading-relaxed rounded-xl p-3.5 border"></div></div>';
+  }).join('');
+  c.innerHTML = html;
+
+  c.addEventListener('click', function(ev){
+    var btn = ev.target.closest('.opt');
+    if (!btn) return;
+    var card = btn.closest('[data-i]');
+    if (card.dataset.locked) return;
+    card.dataset.locked = '1';
+    var q = questions[+card.dataset.i];
+    var picked = +btn.dataset.j;
+    var opts = card.querySelectorAll('.opt');
+    for (var k = 0; k < opts.length; k++){
+      opts[k].disabled = true;
+      if (k === q.c) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold flex items-start gap-2.5';
+      else if (k === picked) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-900 flex items-start gap-2.5';
+      else opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-400 flex items-start gap-2.5';
+    }
+    var right = picked === q.c;
+    var exp = card.querySelector('.exp');
+    exp.className = 'exp mt-3 text-xs leading-relaxed rounded-xl p-3.5 border ' +
+      (right ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900');
+    exp.innerHTML = '<span class="font-bold">' + (right ? 'Correct. ' : 'Not quite. ') + '</span>' + q.e;
+    state.answered++; if (right) state.correct++;
+    var s = document.getElementById(containerId + '-score');
+    s.textContent = state.correct + ' / ' + state.total;
+    s.className = 'text-xs font-mono font-bold whitespace-nowrap ' +
+      (state.answered < state.total ? 'text-sky-700' : (state.correct === state.total ? 'text-emerald-600' : 'text-slate-700'));
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  paintDone();
+  if (typeof pageInit === 'function') pageInit();
+});
+</script>
+<script>
+
+var LAYERS = [
+  { n:"Glass / touch digitizer", i:"fa-hand-pointer",
+    d:"The outermost layer. The digitizer converts a finger or stylus touch into coordinates. It is a separate part from the panel that displays the picture.",
+    f:"Image is perfect but touch is dead, erratic, or registers phantom presses. On many laptops the glass and panel are fused, so the whole assembly gets replaced." },
+  { n:"LCD or OLED panel", i:"fa-display",
+    d:"The layer that actually forms the image. On an LCD the panel only shutters light; on OLED the panel is the light source.",
+    f:"Cracked lines, dead pixels, or bleeding ink-like blotches. Touch still works, which is the giveaway that it is the panel and not the digitizer." },
+  { n:"Backlight / LED array", i:"fa-lightbulb",
+    d:"Sits behind an LCD panel and provides all of the light. OLED screens have no backlight at all.",
+    f:"Screen looks black but you can see a faint image with a flashlight held at an angle. That is a backlight failure, not a dead display." },
+  { n:"Inverter (older CCFL laptops)", i:"fa-bolt",
+    d:"Steps low-voltage DC up to the high voltage a CCFL backlight tube needs. Modern LED-backlit laptops have no inverter.",
+    f:"Dim screen, flickering, or a pink/reddish tint. Carries high voltage, so discharge before handling." },
+  { n:"Webcam and microphone", i:"fa-video",
+    d:"Mounted in the top bezel and cabled through the hinge to the motherboard.",
+    f:"Camera stops being detected after a lid-hinge repair \u2014 the ribbon cable is usually pinched or unseated." },
+  { n:"Wi-Fi and cellular antennas", i:"fa-tower-broadcast",
+    d:"The antenna wires run up the sides of the lid, because metal in the base blocks the signal. They terminate on the Wi-Fi card.",
+    f:"Wi-Fi range drops sharply after a screen replacement, which almost always means an antenna lead was left disconnected." }
+];
+function paintLayer(idx){
+  var L = LAYERS[idx];
+  document.getElementById('layerDetail').innerHTML =
+    '<div class="flex items-center gap-3 mb-4 pb-3 border-b border-slate-200">' +
+      '<span class="w-10 h-10 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center"><i class="fa-solid ' + L.i + '"></i></span>' +
+      '<h3 class="font-bold text-slate-900">' + L.n + '</h3></div>' +
+    '<p class="text-xs text-slate-600 leading-relaxed mb-4">' + L.d + '</p>' +
+    '<div class="rounded-xl bg-amber-50 border border-amber-200 p-3.5">' +
+      '<span class="text-[11px] font-bold uppercase tracking-wider text-amber-700 block mb-1">How it fails</span>' +
+      '<p class="text-xs text-amber-900 leading-relaxed">' + L.f + '</p></div>';
+  var bs = document.querySelectorAll('#layerBtns button');
+  for (var i=0;i<bs.length;i++){
+    bs[i].className = 'w-full text-left text-xs px-3.5 py-3 rounded-xl border transition flex items-center gap-3 ' +
+      (i===idx ? 'bg-sky-600 text-white border-sky-600 font-semibold shadow-sm' : 'bg-white text-slate-700 border-slate-200 hover:border-sky-300 hover:bg-slate-50');
+  }
+}
+function pageInit(){
+  document.getElementById('layerBtns').innerHTML = LAYERS.map(function(L,i){
+    return '<button type="button" onclick="paintLayer(' + i + ')"><i class="fa-solid ' + L.i + ' w-4"></i><span>' + L.n + '</span></button>';
+  }).join('');
+  paintLayer(0);
+
+  buildQuiz('q1', [
+    { q:"A graphic designer needs a laptop where colors stay accurate when two people look at the screen from either side. Which panel type should you recommend?",
+      a:["TN","IPS","A TN panel with a higher refresh rate","Any panel, since viewing angle is set by the backlight"], c:1,
+      e:"IPS is built for wide viewing angles and color accuracy. TN shifts color badly as soon as you move off-center, and refresh rate has nothing to do with it." },
+    { q:"A user reports their laptop screen is black, but when they shine a flashlight at it they can faintly make out the desktop. What failed?",
+      a:["The digitizer","The video card","The backlight","The operating system"], c:2,
+      e:"The panel is still producing an image, so only the light source is gone. The flashlight test is the standard way to separate a backlight failure from a dead display." },
+    { q:"Touch input on a tablet has stopped responding, but the picture is sharp and the device works with a Bluetooth mouse. Which component is the likely cause?",
+      a:["The digitizer","The LCD panel","The inverter","The battery"], c:0,
+      e:"Touch and image are handled by two different layers. A perfect picture with no touch response points straight at the digitizer." },
+    { q:"After you replace a laptop's display assembly, the user says Wi-Fi now drops in rooms where it used to work fine. What should you check first?",
+      a:["The wireless card driver","The antenna leads routed through the lid","The DHCP scope on the router","The battery calibration"], c:1,
+      e:"Laptop Wi-Fi antennas run up the sides of the screen bezel. A lead left unplugged during reassembly is the classic cause of sudden short range after a screen repair." },
+    { q:"A customer wants to connect an external 4K monitor to a USB-C port on their laptop, but nothing appears on screen. What is the most likely reason?",
+      a:["USB-C cannot carry video signals","The port does not support DisplayPort Alt Mode","The monitor needs a Thunderbolt license","4K always requires HDMI"], c:1,
+      e:"USB-C is only a connector shape. Video over USB-C requires DisplayPort Alt Mode, Thunderbolt or USB4 support behind the port, and plenty of USB-C ports are data-and-power only." },
+    { q:"An employee needs mail on their personal phone to stay in sync across their phone, tablet and desktop. Which protocol and port should be configured?",
+      a:["POP3 on port 110","IMAP on port 143 (993 secure)","SMTP on port 25","NetBIOS on port 139"], c:1,
+      e:"IMAP leaves messages on the server and synchronizes state across every device. POP3 traditionally downloads and removes mail, and SMTP only handles outgoing mail." },
+    { q:"Which display technology is most vulnerable to burn-in from a static taskbar left on screen for months?",
+      a:["IPS","TN","OLED","Mini-LED"], c:2,
+      e:"OLED subpixels are organic and age individually, so pixels that display the same bright content wear unevenly and leave a ghost. LCD-based panels share one backlight and are far more resistant." },
+    { q:"A user turns on airplane mode during a flight, then wants to use the aircraft's Wi-Fi. What should you tell them?",
+      a:["Airplane mode must be turned off entirely","Wi-Fi can be re-enabled individually while airplane mode stays on","Only cellular data can be re-enabled","Airplane mode disables the Wi-Fi radio permanently"], c:1,
+      e:"Airplane mode switches off all radios at once, but Wi-Fi and Bluetooth can each be switched back on afterward while the cellular radio stays disabled." },
+  ]);
+}
+
+</script>
+</body>
+</html>

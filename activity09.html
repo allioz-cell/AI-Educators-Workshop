@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity 09 &middot; Hardware &amp; Network Troubleshooting Method | CNM CIS A+ Core 1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: {
+  sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] } } } }
+</script>
+<style>
+  body{
+    background-color:#F8FAFC;color:#0F172A;
+    background-image:
+      radial-gradient(at 10% 10%, rgba(14,165,233,.08) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(168,85,247,.08) 0px, transparent 50%);
+    background-attachment:fixed;
+  }
+  .glass{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(226,232,240,.9);
+    box-shadow:0 4px 20px -2px rgba(15,23,42,.04);
+  }
+  :focus-visible{outline:2px solid #0284c7;outline-offset:2px;border-radius:4px}
+  ::-webkit-scrollbar{width:8px}
+  ::-webkit-scrollbar-track{background:#F1F5F9}
+  ::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+  table.ref{width:100%;border-collapse:collapse;font-size:.78rem}
+  table.ref th{background:#F1F5F9;color:#334155;font-weight:600;text-align:left;padding:.55rem .7rem;border:1px solid #E2E8F0;white-space:nowrap}
+  table.ref td{padding:.55rem .7rem;border:1px solid #E2E8F0;vertical-align:top;color:#334155}
+  table.ref tbody tr:nth-child(even){background:#F8FAFC}
+  .tbl-wrap{overflow-x:auto;border-radius:1rem;border:1px solid #E2E8F0;background:#fff}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="sticky top-0 z-40 glass border-b border-slate-200/80 px-4 lg:px-8 py-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2.5 group min-w-0">
+      <span class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+        <i class="fa-solid fa-arrow-left text-sm"></i>
+      </span>
+      <span class="min-w-0">
+        <span class="block text-sm font-bold text-slate-900 group-hover:text-sky-700 transition leading-tight truncate">Back to Launch Pad</span>
+        <span class="block text-[11px] text-slate-500 font-mono truncate">Activity 09 of 10 &middot; 220-1201</span>
+      </span>
+    </a>
+    <button id="doneBtn" type="button" onclick="toggleDone()"
+      class="shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2">
+      <i id="doneIcon" class="fa-solid fa-circle text-[10px]"></i><span id="doneLabel">Mark done</span>
+    </button>
+  </div>
+</nav>
+
+<header class="max-w-6xl mx-auto px-4 lg:px-8 pt-8 pb-2 w-full">
+  <div class="glass rounded-3xl p-6 md:p-8 bg-white/90 relative overflow-hidden">
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 space-y-3">
+      <span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Domain 5.0 &middot; Hardware and Network Troubleshooting (28% of the exam)</span>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">Hardware &amp; Network Troubleshooting Method</h1>
+      <p class="text-slate-600 text-sm sm:text-base max-w-3xl leading-relaxed">The largest domain on Core 1, and the one where knowing the right fix is not enough &mdash; you have to apply it in the right order. Work four realistic tickets from first contact to documentation, choosing the action that belongs at each of the six steps.</p>
+      <div class="flex flex-wrap gap-2 pt-1"><span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-gamepad text-purple-600 mr-1.5"></i>Interactive game</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clock text-slate-500 mr-1.5"></i>40 minutes</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-signal text-rose-600 mr-1.5"></i>Advanced</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-headset text-sky-600 mr-1.5"></i>4 tickets, 24 decisions</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 lg:px-8 py-6 w-full flex-1 space-y-6">
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-list-check text-sky-600"></i><span>The methodology, in the order CompTIA scores it</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Six steps. The exam tests whether you can place an action in the right one.</p>
+  </div>
+<div class="space-y-2.5"><div class="flex gap-4 p-4 rounded-2xl border border-slate-200 bg-white"><span class="w-9 h-9 shrink-0 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center font-mono font-bold text-sm">1</span><div><h3 class="text-sm font-bold text-slate-900 mb-1">Identify the problem</h3><p class="text-xs text-slate-600 leading-relaxed">Question the user, identify symptoms, and find out what changed. Back up critical data before you make any change, and ask about environmental or infrastructure changes.</p></div></div><div class="flex gap-4 p-4 rounded-2xl border border-slate-200 bg-white"><span class="w-9 h-9 shrink-0 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center font-mono font-bold text-sm">2</span><div><h3 class="text-sm font-bold text-slate-900 mb-1">Establish a theory of probable cause</h3><p class="text-xs text-slate-600 leading-relaxed">Question the obvious first. Consider several possibilities and, if needed, conduct external or internal research based on the symptoms.</p></div></div><div class="flex gap-4 p-4 rounded-2xl border border-slate-200 bg-white"><span class="w-9 h-9 shrink-0 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center font-mono font-bold text-sm">3</span><div><h3 class="text-sm font-bold text-slate-900 mb-1">Test the theory to determine the cause</h3><p class="text-xs text-slate-600 leading-relaxed">If the theory is confirmed, determine the next steps to resolve it. If it is not confirmed, form a new theory or escalate.</p></div></div><div class="flex gap-4 p-4 rounded-2xl border border-slate-200 bg-white"><span class="w-9 h-9 shrink-0 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center font-mono font-bold text-sm">4</span><div><h3 class="text-sm font-bold text-slate-900 mb-1">Establish a plan of action and implement the solution</h3><p class="text-xs text-slate-600 leading-relaxed">Refer to vendor documentation. Consider corporate policies, change procedures and the impact on other users before you act.</p></div></div><div class="flex gap-4 p-4 rounded-2xl border border-slate-200 bg-white"><span class="w-9 h-9 shrink-0 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center font-mono font-bold text-sm">5</span><div><h3 class="text-sm font-bold text-slate-900 mb-1">Verify full system functionality</h3><p class="text-xs text-slate-600 leading-relaxed">Confirm the original symptom is gone and nothing else broke. Where applicable, implement preventive measures.</p></div></div><div class="flex gap-4 p-4 rounded-2xl border border-slate-200 bg-white"><span class="w-9 h-9 shrink-0 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center font-mono font-bold text-sm">6</span><div><h3 class="text-sm font-bold text-slate-900 mb-1">Document findings, actions and outcomes</h3><p class="text-xs text-slate-600 leading-relaxed">Write down what was wrong, what you did and what happened, so the next technician does not start from zero.</p></div></div></div><div class="mt-4"><div class="bg-sky-50 border-sky-200 text-sky-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-thumbtack text-sky-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">The two easy points</span>Two rules answer a surprising number of exam questions on their own. <b>Back up before you change anything</b> belongs to step 1, not step 4. And <b>documentation is always last</b> &mdash; if documenting appears as an option before the problem is verified as fixed, it is a wrong answer.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">  <div class="mb-5 pb-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3">    <div><h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-headset text-sky-600"></i><span>Work the ticket</span></h2>    <p class="text-xs text-slate-500 mt-1">Four tickets, six decisions each. At every step, choose the action that belongs there.</p></div>    <span id="tsScore" class="text-sm font-mono font-bold text-slate-500">0 / 24 correct</span>  </div>  <div id="ticketPick" class="grid gap-3 sm:grid-cols-2 mb-5"></div>  <div id="ticketStage"></div></section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-circle-question text-sky-600"></i><span>Check your understanding</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Immediate feedback with the reasoning the exam expects.</p>
+  </div>
+<div id="q9"></div>
+</section>
+</main>
+
+<footer class="glass border-t border-slate-200 mt-10 py-7 px-4 lg:px-8 bg-white/80">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+    <div>
+      <p class="text-sm font-semibold text-slate-800">Allison Ward-Osborne</p>
+      <p class="text-xs text-slate-500 mt-0.5">Computer Information Systems &bull; Central New Mexico Community College</p>
+    </div>
+    <a href="index.html" class="text-xs font-semibold text-sky-700 hover:text-sky-900 font-mono">&larr; All 10 activities</a>
+  </div>
+</footer>
+
+<script>
+/* ---- progress tracking, shared with the launch pad ---- */
+var ACT_ID = 9;
+function getDone(){ try { return JSON.parse(localStorage.getItem('cnm_ai_completed') || '[]'); } catch(e){ return []; } }
+function paintDone(){
+  var on = getDone().indexOf(ACT_ID) !== -1;
+  var b = document.getElementById('doneBtn');
+  b.className = 'shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2 ' +
+    (on ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200');
+  document.getElementById('doneIcon').className = 'fa-solid text-[10px] ' + (on ? 'fa-circle-check text-emerald-600' : 'fa-circle');
+  document.getElementById('doneLabel').textContent = on ? 'Completed' : 'Mark done';
+}
+function toggleDone(){
+  var d = getDone(), i = d.indexOf(ACT_ID);
+  if (i === -1) d.push(ACT_ID); else d.splice(i,1);
+  localStorage.setItem('cnm_ai_completed', JSON.stringify(d));
+  paintDone();
+}
+
+/* ---- shared quiz engine ---- */
+function buildQuiz(containerId, questions){
+  var c = document.getElementById(containerId);
+  var state = { answered: 0, correct: 0, total: questions.length };
+  var html = '<div class="flex items-center justify-between gap-3 mb-4 px-1">' +
+    '<span class="text-xs font-mono text-slate-500">Answer each question &mdash; feedback appears immediately.</span>' +
+    '<span id="' + containerId + '-score" class="text-xs font-mono font-bold text-slate-500 whitespace-nowrap">0 / ' + questions.length + '</span></div>';
+  html += questions.map(function(q, i){
+    return '<div class="glass rounded-2xl p-5 mb-3.5 bg-white" data-i="' + i + '">' +
+      '<p class="text-sm font-semibold text-slate-900 mb-3 leading-relaxed">' +
+        '<span class="font-mono text-sky-700 mr-2">Q' + (i+1) + '</span>' + q.q + '</p>' +
+      '<div class="space-y-2">' + q.a.map(function(opt, j){
+        return '<button type="button" data-j="' + j + '" class="opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-sky-300 text-slate-700 transition flex items-start gap-2.5">' +
+          '<span class="font-mono text-[10px] text-slate-400 mt-0.5 shrink-0">' + 'ABCDE'.charAt(j) + '</span><span>' + opt + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="exp hidden mt-3 text-xs leading-relaxed rounded-xl p-3.5 border"></div></div>';
+  }).join('');
+  c.innerHTML = html;
+
+  c.addEventListener('click', function(ev){
+    var btn = ev.target.closest('.opt');
+    if (!btn) return;
+    var card = btn.closest('[data-i]');
+    if (card.dataset.locked) return;
+    card.dataset.locked = '1';
+    var q = questions[+card.dataset.i];
+    var picked = +btn.dataset.j;
+    var opts = card.querySelectorAll('.opt');
+    for (var k = 0; k < opts.length; k++){
+      opts[k].disabled = true;
+      if (k === q.c) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold flex items-start gap-2.5';
+      else if (k === picked) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-900 flex items-start gap-2.5';
+      else opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-400 flex items-start gap-2.5';
+    }
+    var right = picked === q.c;
+    var exp = card.querySelector('.exp');
+    exp.className = 'exp mt-3 text-xs leading-relaxed rounded-xl p-3.5 border ' +
+      (right ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900');
+    exp.innerHTML = '<span class="font-bold">' + (right ? 'Correct. ' : 'Not quite. ') + '</span>' + q.e;
+    state.answered++; if (right) state.correct++;
+    var s = document.getElementById(containerId + '-score');
+    s.textContent = state.correct + ' / ' + state.total;
+    s.className = 'text-xs font-mono font-bold whitespace-nowrap ' +
+      (state.answered < state.total ? 'text-sky-700' : (state.correct === state.total ? 'text-emerald-600' : 'text-slate-700'));
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  paintDone();
+  if (typeof pageInit === 'function') pageInit();
+});
+</script>
+<script>
+
+var STEPNAMES = ["Identify the problem","Establish a theory of probable cause","Test the theory","Establish a plan of action and implement it","Verify full system functionality","Document findings, actions and outcomes"];
+
+var TICKETS = [
+  { t:"Workstation will not POST", icon:"fa-desktop",
+    intro:"An accounting workstation powers on, the fans run, but the display stays dark and the machine emits a repeating beep code. It worked yesterday.",
+    steps:[
+      { o:["Ask the user what changed since yesterday and whether anyone opened the case, and back up nothing since the machine will not boot \u2014 note the beep pattern",
+           "Immediately replace the motherboard",
+           "Document the beep code and close the ticket"],
+        a:0, e:"Step 1 is gathering information. The beep pattern is a symptom, and what changed since yesterday is exactly the question CompTIA wants asked first." },
+      { o:["Assume the power supply has failed",
+           "Look up the beep code for this manufacturer and theorize that a memory module has come loose or failed",
+           "Order a replacement workstation"],
+        a:1, e:"Step 2 forms a theory, and researching the manufacturer's beep codes turns a symptom into a probable cause. Note the theory is specific enough to be testable." },
+      { o:["Reseat the memory and try one module at a time in a known good slot",
+           "Reinstall the operating system",
+           "Update the network drivers"],
+        a:0, e:"Step 3 tests the theory directly. Isolating modules one at a time either confirms a failed stick or rules the theory out cleanly." },
+      { o:["Order a new motherboard in case memory is not the issue",
+           "Replace the failed module with a matched module, checking that it is on the board's supported list, then reassemble",
+           "Tell the user to work from a spare machine indefinitely"],
+        a:1, e:"Step 4 implements the fix, and checking the compatibility list is the vendor documentation the objective specifically calls for." },
+      { o:["Return the machine to the user immediately",
+           "Boot the system, confirm it posts, run a memory diagnostic, and have the user open their accounting application",
+           "Document the repair and move on"],
+        a:1, e:"Step 5 verifies full functionality, which means the user's actual workflow, not just a successful POST." },
+      { o:["Record the beep code, the failed module's part number, the replacement installed and the test results in the ticket system",
+           "Tell a colleague verbally in case it happens again",
+           "Delete the ticket now that it is resolved"],
+        a:0, e:"Step 6 is documentation, and it belongs in the system of record so the next technician can see the history." }
+    ]},
+
+  { t:"Laptop overheats and shuts down", icon:"fa-temperature-arrow-up",
+    intro:"A field technician's laptop runs hot and shuts down without warning after about twenty minutes, but only when they are working at their desk.",
+    steps:[
+      { o:["Replace the thermal paste right away",
+           "Ask when it started, what they run at the desk, and where the laptop sits \u2014 then back up their data before any hardware work",
+           "Reinstall the operating system"],
+        a:1, e:"Step 1 gathers symptoms and, critically, backs up data before making changes. The detail that it only happens at the desk is the most useful clue in the ticket." },
+      { o:["Theorize that the docking station is faulty",
+           "Theorize that airflow is blocked, since the laptop sits on a soft desk mat that covers the bottom intake vents",
+           "Theorize that the battery has failed"],
+        a:1, e:"Step 2 questions the obvious. A shutdown that only happens in one location points at that location's conditions before it points at failing hardware." },
+      { o:["Run the laptop on a hard surface under the same workload and monitor temperatures",
+           "Replace the cooling fan","Buy a new laptop"],
+        a:0, e:"Step 3 tests the theory under controlled conditions. If temperatures stay normal on a hard surface, the theory is confirmed without spending a cent." },
+      { o:["Provide a laptop stand that keeps the intakes clear, clean the dust from the vents, and explain why the mat caused the problem",
+           "Disable thermal throttling in firmware",
+           "Cap the CPU at 50% permanently"],
+        a:0, e:"Step 4 resolves the actual cause. Disabling thermal protection or crippling performance treats the symptom and creates a worse problem." },
+      { o:["Run the same workload for a full session and confirm temperatures stay in range with no shutdown",
+           "Ask the user to report back next month",
+           "Close the ticket since the cause is understood"],
+        a:0, e:"Step 5 proves the fix under the conditions that originally failed. Anything less leaves the verification to the user." },
+      { o:["Record the cause, the stand provided, the cleaning performed and the verified temperatures",
+           "No documentation is needed because no parts were replaced",
+           "Add a note to the user's personnel file"],
+        a:0, e:"Step 6 documents outcomes regardless of whether hardware was replaced. Environmental causes are exactly the kind that recur." }
+    ]},
+
+  { t:"Whole floor loses network access", icon:"fa-network-wired",
+    intro:"Roughly forty users on the third floor report that nothing loads. A handful of users on the same floor are unaffected. Other floors are fine.",
+    steps:[
+      { o:["Reboot every workstation on the floor",
+           "Determine exactly who is affected, what they share in common, and whether any change or maintenance happened this morning",
+           "Replace the third floor switch"],
+        a:1, e:"Step 1 scopes the problem. Which users are affected and what they have in common is the fastest route to the failure domain." },
+      { o:["Theorize that all forty computers have failed simultaneously",
+           "Theorize that one switch or uplink serving that group failed, since the unaffected users are on different ports",
+           "Theorize that the internet service provider is down"],
+        a:1, e:"Step 2 favors the single common cause over forty coincidences. The unaffected users on the same floor are the clue that narrows it to one device or uplink." },
+      { o:["Check the switch's status lights and management interface, and verify the uplink to the distribution switch",
+           "Reimage a workstation",
+           "Reset every user's password"],
+        a:0, e:"Step 3 tests the theory at the suspected device. A dark uplink light or an error-disabled port confirms or clears it in seconds." },
+      { o:["Replace the failed uplink cable, and notify the affected users of the outage window per the change policy",
+           "Replace the cable during peak hours without telling anyone",
+           "Wait until the end of the week"],
+        a:0, e:"Step 4 includes considering corporate policy and impact on other users, which is why the notification belongs in the plan of action." },
+      { o:["Confirm affected users can reach internal and external resources, and check the switch for errors on the repaired port",
+           "Ask one user to test and assume the rest are fine",
+           "Reboot the switch again for good measure"],
+        a:0, e:"Step 5 verifies across the affected scope, and checking the port's error counters is the preventive measure the objective mentions." },
+      { o:["Log the failed component, the replacement, the outage duration and the users affected",
+           "Send a verbal update to the manager only",
+           "Documentation is the network team's job"],
+        a:0, e:"Step 6 creates the record. Outage duration and scope matter for trend analysis and for any service level reporting." }
+    ]},
+
+  { t:"Drive failing on a shared server", icon:"fa-hard-drive",
+    intro:"A small business server is running noticeably slowly, and the RAID controller utility shows one drive in a degraded state. Staff are still working on it.",
+    steps:[
+      { o:["Verify current backups are complete and restorable, then note which drive and array the controller flags",
+           "Pull the suspect drive immediately to see what happens",
+           "Rebuild the array before checking anything"],
+        a:0, e:"Step 1 includes performing backups before making changes, and on a degraded array that instruction is not a formality \u2014 a rebuild puts stress on the remaining drives." },
+      { o:["Theorize that a single drive has failed and the array is running degraded but intact",
+           "Theorize that the server needs more memory",
+           "Theorize that the network is saturated"],
+        a:0, e:"Step 2 draws the simplest theory consistent with the evidence: a degraded array with one flagged member is a single drive failure." },
+      { o:["Review the controller logs and SMART data for the flagged drive to confirm the failure",
+           "Replace all drives in the array",
+           "Restore from backup to a new server"],
+        a:0, e:"Step 3 confirms the theory with evidence from the controller and the drive itself before any hardware is touched." },
+      { o:["Schedule the replacement, insert a matching drive, and allow the array to rebuild during a low-usage window",
+           "Hot swap the drive during the busiest hour of the day",
+           "Leave the array degraded until the next budget cycle"],
+        a:0, e:"Step 4 weighs impact on other users. A rebuild is I/O intensive, so it belongs in a maintenance window even though the hardware supports hot swap." },
+      { o:["Confirm the rebuild completed, the array reports healthy, performance is normal, and backups are still running",
+           "Assume the rebuild finished overnight",
+           "Close the ticket when the drive light turns green"],
+        a:0, e:"Step 5 verifies the whole system, not just the component. Backups running correctly afterward is part of full functionality." },
+      { o:["Record the drive serial number, failure indicators, replacement date and rebuild duration, and flag the array's age for planning",
+           "Note it on a sticky label on the server",
+           "Skip documentation because RAID handled it automatically"],
+        a:0, e:"Step 6 documents the outcome and, in this case, feeds a preventive conversation about the age of the remaining drives." }
+    ]}
+];
+
+var tIdx = 0, sIdx = 0, correctCount = 0, done = {};
+
+function paintTickets(){
+  document.getElementById('ticketPick').innerHTML = TICKETS.map(function(t, i){
+    var fin = done[i] !== undefined;
+    return '<button type="button" onclick="openTicket(' + i + ')" class="text-left p-4 rounded-2xl border transition flex items-center gap-3 ' +
+      (i===tIdx ? 'bg-sky-600 border-sky-600 text-white shadow-sm' : 'bg-white border-slate-200 hover:border-sky-300 hover:bg-slate-50') + '">' +
+      '<i class="fa-solid ' + t.icon + ' ' + (i===tIdx ? 'text-sky-100' : 'text-sky-600') + '"></i>' +
+      '<span class="flex-1 text-sm font-bold">' + t.t + '</span>' +
+      (fin ? '<span class="text-[11px] font-mono ' + (i===tIdx?'text-sky-100':'text-emerald-600') + '">' + done[i] + '/6</span>' : '') +
+      '</button>';
+  }).join('');
+}
+function openTicket(i){ tIdx = i; sIdx = 0; paintTickets(); paintStage(); }
+
+function paintStage(){
+  var t = TICKETS[tIdx];
+  if (sIdx >= 6){
+    document.getElementById('ticketStage').innerHTML =
+      '<div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center">' +
+      '<i class="fa-solid fa-clipboard-check text-3xl text-emerald-500 mb-2"></i>' +
+      '<p class="text-sm font-bold text-emerald-900">Ticket closed &mdash; ' + done[tIdx] + ' of 6 steps handled correctly.</p>' +
+      '<p class="text-xs text-emerald-800 mt-1">Pick another ticket above, or replay this one.</p>' +
+      '<button type="button" onclick="replay()" class="mt-4 text-xs px-4 py-2 rounded-xl bg-white border border-emerald-300 text-emerald-800 font-semibold hover:bg-emerald-100 transition">Replay this ticket</button></div>';
+    return;
+  }
+  var st = t.steps[sIdx];
+  document.getElementById('ticketStage').innerHTML =
+    '<div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">' +
+      '<p class="text-xs text-slate-600 leading-relaxed mb-4 pb-4 border-b border-slate-200"><b class="text-slate-900">Ticket:</b> ' + t.intro + '</p>' +
+      '<div class="flex items-center gap-2 mb-1">' +
+        '<span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Step ' + (sIdx+1) + ' of 6</span>' +
+        '<span class="flex-1 h-1 rounded bg-slate-200 overflow-hidden"><span class="block h-full bg-sky-500" style="width:' + ((sIdx)/6*100) + '%"></span></span></div>' +
+      '<h3 class="text-base font-bold text-slate-900 mb-4">' + STEPNAMES[sIdx] + '</h3>' +
+      '<div class="space-y-2" id="stepOpts">' + st.o.map(function(o, j){
+        return '<button type="button" onclick="pickStep(' + j + ')" class="ts-opt w-full text-left text-xs sm:text-sm px-4 py-3 rounded-xl border border-slate-200 bg-white hover:border-sky-400 hover:bg-sky-50 text-slate-700 transition">' + o + '</button>';
+      }).join('') + '</div>' +
+      '<div id="stepFeedback"></div>' +
+    '</div>';
+}
+function pickStep(j){
+  var st = TICKETS[tIdx].steps[sIdx];
+  var opts = document.querySelectorAll('#stepOpts .ts-opt');
+  for (var k=0;k<opts.length;k++){
+    opts[k].disabled = true;
+    if (k === st.a) opts[k].className = 'ts-opt w-full text-left text-xs sm:text-sm px-4 py-3 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold';
+    else if (k === j) opts[k].className = 'ts-opt w-full text-left text-xs sm:text-sm px-4 py-3 rounded-xl border border-rose-300 bg-rose-50 text-rose-900';
+    else opts[k].className = 'ts-opt w-full text-left text-xs sm:text-sm px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-400';
+  }
+  var right = j === st.a;
+  if (right){ correctCount++; done[tIdx] = (done[tIdx] || 0) + 1; }
+  else if (done[tIdx] === undefined) done[tIdx] = 0;
+  document.getElementById('tsScore').textContent = correctCount + ' / 24 correct';
+  document.getElementById('tsScore').className = 'text-sm font-mono font-bold ' + (correctCount ? 'text-sky-700' : 'text-slate-500');
+  document.getElementById('stepFeedback').innerHTML =
+    '<div class="mt-3 rounded-xl p-3.5 border text-xs leading-relaxed ' + (right ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900') + '">' +
+    '<b>' + (right ? 'Correct. ' : 'Not this step. ') + '</b>' + st.e + '</div>' +
+    '<button type="button" onclick="nextStep()" class="mt-3 w-full py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition">' +
+    (sIdx === 5 ? 'Close the ticket' : 'Continue to step ' + (sIdx+2)) + '</button>';
+  paintTickets();
+}
+function nextStep(){ sIdx++; paintStage(); }
+function replay(){ correctCount -= (done[tIdx] || 0); done[tIdx] = undefined; delete done[tIdx]; sIdx = 0; document.getElementById('tsScore').textContent = correctCount + ' / 24 correct'; paintTickets(); paintStage(); }
+
+function pageInit(){
+  paintTickets(); paintStage();
+  buildQuiz('q9', [
+    { q:"At which step of the CompTIA methodology should a technician back up critical data?",
+      a:["Step 1, identify the problem","Step 3, test the theory","Step 4, establish a plan of action","Step 6, document findings"], c:0,
+      e:"Backing up before making any changes is explicitly part of step 1. By step 4 you are already changing things, which is too late." },
+    { q:"A technician's theory about a failing hard drive is not confirmed by testing. What should they do next?",
+      a:["Implement the fix anyway","Establish a new theory or escalate","Document the findings and close the ticket","Verify full system functionality"], c:1,
+      e:"Step 3 explicitly branches: if the theory is not confirmed, form a new theory or escalate. You never proceed to a fix for a cause you have not established." },
+    { q:"After replacing a faulty network cable, a technician confirms the user can browse the internet. What remains to be done?",
+      a:["Nothing, the problem is solved","Verify the rest of the user's normal workflow, then document the findings and outcome","Establish a new theory","Reboot the switch"], c:1,
+      e:"Step 5 verifies full functionality, not just the one symptom, and step 6 documents the work. Documentation is always the final step." },
+    { q:"Four users in the same department cannot print, while everyone else can. What does the methodology suggest as the most probable cause?",
+      a:["Four separate workstation faults","A single shared resource, such as that department's print queue or switch port group","A failed print head in each workstation","An expired user license on each machine"], c:1,
+      e:"Step 2 says question the obvious and look for the common factor. One shared component explains all four reports far more economically than four coincidences." },
+    { q:"A technician plans to replace a server component during business hours. Which part of the methodology addresses this?",
+      a:["Step 2, since the theory determines the timing","Step 4, which requires considering corporate policies, procedures and impact","Step 5, verification","Step 1, identifying the problem"], c:1,
+      e:"Step 4 explicitly includes referring to vendor documentation and weighing corporate policy and the impact on other users when building the plan of action." },
+    { q:"Why does CompTIA place documentation as a separate final step rather than folding it into the fix?",
+      a:["Because it is optional","Because the record of findings, actions and outcomes serves future troubleshooting and reporting","Because managers require it for billing only","Because it must be written before verification"], c:1,
+      e:"The documentation captures what was wrong, what was done and what resulted, which is what lets the next technician recognize a repeat and lets the organization spot trends." },
+    { q:"A user says their computer is 'broken.' What is the correct first action?",
+      a:["Reimage the machine","Question the user to identify specific symptoms and determine what changed","Replace the hard drive","Escalate to the network team"], c:1,
+      e:"Step 1 turns a vague complaint into specific symptoms. Without that, any theory you form is a guess." },
+    { q:"Which action belongs in step 5 rather than step 4?",
+      a:["Referring to vendor documentation","Implementing the solution","Implementing preventive measures after confirming the fix works","Considering corporate change policy"], c:2,
+      e:"Step 5 pairs verification with preventive measures where applicable. Vendor documentation, implementation and policy considerations all belong to step 4." },
+  ]);
+}
+
+</script>
+</body>
+</html>

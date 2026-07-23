@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity 04 &middot; Motherboards, CPUs &amp; Memory Architecture | CNM CIS A+ Core 1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: {
+  sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] } } } }
+</script>
+<style>
+  body{
+    background-color:#F8FAFC;color:#0F172A;
+    background-image:
+      radial-gradient(at 10% 10%, rgba(14,165,233,.08) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(168,85,247,.08) 0px, transparent 50%);
+    background-attachment:fixed;
+  }
+  .glass{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(226,232,240,.9);
+    box-shadow:0 4px 20px -2px rgba(15,23,42,.04);
+  }
+  :focus-visible{outline:2px solid #0284c7;outline-offset:2px;border-radius:4px}
+  ::-webkit-scrollbar{width:8px}
+  ::-webkit-scrollbar-track{background:#F1F5F9}
+  ::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+  table.ref{width:100%;border-collapse:collapse;font-size:.78rem}
+  table.ref th{background:#F1F5F9;color:#334155;font-weight:600;text-align:left;padding:.55rem .7rem;border:1px solid #E2E8F0;white-space:nowrap}
+  table.ref td{padding:.55rem .7rem;border:1px solid #E2E8F0;vertical-align:top;color:#334155}
+  table.ref tbody tr:nth-child(even){background:#F8FAFC}
+  .tbl-wrap{overflow-x:auto;border-radius:1rem;border:1px solid #E2E8F0;background:#fff}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="sticky top-0 z-40 glass border-b border-slate-200/80 px-4 lg:px-8 py-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2.5 group min-w-0">
+      <span class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+        <i class="fa-solid fa-arrow-left text-sm"></i>
+      </span>
+      <span class="min-w-0">
+        <span class="block text-sm font-bold text-slate-900 group-hover:text-sky-700 transition leading-tight truncate">Back to Launch Pad</span>
+        <span class="block text-[11px] text-slate-500 font-mono truncate">Activity 04 of 10 &middot; 220-1201</span>
+      </span>
+    </a>
+    <button id="doneBtn" type="button" onclick="toggleDone()"
+      class="shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2">
+      <i id="doneIcon" class="fa-solid fa-circle text-[10px]"></i><span id="doneLabel">Mark done</span>
+    </button>
+  </div>
+</nav>
+
+<header class="max-w-6xl mx-auto px-4 lg:px-8 pt-8 pb-2 w-full">
+  <div class="glass rounded-3xl p-6 md:p-8 bg-white/90 relative overflow-hidden">
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 space-y-3">
+      <span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Domain 3.0 &middot; Hardware (25% of the exam)</span>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">Motherboards, CPUs &amp; Memory Architecture</h1>
+      <p class="text-slate-600 text-sm sm:text-base max-w-3xl leading-relaxed">The largest single hardware domain, and the one where questions describe a symptom and expect you to name the connector, slot or setting behind it. Explore the board component by component, then compare the memory, expansion and firmware details that separate a correct answer from a plausible one.</p>
+      <div class="flex flex-wrap gap-2 pt-1"><span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-book-open text-sky-600 mr-1.5"></i>Learning activity</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clock text-slate-500 mr-1.5"></i>35 minutes</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-signal text-amber-600 mr-1.5"></i>Intermediate</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-hand-pointer text-purple-600 mr-1.5"></i>14 interactive components</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 lg:px-8 py-6 w-full flex-1 space-y-6">
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-microchip text-sky-600"></i><span>Map the board</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Fourteen labelled areas, each one a documented exam objective.</p>
+  </div>
+<p class="text-sm text-slate-600 mb-5 leading-relaxed">Select any component to see what it does, how it is keyed, and the failure it produces when something is wrong.</p><div class="grid gap-5 lg:grid-cols-5">  <div class="lg:col-span-3 rounded-2xl overflow-hidden border border-slate-200 bg-slate-900 p-3">
+<svg viewBox="0 0 700 470" class="w-full h-auto" role="img" aria-label="Interactive motherboard map">
+  <rect x="16" y="16" width="668" height="438" rx="14" fill="#0f2f22" stroke="#134e4a" stroke-width="2"/>
+  <g stroke="#1e5a45" stroke-width="1" opacity=".55">
+    <path d="M40 120h620M40 210h620M40 300h620M40 390h620"/>
+    <path d="M120 30v410M300 30v410M480 30v410M600 30v410"/>
+  </g>
+  <g id="hot" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">
+    <g class="hs" data-k="io"><rect x="30" y="44" width="58" height="170" rx="6"/><text x="59" y="135" text-anchor="middle">I/O</text></g>
+    <g class="hs" data-k="eps"><rect x="152" y="28" width="76" height="24" rx="4"/><text x="190" y="45" text-anchor="middle">EPS</text></g>
+    <g class="hs" data-k="cpu"><rect x="150" y="66" width="132" height="130" rx="8"/><text x="216" y="136" text-anchor="middle">CPU SOCKET</text></g>
+    <g class="hs" data-k="ram"><rect x="322" y="52" width="104" height="164" rx="6"/><text x="374" y="138" text-anchor="middle">DIMM x4</text></g>
+    <g class="hs" data-k="atx"><rect x="632" y="60" width="34" height="132" rx="5"/><text x="649" y="130" text-anchor="middle" transform="rotate(90 649 130)">24-PIN</text></g>
+    <g class="hs" data-k="m2"><rect x="108" y="216" width="214" height="22" rx="4"/><text x="215" y="231" text-anchor="middle">M.2 / NVME</text></g>
+    <g class="hs" data-k="pcie16"><rect x="108" y="252" width="346" height="24" rx="4"/><text x="281" y="268" text-anchor="middle">PCIe x16 SLOT</text></g>
+    <g class="hs" data-k="pcie1"><rect x="108" y="290" width="150" height="20" rx="4"/><text x="183" y="304" text-anchor="middle">PCIe x1</text></g>
+    <g class="hs" data-k="pcie16b"><rect x="108" y="324" width="346" height="24" rx="4"/><text x="281" y="340" text-anchor="middle">PCIe x16 SLOT</text></g>
+    <g class="hs" data-k="chip"><rect x="484" y="290" width="104" height="104" rx="10"/><text x="536" y="345" text-anchor="middle">CHIPSET</text></g>
+    <g class="hs" data-k="sata"><rect x="612" y="248" width="56" height="110" rx="5"/><text x="640" y="306" text-anchor="middle" transform="rotate(90 640 306)">SATA</text></g>
+    <g class="hs" data-k="cmos"><circle cx="536" cy="222" r="26"/><text x="536" y="226" text-anchor="middle">CMOS</text></g>
+    <g class="hs" data-k="fan"><rect x="108" y="384" width="120" height="24" rx="4"/><text x="168" y="400" text-anchor="middle">FAN HDR</text></g>
+    <g class="hs" data-k="front"><rect x="380" y="404" width="150" height="26" rx="4"/><text x="455" y="421" text-anchor="middle">FRONT PANEL</text></g>
+  </g>
+</svg>
+</div>  <div class="lg:col-span-2 rounded-2xl border border-slate-200 bg-slate-50 p-5" id="boardDetail"></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-ruler-combined text-sky-600"></i><span>Form factors and sockets</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Board size determines slot count and case compatibility; socket determines which CPUs will physically fit.</p>
+  </div>
+<div class="grid gap-4 lg:grid-cols-2"><div><div class="tbl-wrap"><table class="ref"><thead><tr><th>Form factor</th><th>Size</th><th>Expansion slots</th><th>Use case</th></tr></thead><tbody><tr><td>ATX</td><td>12 &times; 9.6 in</td><td>Up to 7</td><td>Full-size desktops and workstations</td></tr><tr><td>microATX</td><td>9.6 &times; 9.6 in</td><td>Up to 4</td><td>The mainstream office desktop</td></tr><tr><td>Mini-ITX</td><td>6.7 &times; 6.7 in</td><td>1</td><td>Small form factor and home theater builds</td></tr></tbody></table></div></div><div><div class="tbl-wrap"><table class="ref"><thead><tr><th>Socket style</th><th>Where the pins are</th><th>Examples</th></tr></thead><tbody><tr><td>LGA</td><td>Pins are on the <b>motherboard</b>; the CPU has flat pads</td><td>Intel LGA1700, LGA1851; AMD AM5</td></tr><tr><td>PGA</td><td>Pins are on the <b>CPU</b>; the socket has holes</td><td>AMD AM4</td></tr></tbody></table></div><div class="mt-3"><div class="bg-amber-50 border-amber-200 text-amber-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Where the damage lands</span>AMD moved from PGA on AM4 to LGA on AM5, so the old shortcut of "Intel is LGA, AMD is PGA" no longer holds. Bent pins on an LGA board are a motherboard replacement; bent pins on a PGA chip are a CPU replacement.</div></div></div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-memory text-sky-600"></i><span>Memory: DDR4 against DDR5</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Pin count, voltage and channel design &mdash; the three differences the exam tests.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th></th><th>DDR4</th><th>DDR5</th></tr></thead><tbody><tr><td>Desktop DIMM pins</td><td>288</td><td>288, but the notch sits in a different place</td></tr><tr><td>Laptop SODIMM pins</td><td>260</td><td>262</td></tr><tr><td>Operating voltage</td><td>1.2 V</td><td>1.1 V</td></tr><tr><td>Typical speeds</td><td>2133&ndash;3200 MT/s</td><td>4800 MT/s and up</td></tr><tr><td>Channel structure</td><td>One 64-bit channel per module</td><td>Two independent 32-bit subchannels per module</td></tr><tr><td>Power regulation</td><td>On the motherboard</td><td>PMIC on the module itself</td></tr><tr><td>Error checking</td><td>ECC only on ECC modules</td><td>On-die ECC on every module, plus optional full ECC</td></tr></tbody></table></div><div class="mt-4 grid gap-4 md:grid-cols-2"><div class="bg-rose-50 border-rose-200 text-rose-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-ban text-rose-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">No mixing</span>The generations are <b>not interchangeable</b>. The notch position physically blocks a DDR5 module from seating in a DDR4 slot, and a board supports exactly one of the two.</div></div><div class="bg-sky-50 border-sky-200 text-sky-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-layer-group text-sky-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Populate the right slots</span><b>Dual channel</b> needs matched modules in the matching colored slots &mdash; usually slots 2 and 4. A user who installs two sticks side by side in slots 1 and 2 loses bandwidth without any error message.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-gauge-high text-sky-600"></i><span>Expansion and storage bandwidth</span></h2>
+    <p class="text-xs text-slate-500 mt-1">If a question compares two drives, find the interface before you compare the capacity.</p>
+  </div>
+<div class="grid gap-4 lg:grid-cols-2"><div><div class="tbl-wrap"><table class="ref"><thead><tr><th>PCIe generation</th><th>Per lane</th><th>An x16 slot</th></tr></thead><tbody><tr><td>Gen 3</td><td>~1 GB/s</td><td>~16 GB/s</td></tr><tr><td>Gen 4</td><td>~2 GB/s</td><td>~32 GB/s</td></tr><tr><td>Gen 5</td><td>~4 GB/s</td><td>~64 GB/s</td></tr></tbody></table></div><p class="text-[11px] text-slate-500 mt-2 leading-relaxed">Each generation doubles the previous one, and slots are backward compatible &mdash; a Gen 4 card in a Gen 3 slot simply runs at Gen 3 speeds.</p></div><div><div class="tbl-wrap"><table class="ref"><thead><tr><th>Storage interface</th><th>Realistic ceiling</th></tr></thead><tbody><tr><td>SATA III (2.5 in SSD or hard drive)</td><td>~550 MB/s</td></tr><tr><td>NVMe over PCIe 3.0 x4</td><td>~3,500 MB/s</td></tr><tr><td>NVMe over PCIe 4.0 x4</td><td>~7,000 MB/s</td></tr><tr><td>7,200 RPM mechanical hard drive</td><td>~160 MB/s</td></tr></tbody></table></div><div class="mt-3"><div class="bg-emerald-50 border-emerald-200 text-emerald-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-key text-emerald-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">M.2 keying</span>An M.2 slot is a shape, not a speed. <b>M key</b> gives four PCIe lanes for NVMe, <b>B key</b> gives SATA or two lanes, and a B+M drive fits either. A 2280 drive is 22 mm wide and 80 mm long.</div></div></div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-shield-halved text-sky-600"></i><span>Firmware, boot and platform security</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Boot settings, signature checking and the hardware root of trust.</p>
+  </div>
+<div class="grid gap-4 md:grid-cols-3"><div class="rounded-2xl border border-slate-200 p-5 bg-white"><h3 class="font-bold text-sm text-slate-900 mb-2">UEFI</h3><p class="text-xs text-slate-600 leading-relaxed">Replaced legacy BIOS. Supports drives larger than 2 TB through GPT partitioning, boots faster, and provides a mouse-driven interface. This is where boot order, virtualization support and fan curves live.</p></div><div class="rounded-2xl border border-slate-200 p-5 bg-white"><h3 class="font-bold text-sm text-slate-900 mb-2">Secure Boot</h3><p class="text-xs text-slate-600 leading-relaxed">Only allows bootloaders with a trusted signature to run, which blocks boot-level malware. It also blocks unsigned Linux distributions and bootable USB tools, so technicians disable it temporarily and turn it back on afterward.</p></div><div class="rounded-2xl border border-slate-200 p-5 bg-white"><h3 class="font-bold text-sm text-slate-900 mb-2">TPM 2.0</h3><p class="text-xs text-slate-600 leading-relaxed">A chip that stores encryption keys in hardware. BitLocker uses it to seal a drive to one specific machine. fTPM is the same function built into the CPU rather than a separate chip.</p></div></div><div class="mt-4"><div class="bg-sky-50 border-sky-200 text-sky-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-battery-quarter text-sky-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Classic symptom</span>A desktop that loses the date and time every time it is unplugged, and reports a checksum error at POST, has a dead <b>CMOS battery</b> (CR2032). Settings are stored in CMOS; the battery only keeps them alive when the machine has no power.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-circle-question text-sky-600"></i><span>Check your understanding</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Immediate feedback with the reasoning the exam expects.</p>
+  </div>
+<div id="q4"></div>
+</section>
+</main>
+
+<footer class="glass border-t border-slate-200 mt-10 py-7 px-4 lg:px-8 bg-white/80">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+    <div>
+      <p class="text-sm font-semibold text-slate-800">Allison Ward-Osborne</p>
+      <p class="text-xs text-slate-500 mt-0.5">Computer Information Systems &bull; Central New Mexico Community College</p>
+    </div>
+    <a href="index.html" class="text-xs font-semibold text-sky-700 hover:text-sky-900 font-mono">&larr; All 10 activities</a>
+  </div>
+</footer>
+
+<script>
+/* ---- progress tracking, shared with the launch pad ---- */
+var ACT_ID = 4;
+function getDone(){ try { return JSON.parse(localStorage.getItem('cnm_ai_completed') || '[]'); } catch(e){ return []; } }
+function paintDone(){
+  var on = getDone().indexOf(ACT_ID) !== -1;
+  var b = document.getElementById('doneBtn');
+  b.className = 'shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2 ' +
+    (on ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200');
+  document.getElementById('doneIcon').className = 'fa-solid text-[10px] ' + (on ? 'fa-circle-check text-emerald-600' : 'fa-circle');
+  document.getElementById('doneLabel').textContent = on ? 'Completed' : 'Mark done';
+}
+function toggleDone(){
+  var d = getDone(), i = d.indexOf(ACT_ID);
+  if (i === -1) d.push(ACT_ID); else d.splice(i,1);
+  localStorage.setItem('cnm_ai_completed', JSON.stringify(d));
+  paintDone();
+}
+
+/* ---- shared quiz engine ---- */
+function buildQuiz(containerId, questions){
+  var c = document.getElementById(containerId);
+  var state = { answered: 0, correct: 0, total: questions.length };
+  var html = '<div class="flex items-center justify-between gap-3 mb-4 px-1">' +
+    '<span class="text-xs font-mono text-slate-500">Answer each question &mdash; feedback appears immediately.</span>' +
+    '<span id="' + containerId + '-score" class="text-xs font-mono font-bold text-slate-500 whitespace-nowrap">0 / ' + questions.length + '</span></div>';
+  html += questions.map(function(q, i){
+    return '<div class="glass rounded-2xl p-5 mb-3.5 bg-white" data-i="' + i + '">' +
+      '<p class="text-sm font-semibold text-slate-900 mb-3 leading-relaxed">' +
+        '<span class="font-mono text-sky-700 mr-2">Q' + (i+1) + '</span>' + q.q + '</p>' +
+      '<div class="space-y-2">' + q.a.map(function(opt, j){
+        return '<button type="button" data-j="' + j + '" class="opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-sky-300 text-slate-700 transition flex items-start gap-2.5">' +
+          '<span class="font-mono text-[10px] text-slate-400 mt-0.5 shrink-0">' + 'ABCDE'.charAt(j) + '</span><span>' + opt + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="exp hidden mt-3 text-xs leading-relaxed rounded-xl p-3.5 border"></div></div>';
+  }).join('');
+  c.innerHTML = html;
+
+  c.addEventListener('click', function(ev){
+    var btn = ev.target.closest('.opt');
+    if (!btn) return;
+    var card = btn.closest('[data-i]');
+    if (card.dataset.locked) return;
+    card.dataset.locked = '1';
+    var q = questions[+card.dataset.i];
+    var picked = +btn.dataset.j;
+    var opts = card.querySelectorAll('.opt');
+    for (var k = 0; k < opts.length; k++){
+      opts[k].disabled = true;
+      if (k === q.c) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold flex items-start gap-2.5';
+      else if (k === picked) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-900 flex items-start gap-2.5';
+      else opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-400 flex items-start gap-2.5';
+    }
+    var right = picked === q.c;
+    var exp = card.querySelector('.exp');
+    exp.className = 'exp mt-3 text-xs leading-relaxed rounded-xl p-3.5 border ' +
+      (right ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900');
+    exp.innerHTML = '<span class="font-bold">' + (right ? 'Correct. ' : 'Not quite. ') + '</span>' + q.e;
+    state.answered++; if (right) state.correct++;
+    var s = document.getElementById(containerId + '-score');
+    s.textContent = state.correct + ' / ' + state.total;
+    s.className = 'text-xs font-mono font-bold whitespace-nowrap ' +
+      (state.answered < state.total ? 'text-sky-700' : (state.correct === state.total ? 'text-emerald-600' : 'text-slate-700'));
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  paintDone();
+  if (typeof pageInit === 'function') pageInit();
+});
+</script>
+<script>
+
+var PARTS = {
+  cpu:{ t:"CPU socket", d:"Holds the processor and its cooler. The socket type determines exactly which CPUs the board accepts \u2014 Intel LGA1700 and LGA1851, AMD AM4 (PGA) and AM5 (LGA).",
+        f:"No POST and no video after a CPU swap usually means a bent pin, a cooler mounted without thermal paste, or a CPU the board's firmware does not recognize yet." },
+  ram:{ t:"DIMM slots", d:"Four slots, color-coded in pairs. Filling the two slots of one color enables dual channel, which roughly doubles memory bandwidth.",
+        f:"Repeated blue screens and memory-related POST beeps. Reseat first, then test one module at a time to isolate the failure." },
+  pcie16:{ t:"PCIe x16 slot", d:"The full-length slot, wired with 16 lanes and reserved for graphics cards. Gen 4 delivers about 32 GB/s across those lanes.",
+        f:"A card that intermittently disappears from Device Manager is usually not fully seated or is short on power connectors." },
+  pcie16b:{ t:"Second x16 slot", d:"Physically x16 but frequently wired for only four or eight lanes. Populating it often steals lanes from the first slot or from an M.2 socket.",
+        f:"An NVMe drive that vanishes after installing a second card \u2014 read the board manual's lane-sharing table." },
+  pcie1:{ t:"PCIe x1 slot", d:"A single lane, used for capture cards, sound cards, network cards and USB expansion.",
+        f:"Short cards work in longer slots, but a long card will not fit a short slot unless the slot is open-ended." },
+  m2:{ t:"M.2 socket", d:"Hosts NVMe or SATA solid state drives directly on the board. M key exposes four PCIe lanes; B key is SATA or two lanes. A 2280 drive is 22 mm by 80 mm.",
+        f:"A drive that will not appear at all is often keyed for SATA in a PCIe-only socket, or the slot is disabled because SATA ports are sharing its lanes." },
+  sata:{ t:"SATA ports", d:"Connect 2.5 and 3.5 inch drives and optical drives. SATA III tops out near 550 MB/s regardless of how fast the drive itself is.",
+        f:"A drive missing from the boot menu \u2014 check the data cable, the power cable, and whether an M.2 device has disabled that port." },
+  atx:{ t:"24-pin ATX power", d:"The main power feed from the power supply to the board.",
+        f:"Nothing happens when the power button is pressed. Check this connector, the CPU power connector, and the front panel wiring." },
+  eps:{ t:"EPS 12V CPU power", d:"A separate 4 or 8 pin connector near the socket that feeds the processor directly.",
+        f:"Fans spin up but there is no display and no POST. Forgetting this cable is the single most common first-build mistake." },
+  chip:{ t:"Chipset", d:"Routes traffic between the CPU and everything that is not directly attached to it \u2014 extra PCIe lanes, SATA, USB and networking. The chipset model sets the board's feature ceiling.",
+        f:"Chipsets rarely fail. When they do, whole groups of ports stop working at once." },
+  cmos:{ t:"CMOS battery", d:"A CR2032 coin cell that keeps the real-time clock and firmware settings alive while the system is unplugged.",
+        f:"The clock resets, boot order reverts to defaults, and POST reports a CMOS checksum error. Replace the coin cell." },
+  io:{ t:"Rear I/O panel", d:"USB, video outputs, audio jacks and the network port. Onboard video only works if the CPU has integrated graphics.",
+        f:"No picture from the motherboard's video output on a build with a CPU that has no integrated GPU \u2014 the monitor must plug into the graphics card." },
+  fan:{ t:"Fan headers", d:"Powered, speed-controlled headers for case and CPU fans. The CPU_FAN header is monitored at boot.",
+        f:"Some boards halt at POST with a fan error if nothing is connected to CPU_FAN, even when the cooler is working." },
+  front:{ t:"Front panel header", d:"Tiny individual pins for the power button, reset button, power LED and drive activity LED.",
+        f:"A machine that will not turn on at all after a case swap \u2014 the power switch lead is on the wrong pins. Polarity matters for the LEDs but not the switches." }
+};
+var current = 'cpu';
+
+function selPart(k){
+  current = k;
+  var p = PARTS[k];
+  document.getElementById('boardDetail').innerHTML =
+    '<span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Component</span>' +
+    '<h3 class="text-lg font-bold text-slate-900 mb-3 mt-1">' + p.t + '</h3>' +
+    '<p class="text-xs text-slate-600 leading-relaxed mb-4">' + p.d + '</p>' +
+    '<div class="rounded-xl bg-amber-50 border border-amber-200 p-3.5">' +
+      '<span class="text-[11px] font-bold uppercase tracking-wider text-amber-700 block mb-1">Symptom to recognize</span>' +
+      '<p class="text-xs text-amber-900 leading-relaxed">' + p.f + '</p></div>';
+  var gs = document.querySelectorAll('#hot .hs');
+  for (var i=0;i<gs.length;i++){
+    var on = gs[i].getAttribute('data-k') === k;
+    var shape = gs[i].querySelector('rect') || gs[i].querySelector('circle');
+    shape.setAttribute('fill', on ? '#0ea5e9' : '#1f7a5c');
+    shape.setAttribute('stroke', on ? '#bae6fd' : '#2fa37c');
+    shape.setAttribute('stroke-width', on ? '2.5' : '1.5');
+    gs[i].querySelector('text').setAttribute('fill', on ? '#ffffff' : '#a7f3d0');
+  }
+}
+
+function pageInit(){
+  var gs = document.querySelectorAll('#hot .hs');
+  for (var i=0;i<gs.length;i++){
+    (function(g){
+      g.style.cursor = 'pointer';
+      g.setAttribute('tabindex','0');
+      g.setAttribute('role','button');
+      g.setAttribute('aria-label', PARTS[g.getAttribute('data-k')].t);
+      g.addEventListener('click', function(){ selPart(g.getAttribute('data-k')); });
+      g.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); selPart(g.getAttribute('data-k')); } });
+    })(gs[i]);
+  }
+  selPart('cpu');
+
+  buildQuiz('q4', [
+    { q:"A newly assembled desktop powers on, the fans spin and the drive light flashes, but there is no display and no POST beep. Which connection should you check first?",
+      a:["The 24-pin ATX connector","The 8-pin EPS 12V CPU power connector","The front panel audio header","The SATA data cable"], c:1,
+      e:"Fans spinning proves the 24-pin main connector is delivering power. Without the separate CPU power lead the processor never initializes, so the system cannot POST." },
+    { q:"A user complains their desktop loses the correct time whenever it is unplugged overnight, and POST reports a checksum error. What is the fix?",
+      a:["Reinstall the operating system","Replace the CMOS battery","Flash the UEFI firmware","Replace the power supply"], c:1,
+      e:"CMOS settings and the real-time clock are kept alive by a CR2032 coin cell. When it dies, settings revert to defaults every time mains power is removed." },
+    { q:"A technician installs two matched 16 GB modules in slots 1 and 2 of a four-slot board. The system posts and reports 32 GB, but memory bandwidth benchmarks are low. What happened?",
+      a:["One module is faulty","The modules are not in the dual channel pair, usually slots 2 and 4","The board only supports single channel","DDR5 does not support dual channel"], c:1,
+      e:"Dual channel requires the two slots of the same color, which are typically slots 2 and 4. The system runs fine in single channel, it just gives up roughly half the bandwidth with no error." },
+    { q:"Which statement about DDR4 and DDR5 is accurate?",
+      a:["DDR5 modules fit a DDR4 slot but run slower","Both use a 288-pin desktop DIMM, but the notch position differs so they cannot be interchanged","DDR5 uses fewer pins than DDR4","DDR4 runs at a lower voltage than DDR5"], c:1,
+      e:"Both desktop formats use 288 pins, but the notch sits in a different position specifically to make them physically incompatible. DDR5 also runs at the lower voltage, 1.1 V versus 1.2 V." },
+    { q:"A user wants the fastest possible boot drive on a board with PCIe 4.0. Which option should you recommend?",
+      a:["A SATA III solid state drive","An NVMe drive in an M key M.2 socket","A 7,200 RPM hard drive","An external USB 3.2 Gen 1 drive"], c:1,
+      e:"SATA III caps around 550 MB/s no matter what drive is attached. An NVMe drive on four PCIe 4.0 lanes reaches roughly 7,000 MB/s." },
+    { q:"A technician needs to boot a diagnostic Linux USB on a modern laptop, but the firmware refuses to load it. Which setting is most likely responsible?",
+      a:["TPM 2.0","Secure Boot","Dual channel memory","Auto-MDIX"], c:1,
+      e:"Secure Boot only permits bootloaders carrying a trusted signature. Disable it to run the tool, then re-enable it when the work is finished." },
+    { q:"An AM5 processor arrives with visibly bent contacts on the socket of the motherboard. What does this tell you about the socket style?",
+      a:["It is PGA, so the CPU must be replaced","It is LGA, so the motherboard must be replaced","Bent contacts do not affect operation","It is a BGA socket and cannot be repaired"], c:1,
+      e:"AM5 is an LGA socket, meaning the pins live on the board. Damage there is a motherboard replacement, unlike AM4's PGA design where the pins are on the chip." },
+    { q:"A customer has a Mini-ITX case and wants to add a capture card alongside their graphics card. What should you tell them?",
+      a:["Mini-ITX supports up to four expansion slots","Mini-ITX has only one expansion slot, so a larger form factor is needed","Any card can share the x16 slot","They should switch to a Cat 6a cable"], c:1,
+      e:"Mini-ITX boards measure 6.7 inches square and carry a single expansion slot. Two cards require at least a microATX board and a case to match." },
+  ]);
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity 03 &middot; SOHO Cables, Connectors &amp; Network Tools | CNM CIS A+ Core 1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: {
+  sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] } } } }
+</script>
+<style>
+  body{
+    background-color:#F8FAFC;color:#0F172A;
+    background-image:
+      radial-gradient(at 10% 10%, rgba(14,165,233,.08) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(168,85,247,.08) 0px, transparent 50%);
+    background-attachment:fixed;
+  }
+  .glass{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(226,232,240,.9);
+    box-shadow:0 4px 20px -2px rgba(15,23,42,.04);
+  }
+  :focus-visible{outline:2px solid #0284c7;outline-offset:2px;border-radius:4px}
+  ::-webkit-scrollbar{width:8px}
+  ::-webkit-scrollbar-track{background:#F1F5F9}
+  ::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+  table.ref{width:100%;border-collapse:collapse;font-size:.78rem}
+  table.ref th{background:#F1F5F9;color:#334155;font-weight:600;text-align:left;padding:.55rem .7rem;border:1px solid #E2E8F0;white-space:nowrap}
+  table.ref td{padding:.55rem .7rem;border:1px solid #E2E8F0;vertical-align:top;color:#334155}
+  table.ref tbody tr:nth-child(even){background:#F8FAFC}
+  .tbl-wrap{overflow-x:auto;border-radius:1rem;border:1px solid #E2E8F0;background:#fff}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="sticky top-0 z-40 glass border-b border-slate-200/80 px-4 lg:px-8 py-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2.5 group min-w-0">
+      <span class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+        <i class="fa-solid fa-arrow-left text-sm"></i>
+      </span>
+      <span class="min-w-0">
+        <span class="block text-sm font-bold text-slate-900 group-hover:text-sky-700 transition leading-tight truncate">Back to Launch Pad</span>
+        <span class="block text-[11px] text-slate-500 font-mono truncate">Activity 03 of 10 &middot; 220-1201</span>
+      </span>
+    </a>
+    <button id="doneBtn" type="button" onclick="toggleDone()"
+      class="shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2">
+      <i id="doneIcon" class="fa-solid fa-circle text-[10px]"></i><span id="doneLabel">Mark done</span>
+    </button>
+  </div>
+</nav>
+
+<header class="max-w-6xl mx-auto px-4 lg:px-8 pt-8 pb-2 w-full">
+  <div class="glass rounded-3xl p-6 md:p-8 bg-white/90 relative overflow-hidden">
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 space-y-3">
+      <span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Domain 2.0 &middot; Networking (23% of the exam)</span>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">SOHO Cables, Connectors &amp; Network Tools</h1>
+      <p class="text-slate-600 text-sm sm:text-base max-w-3xl leading-relaxed">Cabling questions almost always hide a constraint: a distance, a source of interference, a building code, or a specific symptom. Learn the limits first, terminate a jack in the correct order, then practice picking the one tool that fits the verb in the question.</p>
+      <div class="flex flex-wrap gap-2 pt-1"><span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-book-open text-sky-600 mr-1.5"></i>Learning activity</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clock text-slate-500 mr-1.5"></i>30 minutes</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-signal text-emerald-600 mr-1.5"></i>Beginner</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-hand-pointer text-purple-600 mr-1.5"></i>T568A/B builder</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 lg:px-8 py-6 w-full flex-1 space-y-6">
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-ethernet text-sky-600"></i><span>Twisted pair copper, by category</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Speed, distance and shielding are the three things a cabling question can turn on.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th>Category</th><th>Speed</th><th>Maximum distance</th><th>Shielding</th><th>Where you will see it</th></tr></thead><tbody><tr><td>Cat 5</td><td>100 Mbps</td><td>100 m</td><td>UTP</td><td>Obsolete; replace it when you find it</td></tr><tr><td>Cat 5e</td><td>1 Gbps</td><td>100 m</td><td>UTP</td><td>The old baseline for office drops</td></tr><tr><td>Cat 6</td><td>1 Gbps at 100 m<br>10 Gbps at 55 m</td><td>100 m / 55 m</td><td>UTP or STP</td><td>Most current office cabling</td></tr><tr><td>Cat 6a</td><td>10 Gbps</td><td>100 m</td><td>Usually shielded</td><td>The safe modern choice for new runs</td></tr><tr><td>Cat 7</td><td>10 Gbps</td><td>100 m</td><td>Fully shielded (S/FTP)</td><td>Uncommon in the field; uses GG45/TERA</td></tr><tr><td>Cat 8</td><td>25&ndash;40 Gbps</td><td>30 m</td><td>Shielded</td><td>Data center top-of-rack runs only</td></tr></tbody></table></div><div class="mt-4 grid gap-4 md:grid-cols-2"><div class="bg-sky-50 border-sky-200 text-sky-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-lightbulb text-sky-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Exam tip</span>100 meters is the standard limit for every category up to Cat 6a. If a scenario describes a run longer than that, the answer is fiber or a switch placed midway &mdash; not a better copper cable.</div></div><div class="bg-amber-50 border-amber-200 text-amber-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-fire text-amber-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Jacket ratings</span><b>Plenum</b> cable has a fire-resistant jacket and is required in air-handling spaces above ceilings. <b>Riser</b> cable runs between floors. Using PVC where plenum is required is a code violation, and it shows up on the exam as a compliance question.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-wrench text-sky-600"></i><span>Terminate a jack: T568B</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Pins 1, 2, 3 and 6 carry the data on 100BASE-TX; gigabit uses all four pairs.</p>
+  </div>
+<p class="text-sm text-slate-600 mb-5 leading-relaxed">Click the eight conductors in T568B order. The order is the one thing people forget in the lab and on the exam, and the striped wire always comes before its solid partner.</p><div class="grid gap-5 lg:grid-cols-2">  <div>    <div class="flex items-center justify-between mb-3">      <div class="inline-flex rounded-xl border border-slate-200 overflow-hidden">        <button type="button" id="stdB" onclick="setStd('B')" class="text-xs px-4 py-2 font-semibold">T568B</button>        <button type="button" id="stdA" onclick="setStd('A')" class="text-xs px-4 py-2 font-semibold">T568A</button>      </div>      <button type="button" onclick="resetPins()" class="text-xs px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200"><i class="fa-solid fa-rotate-left mr-1"></i>Reset</button>    </div>    <div id="wireBank" class="grid grid-cols-2 gap-2"></div>  </div>  <div>    <span class="text-xs font-mono text-slate-500 block mb-2">Pin 1 through 8, left to right, clip facing away from you</span>    <div id="pinSlots" class="space-y-1.5"></div>    <div id="pinResult" class="mt-3"></div>  </div></div><div class="mt-5"><div class="bg-emerald-50 border-emerald-200 text-emerald-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-arrows-left-right text-emerald-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Straight-through vs crossover</span>A straight-through cable uses the <b>same</b> standard on both ends. A crossover uses <b>T568A on one end and T568B on the other</b>, and is nearly extinct because modern switch ports auto-negotiate with Auto-MDIX.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-diagram-project text-sky-600"></i><span>Fiber, coax and the rest</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Match the medium to the environment: distance, interference and what the signal has to carry.</p>
+  </div>
+<div class="grid gap-4 md:grid-cols-3"><div class="rounded-2xl border border-slate-200 p-5 bg-white"><h3 class="font-bold text-sm text-slate-900 mb-3"><i class="fa-solid fa-circle-nodes text-sky-600 mr-2"></i>Fiber optic</h3><ul class="text-xs text-slate-600 space-y-2 leading-relaxed"><li><b class="text-slate-800">Single-mode:</b> tiny 9-micron core, laser light, runs for kilometers. Yellow jacket.</li><li><b class="text-slate-800">Multimode:</b> wider 50/62.5-micron core, LED light, a few hundred meters. Orange or aqua jacket.</li><li><b class="text-slate-800">Connectors:</b> LC (small, latching, duplex), SC (square push-pull), ST (round bayonet twist).</li><li>Immune to electromagnetic interference, which is why it wins any question mentioning motors, elevators or fluorescent ballasts.</li></ul></div><div class="rounded-2xl border border-slate-200 p-5 bg-white"><h3 class="font-bold text-sm text-slate-900 mb-3"><i class="fa-solid fa-tv text-sky-600 mr-2"></i>Coaxial</h3><ul class="text-xs text-slate-600 space-y-2 leading-relaxed"><li><b class="text-slate-800">RG-6:</b> cable internet and TV, terminated with a screw-on F-connector.</li><li><b class="text-slate-800">RG-59:</b> thinner, older, short analog video runs only.</li><li>A single copper core inside a braided shield &mdash; that shield is what makes it tolerant of interference.</li></ul></div><div class="rounded-2xl border border-slate-200 p-5 bg-white"><h3 class="font-bold text-sm text-slate-900 mb-3"><i class="fa-solid fa-desktop text-sky-600 mr-2"></i>Video and peripheral</h3><ul class="text-xs text-slate-600 space-y-2 leading-relaxed"><li><b class="text-slate-800">HDMI:</b> video plus audio, the consumer default.</li><li><b class="text-slate-800">DisplayPort:</b> higher refresh rates, and one port can daisy-chain monitors.</li><li><b class="text-slate-800">DVI:</b> video only; DVI-D digital, DVI-A analog, DVI-I both.</li><li><b class="text-slate-800">eSATA:</b> external drives, data only &mdash; the drive still needs its own power.</li></ul></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-toolbox text-sky-600"></i><span>The tool for the symptom</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Exam questions describe a symptom, then ask for a tool. Read for the verb: locate, verify, terminate, or measure.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th>Tool</th><th>Use it when you need to</th><th>Do not confuse it with</th></tr></thead><tbody><tr><td>Cable tester</td><td>Confirm every conductor is connected end to end and in the right order</td><td>A certifier, which also measures performance</td></tr><tr><td>Crimper</td><td>Attach an RJ45 plug to the end of a cable</td><td>A punchdown tool, which is for jacks and panels</td></tr><tr><td>Punchdown tool</td><td>Seat conductors into a keystone jack or patch panel with a 110 block</td><td>A crimper</td></tr><tr><td>Toner probe</td><td>Find which of 200 unlabeled cables in a closet is the one you are holding</td><td>A cable tester &mdash; toners locate, testers verify</td></tr><tr><td>Loopback plug</td><td>Test a NIC or port by sending its own signal back to it</td><td>A cable tester</td></tr><tr><td>Multimeter</td><td>Measure voltage, current or continuity on power circuits and PSU rails</td><td>Anything network specific</td></tr><tr><td>Wi-Fi analyzer</td><td>See channel overlap, signal strength and interference in the air</td><td>A protocol analyzer, which reads packet contents</td></tr><tr><td>Network tap / protocol analyzer</td><td>Capture and read the actual traffic on a link</td><td>A toner probe</td></tr></tbody></table></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-circle-question text-sky-600"></i><span>Check your understanding</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Immediate feedback with the reasoning the exam expects.</p>
+  </div>
+<div id="q3"></div>
+</section>
+</main>
+
+<footer class="glass border-t border-slate-200 mt-10 py-7 px-4 lg:px-8 bg-white/80">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+    <div>
+      <p class="text-sm font-semibold text-slate-800">Allison Ward-Osborne</p>
+      <p class="text-xs text-slate-500 mt-0.5">Computer Information Systems &bull; Central New Mexico Community College</p>
+    </div>
+    <a href="index.html" class="text-xs font-semibold text-sky-700 hover:text-sky-900 font-mono">&larr; All 10 activities</a>
+  </div>
+</footer>
+
+<script>
+/* ---- progress tracking, shared with the launch pad ---- */
+var ACT_ID = 3;
+function getDone(){ try { return JSON.parse(localStorage.getItem('cnm_ai_completed') || '[]'); } catch(e){ return []; } }
+function paintDone(){
+  var on = getDone().indexOf(ACT_ID) !== -1;
+  var b = document.getElementById('doneBtn');
+  b.className = 'shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2 ' +
+    (on ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200');
+  document.getElementById('doneIcon').className = 'fa-solid text-[10px] ' + (on ? 'fa-circle-check text-emerald-600' : 'fa-circle');
+  document.getElementById('doneLabel').textContent = on ? 'Completed' : 'Mark done';
+}
+function toggleDone(){
+  var d = getDone(), i = d.indexOf(ACT_ID);
+  if (i === -1) d.push(ACT_ID); else d.splice(i,1);
+  localStorage.setItem('cnm_ai_completed', JSON.stringify(d));
+  paintDone();
+}
+
+/* ---- shared quiz engine ---- */
+function buildQuiz(containerId, questions){
+  var c = document.getElementById(containerId);
+  var state = { answered: 0, correct: 0, total: questions.length };
+  var html = '<div class="flex items-center justify-between gap-3 mb-4 px-1">' +
+    '<span class="text-xs font-mono text-slate-500">Answer each question &mdash; feedback appears immediately.</span>' +
+    '<span id="' + containerId + '-score" class="text-xs font-mono font-bold text-slate-500 whitespace-nowrap">0 / ' + questions.length + '</span></div>';
+  html += questions.map(function(q, i){
+    return '<div class="glass rounded-2xl p-5 mb-3.5 bg-white" data-i="' + i + '">' +
+      '<p class="text-sm font-semibold text-slate-900 mb-3 leading-relaxed">' +
+        '<span class="font-mono text-sky-700 mr-2">Q' + (i+1) + '</span>' + q.q + '</p>' +
+      '<div class="space-y-2">' + q.a.map(function(opt, j){
+        return '<button type="button" data-j="' + j + '" class="opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-sky-300 text-slate-700 transition flex items-start gap-2.5">' +
+          '<span class="font-mono text-[10px] text-slate-400 mt-0.5 shrink-0">' + 'ABCDE'.charAt(j) + '</span><span>' + opt + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="exp hidden mt-3 text-xs leading-relaxed rounded-xl p-3.5 border"></div></div>';
+  }).join('');
+  c.innerHTML = html;
+
+  c.addEventListener('click', function(ev){
+    var btn = ev.target.closest('.opt');
+    if (!btn) return;
+    var card = btn.closest('[data-i]');
+    if (card.dataset.locked) return;
+    card.dataset.locked = '1';
+    var q = questions[+card.dataset.i];
+    var picked = +btn.dataset.j;
+    var opts = card.querySelectorAll('.opt');
+    for (var k = 0; k < opts.length; k++){
+      opts[k].disabled = true;
+      if (k === q.c) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold flex items-start gap-2.5';
+      else if (k === picked) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-900 flex items-start gap-2.5';
+      else opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-400 flex items-start gap-2.5';
+    }
+    var right = picked === q.c;
+    var exp = card.querySelector('.exp');
+    exp.className = 'exp mt-3 text-xs leading-relaxed rounded-xl p-3.5 border ' +
+      (right ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900');
+    exp.innerHTML = '<span class="font-bold">' + (right ? 'Correct. ' : 'Not quite. ') + '</span>' + q.e;
+    state.answered++; if (right) state.correct++;
+    var s = document.getElementById(containerId + '-score');
+    s.textContent = state.correct + ' / ' + state.total;
+    s.className = 'text-xs font-mono font-bold whitespace-nowrap ' +
+      (state.answered < state.total ? 'text-sky-700' : (state.correct === state.total ? 'text-emerald-600' : 'text-slate-700'));
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  paintDone();
+  if (typeof pageInit === 'function') pageInit();
+});
+</script>
+<script>
+
+var WIRE = {
+  wo:{ label:"White / Orange", css:"linear-gradient(90deg,#ffffff 0 50%,#f97316 50% 100%)" },
+  o: { label:"Orange",         css:"#f97316" },
+  wg:{ label:"White / Green",  css:"linear-gradient(90deg,#ffffff 0 50%,#16a34a 50% 100%)" },
+  bl:{ label:"Blue",           css:"#2563eb" },
+  wb:{ label:"White / Blue",   css:"linear-gradient(90deg,#ffffff 0 50%,#2563eb 50% 100%)" },
+  g: { label:"Green",          css:"#16a34a" },
+  wbr:{label:"White / Brown",  css:"linear-gradient(90deg,#ffffff 0 50%,#78350f 50% 100%)" },
+  br:{ label:"Brown",          css:"#78350f" }
+};
+var ORDER = {
+  B:["wo","o","wg","bl","wb","g","wbr","br"],
+  A:["wg","g","wo","bl","wb","o","wbr","br"]
+};
+var std = 'B';
+var placed = [];
+
+function setStd(s){
+  std = s; resetPins();
+  document.getElementById('stdB').className = 'text-xs px-4 py-2 font-semibold ' + (s==='B' ? 'bg-sky-600 text-white' : 'bg-white text-slate-600 hover:bg-slate-50');
+  document.getElementById('stdA').className = 'text-xs px-4 py-2 font-semibold ' + (s==='A' ? 'bg-sky-600 text-white' : 'bg-white text-slate-600 hover:bg-slate-50');
+}
+function resetPins(){ placed = []; paintPins(); paintBank(); document.getElementById('pinResult').innerHTML = ''; }
+
+function paintBank(){
+  document.getElementById('wireBank').innerHTML = Object.keys(WIRE).map(function(k){
+    var used = placed.indexOf(k) !== -1;
+    return '<button type="button" ' + (used ? 'disabled' : 'onclick="placeWire(\'' + k + '\')"') +
+      ' class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl border text-xs font-medium transition ' +
+      (used ? 'bg-slate-50 border-slate-100 text-slate-300' : 'bg-white border-slate-200 text-slate-700 hover:border-sky-400 hover:bg-sky-50') + '">' +
+      '<span class="w-7 h-4 rounded border border-slate-300 shrink-0" style="background:' + WIRE[k].css + ';' + (used?'opacity:.25':'') + '"></span>' +
+      '<span>' + WIRE[k].label + '</span></button>';
+  }).join('');
+}
+function paintPins(){
+  var html = '';
+  for (var i=0;i<8;i++){
+    var k = placed[i];
+    var right = k && k === ORDER[std][i];
+    html += '<div class="flex items-center gap-2.5 px-3 py-2 rounded-lg border ' +
+      (!k ? 'border-dashed border-slate-300 bg-slate-50' : (right ? 'border-emerald-300 bg-emerald-50' : 'border-rose-300 bg-rose-50')) + '">' +
+      '<span class="font-mono text-[10px] w-9 shrink-0 text-slate-500">Pin ' + (i+1) + '</span>' +
+      (k ? '<span class="w-8 h-4 rounded border border-slate-300 shrink-0" style="background:' + WIRE[k].css + '"></span><span class="text-xs text-slate-700">' + WIRE[k].label + '</span>' +
+           (right ? '<i class="fa-solid fa-check text-emerald-600 ml-auto text-xs"></i>' : '<i class="fa-solid fa-xmark text-rose-600 ml-auto text-xs"></i>')
+         : '<span class="text-xs text-slate-400 italic">empty</span>') +
+      '</div>';
+  }
+  document.getElementById('pinSlots').innerHTML = html;
+}
+function placeWire(k){
+  if (placed.length >= 8) return;
+  placed.push(k); paintPins(); paintBank();
+  if (placed.length === 8){
+    var ok = placed.every(function(v,i){ return v === ORDER[std][i]; });
+    document.getElementById('pinResult').innerHTML = ok
+      ? '<div class="rounded-xl bg-emerald-50 border border-emerald-200 p-3.5 text-xs text-emerald-900 leading-relaxed"><b>Correct T568' + std + ' order.</b> Notice that pins 4, 5, 7 and 8 are identical in both standards &mdash; only the orange and green pairs swap.</div>'
+      : '<div class="rounded-xl bg-amber-50 border border-amber-200 p-3.5 text-xs text-amber-900 leading-relaxed"><b>Not quite.</b> Correct order for T568' + std + ' is ' + ORDER[std].map(function(x){ return WIRE[x].label; }).join(', ') + '. Reset and try again.</div>';
+  }
+}
+
+function pageInit(){
+  setStd('B');
+  buildQuiz('q3', [
+    { q:"A network drop must reach a workstation 140 meters from the switch. What should the technician recommend?",
+      a:["Cat 6a, since it supports 10 Gbps","Cat 8, since it is the newest category","Fiber, or an intermediate switch closer to the workstation","Cat 5e with a signal booster"], c:2,
+      e:"Every twisted pair category is limited to 100 meters, and Cat 8 is actually the shortest at 30 meters. Beyond 100 meters you either run fiber or add active equipment partway." },
+    { q:"Cable is being run above a suspended ceiling that is used to return air to the HVAC system. Which cable is required?",
+      a:["Riser rated","Plenum rated","Direct burial","Shielded Cat 6"], c:1,
+      e:"Air-handling spaces require plenum rated jackets, which produce less toxic smoke in a fire. Riser rating covers vertical runs between floors, not air spaces." },
+    { q:"You are holding one end of an unlabeled cable in a wiring closet with roughly 200 identical terminations. Which tool finds the other end?",
+      a:["Cable tester","Loopback plug","Toner probe","Multimeter"], c:2,
+      e:"A toner generator injects an audible signal and the probe locates it. A cable tester verifies a cable you have already identified at both ends." },
+    { q:"Which pairs of a T568B jack are identical to a T568A jack?",
+      a:["The orange and green pairs","The blue and brown pairs","All four pairs","Only the brown pair"], c:1,
+      e:"Blue on pins 4 and 5 and brown on pins 7 and 8 are the same in both standards. Only the orange and green pairs swap positions." },
+    { q:"A run must pass through a factory floor beside large motors and welding equipment. Which medium is most appropriate?",
+      a:["Cat 6 UTP","Fiber optic","RG-59 coax","Cat 5e UTP"], c:1,
+      e:"Fiber carries light, so electromagnetic interference cannot affect it. Any question involving heavy machinery, motors or high voltage is pointing at fiber." },
+    { q:"A campus needs a link between two buildings roughly three kilometers apart. Which fiber type is appropriate?",
+      a:["Multimode with LC connectors","Single-mode","Cat 6a","RG-6 coax"], c:1,
+      e:"Multimode tops out at a few hundred meters. Single-mode fiber uses a narrow core and laser source, so it carries a signal for kilometers." },
+    { q:"Which tool seats individual conductors into a keystone jack or patch panel?",
+      a:["Crimper","Punchdown tool","Cable stripper","Loopback plug"], c:1,
+      e:"A punchdown tool pushes each wire into the 110-block contacts and trims the excess. Crimpers are for attaching RJ45 plugs to cable ends." },
+    { q:"A user needs a single cable to drive a high-refresh gaming monitor and a second display chained behind it. Which connection supports this directly?",
+      a:["HDMI","DVI-D","DisplayPort","eSATA"], c:2,
+      e:"DisplayPort supports Multi-Stream Transport, so one port can daisy-chain multiple monitors, and it generally handles higher refresh rates than HDMI at the same generation." },
+  ]);
+}
+
+</script>
+</body>
+</html>

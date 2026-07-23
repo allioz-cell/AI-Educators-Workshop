@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity 08 &middot; Laser Printing: The Imaging Process | CNM CIS A+ Core 1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: {
+  sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] } } } }
+</script>
+<style>
+  body{
+    background-color:#F8FAFC;color:#0F172A;
+    background-image:
+      radial-gradient(at 10% 10%, rgba(14,165,233,.08) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(168,85,247,.08) 0px, transparent 50%);
+    background-attachment:fixed;
+  }
+  .glass{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(226,232,240,.9);
+    box-shadow:0 4px 20px -2px rgba(15,23,42,.04);
+  }
+  :focus-visible{outline:2px solid #0284c7;outline-offset:2px;border-radius:4px}
+  ::-webkit-scrollbar{width:8px}
+  ::-webkit-scrollbar-track{background:#F1F5F9}
+  ::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+  table.ref{width:100%;border-collapse:collapse;font-size:.78rem}
+  table.ref th{background:#F1F5F9;color:#334155;font-weight:600;text-align:left;padding:.55rem .7rem;border:1px solid #E2E8F0;white-space:nowrap}
+  table.ref td{padding:.55rem .7rem;border:1px solid #E2E8F0;vertical-align:top;color:#334155}
+  table.ref tbody tr:nth-child(even){background:#F8FAFC}
+  .tbl-wrap{overflow-x:auto;border-radius:1rem;border:1px solid #E2E8F0;background:#fff}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="sticky top-0 z-40 glass border-b border-slate-200/80 px-4 lg:px-8 py-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2.5 group min-w-0">
+      <span class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+        <i class="fa-solid fa-arrow-left text-sm"></i>
+      </span>
+      <span class="min-w-0">
+        <span class="block text-sm font-bold text-slate-900 group-hover:text-sky-700 transition leading-tight truncate">Back to Launch Pad</span>
+        <span class="block text-[11px] text-slate-500 font-mono truncate">Activity 08 of 10 &middot; 220-1201</span>
+      </span>
+    </a>
+    <button id="doneBtn" type="button" onclick="toggleDone()"
+      class="shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2">
+      <i id="doneIcon" class="fa-solid fa-circle text-[10px]"></i><span id="doneLabel">Mark done</span>
+    </button>
+  </div>
+</nav>
+
+<header class="max-w-6xl mx-auto px-4 lg:px-8 pt-8 pb-2 w-full">
+  <div class="glass rounded-3xl p-6 md:p-8 bg-white/90 relative overflow-hidden">
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 space-y-3">
+      <span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Domain 3.0 &middot; Hardware (25% of the exam)</span>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">Laser Printing: The Imaging Process</h1>
+      <p class="text-slate-600 text-sm sm:text-base max-w-3xl leading-relaxed">Seven stages, in a fixed order, each with its own failure signature. Once the sequence is automatic, most laser printer troubleshooting questions answer themselves &mdash; the exam describes a symptom and expects you to name the stage.</p>
+      <div class="flex flex-wrap gap-2 pt-1"><span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-gamepad text-purple-600 mr-1.5"></i>Interactive game</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clock text-slate-500 mr-1.5"></i>25 minutes</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-signal text-amber-600 mr-1.5"></i>Intermediate</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-arrow-down-1-9 text-sky-600 mr-1.5"></i>Sequencing challenge</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 lg:px-8 py-6 w-full flex-1 space-y-6">
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">  <div class="mb-5 pb-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3">    <div><h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-print text-sky-600"></i><span>Put the imaging process in order</span></h2>    <p class="text-xs text-slate-500 mt-1">Move each stage until the sequence is right, then check your work. Attempts are tracked, so guessing costs you.</p></div>    <div class="flex gap-2">      <button type="button" onclick="shuffleSteps()" class="text-xs px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition"><i class="fa-solid fa-shuffle mr-1.5"></i>Shuffle</button>      <button type="button" onclick="checkSteps()" class="text-xs px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold shadow-sm transition"><i class="fa-solid fa-check mr-1.5"></i>Check order</button>    </div>  </div>  <div id="stepList" class="space-y-2"></div>  <div id="stepResult" class="mt-4"></div></section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-circle-info text-sky-600"></i><span>What each stage actually does</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Expand any stage for the component involved and the symptom that appears when it fails.</p>
+  </div>
+<div id="stepDetail" class="space-y-2.5"></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-magnifying-glass-chart text-sky-600"></i><span>Symptom to stage</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Nearly every laser print quality question reduces to naming the stage.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th>Symptom</th><th>Stage at fault</th><th>What to do</th></tr></thead><tbody><tr><td>Toner smears or wipes off the page with a finger</td><td>Fusing</td><td>The fuser is not reaching temperature. Replace the fuser assembly.</td></tr><tr><td>A faint copy of an earlier image repeats down the page</td><td>Cleaning</td><td>Residual toner is not being removed. Replace the drum or the toner cartridge that contains it.</td></tr><tr><td>Vertical white streaks in the same place on every page</td><td>Developing / exposing</td><td>Toner is low or something blocks the laser path. Shake the cartridge, then clean the path.</td></tr><tr><td>Completely blank pages</td><td>Transferring</td><td>Toner never reached the paper. Check the transfer roller and that the sealing tape was removed.</td></tr><tr><td>Random speckles and dots scattered on the page</td><td>Cleaning</td><td>The cleaning blade is worn and leaving toner behind.</td></tr><tr><td>Paper jams at the output, often creased and warm</td><td>Fusing</td><td>Check for debris in the fuser and for the correct paper weight.</td></tr><tr><td>Multiple sheets pulled at once</td><td>Paper feed</td><td>Worn pickup rollers or a worn separation pad.</td></tr></tbody></table></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-print text-sky-600"></i><span>Other printer types, in brief</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Core 1 covers more than laser, and each type has one detail the exam likes.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th>Type</th><th>How it makes a mark</th><th>Consumables</th><th>Signature detail</th></tr></thead><tbody><tr><td>Inkjet</td><td>Sprays liquid ink through a print head</td><td>Ink cartridges</td><td>Runs a calibration and head-cleaning cycle; clogs when idle for weeks</td></tr><tr><td>Thermal</td><td>Heats special paper that darkens</td><td>Thermal paper only</td><td>Receipt printers; output fades in heat and sunlight</td></tr><tr><td>Impact / dot matrix</td><td>Pins strike a ribbon against the paper</td><td>Ribbon, tractor-feed paper</td><td>The only technology that can print carbon-copy multipart forms</td></tr><tr><td>3D printer</td><td>Deposits melted filament or cures resin layer by layer</td><td>Filament or resin</td><td>Resin printing requires ventilation and gloves</td></tr></tbody></table></div><div class="mt-4 grid gap-4 md:grid-cols-2"><div class="bg-rose-50 border-rose-200 text-rose-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-fire text-rose-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Burn risk</span>The fuser runs around 200&nbsp;&deg;C. Let a printer cool before servicing it, and never reach into the fusing area of a printer that has just been running.</div></div><div class="bg-amber-50 border-amber-200 text-amber-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Toner handling</span>Clean spilled toner with a <b>vacuum rated for toner</b>, not a shop vac &mdash; fine toner passes straight through an ordinary filter and the motor can ignite it. Wash toner off skin with <b>cold</b> water; hot water fuses it to you exactly as it fuses to paper.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-circle-question text-sky-600"></i><span>Check your understanding</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Immediate feedback with the reasoning the exam expects.</p>
+  </div>
+<div id="q8"></div>
+</section>
+</main>
+
+<footer class="glass border-t border-slate-200 mt-10 py-7 px-4 lg:px-8 bg-white/80">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+    <div>
+      <p class="text-sm font-semibold text-slate-800">Allison Ward-Osborne</p>
+      <p class="text-xs text-slate-500 mt-0.5">Computer Information Systems &bull; Central New Mexico Community College</p>
+    </div>
+    <a href="index.html" class="text-xs font-semibold text-sky-700 hover:text-sky-900 font-mono">&larr; All 10 activities</a>
+  </div>
+</footer>
+
+<script>
+/* ---- progress tracking, shared with the launch pad ---- */
+var ACT_ID = 8;
+function getDone(){ try { return JSON.parse(localStorage.getItem('cnm_ai_completed') || '[]'); } catch(e){ return []; } }
+function paintDone(){
+  var on = getDone().indexOf(ACT_ID) !== -1;
+  var b = document.getElementById('doneBtn');
+  b.className = 'shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2 ' +
+    (on ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200');
+  document.getElementById('doneIcon').className = 'fa-solid text-[10px] ' + (on ? 'fa-circle-check text-emerald-600' : 'fa-circle');
+  document.getElementById('doneLabel').textContent = on ? 'Completed' : 'Mark done';
+}
+function toggleDone(){
+  var d = getDone(), i = d.indexOf(ACT_ID);
+  if (i === -1) d.push(ACT_ID); else d.splice(i,1);
+  localStorage.setItem('cnm_ai_completed', JSON.stringify(d));
+  paintDone();
+}
+
+/* ---- shared quiz engine ---- */
+function buildQuiz(containerId, questions){
+  var c = document.getElementById(containerId);
+  var state = { answered: 0, correct: 0, total: questions.length };
+  var html = '<div class="flex items-center justify-between gap-3 mb-4 px-1">' +
+    '<span class="text-xs font-mono text-slate-500">Answer each question &mdash; feedback appears immediately.</span>' +
+    '<span id="' + containerId + '-score" class="text-xs font-mono font-bold text-slate-500 whitespace-nowrap">0 / ' + questions.length + '</span></div>';
+  html += questions.map(function(q, i){
+    return '<div class="glass rounded-2xl p-5 mb-3.5 bg-white" data-i="' + i + '">' +
+      '<p class="text-sm font-semibold text-slate-900 mb-3 leading-relaxed">' +
+        '<span class="font-mono text-sky-700 mr-2">Q' + (i+1) + '</span>' + q.q + '</p>' +
+      '<div class="space-y-2">' + q.a.map(function(opt, j){
+        return '<button type="button" data-j="' + j + '" class="opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-sky-300 text-slate-700 transition flex items-start gap-2.5">' +
+          '<span class="font-mono text-[10px] text-slate-400 mt-0.5 shrink-0">' + 'ABCDE'.charAt(j) + '</span><span>' + opt + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="exp hidden mt-3 text-xs leading-relaxed rounded-xl p-3.5 border"></div></div>';
+  }).join('');
+  c.innerHTML = html;
+
+  c.addEventListener('click', function(ev){
+    var btn = ev.target.closest('.opt');
+    if (!btn) return;
+    var card = btn.closest('[data-i]');
+    if (card.dataset.locked) return;
+    card.dataset.locked = '1';
+    var q = questions[+card.dataset.i];
+    var picked = +btn.dataset.j;
+    var opts = card.querySelectorAll('.opt');
+    for (var k = 0; k < opts.length; k++){
+      opts[k].disabled = true;
+      if (k === q.c) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold flex items-start gap-2.5';
+      else if (k === picked) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-900 flex items-start gap-2.5';
+      else opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-400 flex items-start gap-2.5';
+    }
+    var right = picked === q.c;
+    var exp = card.querySelector('.exp');
+    exp.className = 'exp mt-3 text-xs leading-relaxed rounded-xl p-3.5 border ' +
+      (right ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900');
+    exp.innerHTML = '<span class="font-bold">' + (right ? 'Correct. ' : 'Not quite. ') + '</span>' + q.e;
+    state.answered++; if (right) state.correct++;
+    var s = document.getElementById(containerId + '-score');
+    s.textContent = state.correct + ' / ' + state.total;
+    s.className = 'text-xs font-mono font-bold whitespace-nowrap ' +
+      (state.answered < state.total ? 'text-sky-700' : (state.correct === state.total ? 'text-emerald-600' : 'text-slate-700'));
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  paintDone();
+  if (typeof pageInit === 'function') pageInit();
+});
+</script>
+<script>
+
+var STEPS = [
+  { n:"Processing", c:"Formatter board and printer memory",
+    d:"The printer converts the incoming page description into a raster image and holds the whole page in memory before anything mechanical moves.",
+    f:"A memory overflow error, or a partial page followed by a blank one, on very complex documents." },
+  { n:"Charging", c:"Primary charge roller (older printers used a corona wire)",
+    d:"A uniform negative charge, in the region of \u2212600 V, is applied across the entire surface of the imaging drum so it starts from a blank slate.",
+    f:"Completely black pages, because the drum never received the uniform charge that the laser is supposed to write into." },
+  { n:"Exposing", c:"Laser and rotating mirror assembly",
+    d:"The laser writes the image onto the drum, discharging the areas it strikes to roughly \u2212100 V. Those discharged areas are the image.",
+    f:"White vertical streaks in the same position on every page, caused by debris blocking the laser's path." },
+  { n:"Developing", c:"Developer roller and toner cartridge",
+    d:"Negatively charged toner is presented to the drum. It is repelled by the still strongly negative background and attracted to the less negative areas the laser wrote.",
+    f:"Faded or patchy print, usually meaning toner is low or the developer roller is failing." },
+  { n:"Transferring", c:"Transfer roller or transfer belt, plus the static charge eliminator",
+    d:"A positive charge is applied to the back of the paper, pulling the toner off the drum and onto the page. The static eliminator then removes that charge so the sheet does not wrap around the drum.",
+    f:"Blank pages, or paper that curls tightly around the drum and jams." },
+  { n:"Fusing", c:"Heated fuser roller and pressure roller",
+    d:"Heat around 200 \u00b0C and pressure melt the toner into the paper fibers. Until this happens the toner is only sitting on the surface.",
+    f:"Toner that smears when you rub it, which is the single most recognizable printer symptom on the exam." },
+  { n:"Cleaning", c:"Cleaning blade and erase lamps",
+    d:"A blade scrapes leftover toner from the drum into a waste chamber, and erase lamps neutralize any remaining charge so the next page starts clean.",
+    f:"Ghosting \u2014 a faint repeat of a previous image appearing further down the same page." }
+];
+var order = [];
+var attempts = 0;
+
+function shuffleSteps(){
+  order = STEPS.map(function(_,i){ return i; });
+  for (var i=order.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=order[i]; order[i]=order[j]; order[j]=t; }
+  var ok = order.every(function(v,i){ return v === i; });
+  if (ok) { var t2=order[0]; order[0]=order[3]; order[3]=t2; }
+  attempts = 0;
+  document.getElementById('stepResult').innerHTML = '';
+  paintSteps();
+}
+function move(i, dir){
+  var j = i + dir;
+  if (j < 0 || j >= order.length) return;
+  var t = order[i]; order[i] = order[j]; order[j] = t;
+  document.getElementById('stepResult').innerHTML = '';
+  paintSteps();
+}
+function paintSteps(){
+  document.getElementById('stepList').innerHTML = order.map(function(s, i){
+    return '<div class="flex items-center gap-3 px-4 py-3 rounded-2xl border border-slate-200 bg-white">' +
+      '<span class="w-8 h-8 shrink-0 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center font-mono text-xs font-bold text-slate-600">' + (i+1) + '</span>' +
+      '<span class="flex-1 text-sm font-semibold text-slate-800">' + STEPS[s].n + '</span>' +
+      '<span class="hidden sm:block text-[11px] font-mono text-slate-400 mr-2">' + STEPS[s].c + '</span>' +
+      '<span class="flex gap-1 shrink-0">' +
+        '<button type="button" aria-label="Move up" onclick="move(' + i + ',-1)" ' + (i===0?'disabled':'') + ' class="w-8 h-8 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-25 transition"><i class="fa-solid fa-chevron-up text-xs"></i></button>' +
+        '<button type="button" aria-label="Move down" onclick="move(' + i + ',1)" ' + (i===order.length-1?'disabled':'') + ' class="w-8 h-8 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 disabled:opacity-25 transition"><i class="fa-solid fa-chevron-down text-xs"></i></button>' +
+      '</span></div>';
+  }).join('');
+}
+function checkSteps(){
+  attempts++;
+  var wrong = [];
+  order.forEach(function(v,i){ if (v !== i) wrong.push(i); });
+  var box = document.getElementById('stepResult');
+  if (wrong.length === 0){
+    box.innerHTML = '<div class="rounded-2xl bg-emerald-50 border border-emerald-200 p-5 text-center">' +
+      '<i class="fa-solid fa-circle-check text-3xl text-emerald-500 mb-2"></i>' +
+      '<p class="text-sm font-bold text-emerald-900">Correct sequence in ' + attempts + ' attempt' + (attempts===1?'':'s') + '.</p>' +
+      '<p class="text-xs text-emerald-800 mt-1 leading-relaxed max-w-lg mx-auto">Processing, charging, exposing, developing, transferring, fusing, cleaning. ' +
+      'Read the stages as a story: the printer thinks, wipes the drum clean with charge, draws with light, picks up toner, hands it to the paper, melts it in, then tidies up.</p></div>';
+    var els = document.querySelectorAll('#stepList > div');
+    for (var k=0;k<els.length;k++) els[k].className = 'flex items-center gap-3 px-4 py-3 rounded-2xl border border-emerald-300 bg-emerald-50';
+  } else {
+    box.innerHTML = '<div class="rounded-2xl bg-amber-50 border border-amber-200 p-4 text-xs text-amber-900 leading-relaxed">' +
+      '<b>' + wrong.length + ' stage' + (wrong.length===1?' is':'s are') + ' out of place.</b> Positions ' +
+      wrong.map(function(w){ return w+1; }).join(', ') + ' need to change. Attempt ' + attempts + '.</div>';
+    var els2 = document.querySelectorAll('#stepList > div');
+    for (var k2=0;k2<els2.length;k2++){
+      var good = order[k2] === k2;
+      els2[k2].className = 'flex items-center gap-3 px-4 py-3 rounded-2xl border ' + (good ? 'border-emerald-300 bg-emerald-50' : 'border-slate-200 bg-white');
+    }
+  }
+}
+function toggleDetail(i){
+  var el = document.getElementById('det' + i);
+  el.classList.toggle('hidden');
+}
+function paintDetail(){
+  document.getElementById('stepDetail').innerHTML = STEPS.map(function(s, i){
+    return '<div class="rounded-2xl border border-slate-200 bg-white overflow-hidden">' +
+      '<button type="button" onclick="toggleDetail(' + i + ')" class="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-50 transition">' +
+        '<span class="w-7 h-7 shrink-0 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center font-mono text-xs font-bold">' + (i+1) + '</span>' +
+        '<span class="flex-1 text-sm font-bold text-slate-800">' + s.n + '</span>' +
+        '<i class="fa-solid fa-chevron-down text-xs text-slate-400"></i></button>' +
+      '<div id="det' + i + '" class="hidden px-4 pb-4 pt-1">' +
+        '<p class="text-[11px] font-mono text-sky-700 mb-2">' + s.c + '</p>' +
+        '<p class="text-xs text-slate-600 leading-relaxed mb-3">' + s.d + '</p>' +
+        '<div class="rounded-xl bg-amber-50 border border-amber-200 p-3">' +
+          '<span class="text-[11px] font-bold uppercase tracking-wider text-amber-700 block mb-0.5">When this stage fails</span>' +
+          '<p class="text-xs text-amber-900 leading-relaxed">' + s.f + '</p></div>' +
+      '</div></div>';
+  }).join('');
+}
+
+function pageInit(){
+  shuffleSteps(); paintDetail();
+  buildQuiz('q8', [
+    { q:"A user reports that printed text smudges whenever they run a finger across the page. Which assembly should be replaced?",
+      a:["The transfer roller","The fuser assembly","The imaging drum","The pickup rollers"], c:1,
+      e:"Fusing melts toner into the paper fibers. If toner is still sitting loose on the surface, the fuser is not reaching temperature." },
+    { q:"Which stage immediately follows exposing?",
+      a:["Charging","Transferring","Developing","Fusing"], c:2,
+      e:"The laser writes the latent image in the exposing stage, and developing is where charged toner is attracted to it. The order is processing, charging, exposing, developing, transferring, fusing, cleaning." },
+    { q:"A faint duplicate of an image printed at the top of a page reappears further down the same sheet. Which stage failed?",
+      a:["Fusing","Cleaning","Charging","Processing"], c:1,
+      e:"Ghosting means residual toner or charge was not removed from the drum before it rotated again. The cleaning blade and erase lamps are responsible for that." },
+    { q:"During the charging stage, what does the primary charge roller do?",
+      a:["Applies a uniform negative charge to the imaging drum","Applies a positive charge to the paper","Melts toner into the page","Converts the print job into a raster image"], c:0,
+      e:"Charging puts a uniform negative charge, around \u2212600 V, across the whole drum so the laser can then selectively discharge it into an image." },
+    { q:"Pages come out completely blank, though the printer reports a successful job and toner is not low. Which stage should you investigate?",
+      a:["Fusing","Transferring","Processing","Cleaning"], c:1,
+      e:"If toner never moves from the drum to the paper, transferring is the failure point. Check the transfer roller, and verify the sealing tape was removed from a new cartridge." },
+    { q:"A technician needs to clean up a toner spill inside a printer. What is the correct approach?",
+      a:["Use a standard shop vacuum","Use a vacuum rated for toner, and wash any skin contact with cold water","Blow the toner out with compressed air","Wipe it with a damp cloth and hot water"], c:1,
+      e:"Toner particles pass straight through an ordinary vacuum filter and can ignite in the motor. Hot water fuses toner to skin and fabric, so cold water is the rule." },
+    { q:"Which printer technology is required to produce multipart carbon-copy forms?",
+      a:["Laser","Inkjet","Impact","Thermal"], c:2,
+      e:"Only impact printing physically strikes the paper hard enough to transfer through multiple carbon layers. This is why dot matrix printers survive in shipping and warehouse settings." },
+    { q:"A printer feeds several sheets at once from the tray. Which component should be inspected?",
+      a:["The fuser","The separation pad and pickup rollers","The transfer belt","The formatter board"], c:1,
+      e:"The separation pad's job is to hold back all but the top sheet. When it and the pickup rollers wear smooth, multi-sheet feeds and jams follow." },
+  ]);
+}
+
+</script>
+</body>
+</html>

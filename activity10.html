@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity 10 &middot; CompTIA A+ Core 1 Practice Exam | CNM CIS A+ Core 1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: {
+  sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] } } } }
+</script>
+<style>
+  body{
+    background-color:#F8FAFC;color:#0F172A;
+    background-image:
+      radial-gradient(at 10% 10%, rgba(14,165,233,.08) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(168,85,247,.08) 0px, transparent 50%);
+    background-attachment:fixed;
+  }
+  .glass{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(226,232,240,.9);
+    box-shadow:0 4px 20px -2px rgba(15,23,42,.04);
+  }
+  :focus-visible{outline:2px solid #0284c7;outline-offset:2px;border-radius:4px}
+  ::-webkit-scrollbar{width:8px}
+  ::-webkit-scrollbar-track{background:#F1F5F9}
+  ::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+  table.ref{width:100%;border-collapse:collapse;font-size:.78rem}
+  table.ref th{background:#F1F5F9;color:#334155;font-weight:600;text-align:left;padding:.55rem .7rem;border:1px solid #E2E8F0;white-space:nowrap}
+  table.ref td{padding:.55rem .7rem;border:1px solid #E2E8F0;vertical-align:top;color:#334155}
+  table.ref tbody tr:nth-child(even){background:#F8FAFC}
+  .tbl-wrap{overflow-x:auto;border-radius:1rem;border:1px solid #E2E8F0;background:#fff}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="sticky top-0 z-40 glass border-b border-slate-200/80 px-4 lg:px-8 py-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2.5 group min-w-0">
+      <span class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+        <i class="fa-solid fa-arrow-left text-sm"></i>
+      </span>
+      <span class="min-w-0">
+        <span class="block text-sm font-bold text-slate-900 group-hover:text-sky-700 transition leading-tight truncate">Back to Launch Pad</span>
+        <span class="block text-[11px] text-slate-500 font-mono truncate">Activity 10 of 10 &middot; 220-1201</span>
+      </span>
+    </a>
+    <button id="doneBtn" type="button" onclick="toggleDone()"
+      class="shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2">
+      <i id="doneIcon" class="fa-solid fa-circle text-[10px]"></i><span id="doneLabel">Mark done</span>
+    </button>
+  </div>
+</nav>
+
+<header class="max-w-6xl mx-auto px-4 lg:px-8 pt-8 pb-2 w-full">
+  <div class="glass rounded-3xl p-6 md:p-8 bg-white/90 relative overflow-hidden">
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 space-y-3">
+      <span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">All five domains &middot; Exam 220-1201</span>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">CompTIA A+ Core 1 Practice Exam</h1>
+      <p class="text-slate-600 text-sm sm:text-base max-w-3xl leading-relaxed">Forty questions under a sixty-minute clock, weighted to match the published domain percentages. Flag anything you are unsure of, move freely between questions, and read every explanation afterward &mdash; the breakdown tells you which activity to go back to.</p>
+      <div class="flex flex-wrap gap-2 pt-1"><span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clipboard-check text-emerald-600 mr-1.5"></i>Assessment</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clock text-slate-500 mr-1.5"></i>60 minutes</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-signal text-rose-600 mr-1.5"></i>Advanced</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-chart-pie text-sky-600 mr-1.5"></i>Domain-weighted scoring</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 lg:px-8 py-6 w-full flex-1 space-y-6">
+<section id="examShell" class="glass rounded-3xl p-5 sm:p-7 bg-white min-h-[440px]"></section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-chart-pie text-sky-600"></i><span>How Core 1 is scored</span></h2>
+    <p class="text-xs text-slate-500 mt-1">This exam mirrors the published weights so your weakest domain is visible in the results.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th>Domain</th><th>Weight</th><th>Questions in this practice exam</th></tr></thead><tbody><tr><td>1.0 Mobile Devices</td><td>13%</td><td>5</td></tr><tr><td>2.0 Networking</td><td>23%</td><td>9</td></tr><tr><td>3.0 Hardware</td><td>25%</td><td>10</td></tr><tr><td>4.0 Virtualization and Cloud Computing</td><td>11%</td><td>5</td></tr><tr><td>5.0 Hardware and Network Troubleshooting</td><td>28%</td><td>11</td></tr></tbody></table></div><div class="mt-4 grid gap-4 md:grid-cols-2"><div class="bg-sky-50 border-sky-200 text-sky-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-circle-info text-sky-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">The actual exam</span>The real 220-1201 exam runs up to <b>90 questions in 90 minutes</b> and is scored from 100 to 900, with <b>675 required to pass</b>. It mixes multiple choice with drag-and-drop and performance-based items, so budget extra time for the simulations at the start.</div></div><div class="bg-amber-50 border-amber-200 text-amber-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">Read your result honestly</span>This practice exam is weighted to match the published domain percentages, but the score it reports is a <b>percentage correct</b>, not a CompTIA scaled score. Treat consistent results above 80% as the signal that you are ready, not a single good attempt.</div></div></div>
+</section>
+</main>
+
+<footer class="glass border-t border-slate-200 mt-10 py-7 px-4 lg:px-8 bg-white/80">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+    <div>
+      <p class="text-sm font-semibold text-slate-800">Allison Ward-Osborne</p>
+      <p class="text-xs text-slate-500 mt-0.5">Computer Information Systems &bull; Central New Mexico Community College</p>
+    </div>
+    <a href="index.html" class="text-xs font-semibold text-sky-700 hover:text-sky-900 font-mono">&larr; All 10 activities</a>
+  </div>
+</footer>
+
+<script>
+/* ---- progress tracking, shared with the launch pad ---- */
+var ACT_ID = 10;
+function getDone(){ try { return JSON.parse(localStorage.getItem('cnm_ai_completed') || '[]'); } catch(e){ return []; } }
+function paintDone(){
+  var on = getDone().indexOf(ACT_ID) !== -1;
+  var b = document.getElementById('doneBtn');
+  b.className = 'shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2 ' +
+    (on ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200');
+  document.getElementById('doneIcon').className = 'fa-solid text-[10px] ' + (on ? 'fa-circle-check text-emerald-600' : 'fa-circle');
+  document.getElementById('doneLabel').textContent = on ? 'Completed' : 'Mark done';
+}
+function toggleDone(){
+  var d = getDone(), i = d.indexOf(ACT_ID);
+  if (i === -1) d.push(ACT_ID); else d.splice(i,1);
+  localStorage.setItem('cnm_ai_completed', JSON.stringify(d));
+  paintDone();
+}
+
+/* ---- shared quiz engine ---- */
+function buildQuiz(containerId, questions){
+  var c = document.getElementById(containerId);
+  var state = { answered: 0, correct: 0, total: questions.length };
+  var html = '<div class="flex items-center justify-between gap-3 mb-4 px-1">' +
+    '<span class="text-xs font-mono text-slate-500">Answer each question &mdash; feedback appears immediately.</span>' +
+    '<span id="' + containerId + '-score" class="text-xs font-mono font-bold text-slate-500 whitespace-nowrap">0 / ' + questions.length + '</span></div>';
+  html += questions.map(function(q, i){
+    return '<div class="glass rounded-2xl p-5 mb-3.5 bg-white" data-i="' + i + '">' +
+      '<p class="text-sm font-semibold text-slate-900 mb-3 leading-relaxed">' +
+        '<span class="font-mono text-sky-700 mr-2">Q' + (i+1) + '</span>' + q.q + '</p>' +
+      '<div class="space-y-2">' + q.a.map(function(opt, j){
+        return '<button type="button" data-j="' + j + '" class="opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-sky-300 text-slate-700 transition flex items-start gap-2.5">' +
+          '<span class="font-mono text-[10px] text-slate-400 mt-0.5 shrink-0">' + 'ABCDE'.charAt(j) + '</span><span>' + opt + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="exp hidden mt-3 text-xs leading-relaxed rounded-xl p-3.5 border"></div></div>';
+  }).join('');
+  c.innerHTML = html;
+
+  c.addEventListener('click', function(ev){
+    var btn = ev.target.closest('.opt');
+    if (!btn) return;
+    var card = btn.closest('[data-i]');
+    if (card.dataset.locked) return;
+    card.dataset.locked = '1';
+    var q = questions[+card.dataset.i];
+    var picked = +btn.dataset.j;
+    var opts = card.querySelectorAll('.opt');
+    for (var k = 0; k < opts.length; k++){
+      opts[k].disabled = true;
+      if (k === q.c) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold flex items-start gap-2.5';
+      else if (k === picked) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-900 flex items-start gap-2.5';
+      else opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-400 flex items-start gap-2.5';
+    }
+    var right = picked === q.c;
+    var exp = card.querySelector('.exp');
+    exp.className = 'exp mt-3 text-xs leading-relaxed rounded-xl p-3.5 border ' +
+      (right ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900');
+    exp.innerHTML = '<span class="font-bold">' + (right ? 'Correct. ' : 'Not quite. ') + '</span>' + q.e;
+    state.answered++; if (right) state.correct++;
+    var s = document.getElementById(containerId + '-score');
+    s.textContent = state.correct + ' / ' + state.total;
+    s.className = 'text-xs font-mono font-bold whitespace-nowrap ' +
+      (state.answered < state.total ? 'text-sky-700' : (state.correct === state.total ? 'text-emerald-600' : 'text-slate-700'));
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  paintDone();
+  if (typeof pageInit === 'function') pageInit();
+});
+</script>
+<script>
+
+var DOMAINS = {
+  mobile:   { n:"1.0 Mobile Devices", w:13, color:"sky" },
+  network:  { n:"2.0 Networking", w:23, color:"indigo" },
+  hardware: { n:"3.0 Hardware", w:25, color:"purple" },
+  cloud:    { n:"4.0 Virtualization and Cloud", w:11, color:"emerald" },
+  trouble:  { n:"5.0 Hardware and Network Troubleshooting", w:28, color:"amber" }
+};
+
+var QUESTIONS = [
+/* ---------------- 1.0 Mobile Devices (5) ---------------- */
+{ d:"mobile", q:"A user reports that their laptop screen is noticeably dimmer whenever it is unplugged from AC power, but returns to full brightness when plugged in. What is the most likely explanation?",
+  a:["The backlight is failing","The power plan reduces display brightness on battery","The inverter needs replacement","The display panel is defective"], c:1,
+  e:"Reducing brightness on battery is normal power management behavior, configured in the operating system power plan. A failing backlight would be dim regardless of the power source." },
+
+{ d:"mobile", q:"A user brings in a tablet whose back cover is visibly bulging and no longer sits flat. What should the technician do?",
+  a:["Puncture the battery to release the pressure","Stop using the device, avoid puncturing the battery, and dispose of it through approved recycling","Place the device in a freezer overnight","Continue using it until the battery is fully discharged"], c:1,
+  e:"A swollen lithium-ion battery is a fire hazard. It must not be punctured or compressed, and it must be handled and disposed of according to local regulations and the manufacturer's guidance." },
+
+{ d:"mobile", q:"A company-owned phone is lost while an employee is traveling. Which capability allows the organization to erase corporate data on it remotely?",
+  a:["Mobile device management with remote wipe","A virtual private network","Near field communication","A Type 2 hypervisor"], c:0,
+  e:"MDM enrolls the device and gives administrators policy control, including locating, locking and remotely wiping it. That is precisely the scenario the objective covers." },
+
+{ d:"mobile", q:"A presenter connects a laptop to a conference room projector with HDMI. The laptop screen works, but the projector shows no signal. What should the technician try first?",
+  a:["Replace the projector lamp","Use the display toggle function key combination to extend or duplicate to the external display","Reinstall the operating system","Replace the HDMI cable with DVI"], c:1,
+  e:"Laptops route video to external displays through a function key toggle or the operating system display settings. Checking that costs nothing and resolves the majority of these calls." },
+
+{ d:"mobile", q:"An architect wants a laptop that folds flat and accepts precise pen input for sketching. Which feature is essential?",
+  a:["A TN panel for fast response","An active digitizer with stylus support","An eSATA port","A PGA processor socket"], c:1,
+  e:"Pen precision comes from an active digitizer that tracks the stylus separately from finger touch, which is what convertible and 2-in-1 designs provide." },
+
+/* ---------------- 2.0 Networking (9) ---------------- */
+{ d:"network", q:"An office is deploying access points that must support the 6 GHz band. Which wireless standard is required at minimum?",
+  a:["802.11n","802.11ac (Wi-Fi 5)","802.11ax operating as Wi-Fi 6E","802.11g"], c:2,
+  e:"The 6 GHz band was introduced with Wi-Fi 6E, an extension of 802.11ax. Wi-Fi 5 and earlier are limited to 2.4 and 5 GHz." },
+
+{ d:"network", q:"Which device forwards frames based on MAC addresses and maintains a table mapping addresses to physical ports?",
+  a:["Hub","Switch","Repeater","Modem"], c:1,
+  e:"A switch learns which MAC address lives on which port and forwards frames only to the correct destination. A hub repeats every frame to every port with no such intelligence." },
+
+{ d:"network", q:"A workstation is configured with IP address 192.168.1.40 and subnet mask 255.255.255.0. It can reach other machines on its subnet but nothing on the internet. Which setting should be checked?",
+  a:["The default gateway","The subnet mask","The MAC address","The DHCP lease time"], c:0,
+  e:"Local traffic works, so addressing and the mask are correct. The default gateway is what forwards traffic destined for other networks, and a missing or wrong gateway produces exactly this symptom." },
+
+{ d:"network", q:"Which of the following is a private IPv4 address range?",
+  a:["8.8.8.0/24","172.16.0.0/12","169.254.0.0/16","203.0.113.0/24"], c:1,
+  e:"The private ranges are 10.0.0.0/8, 172.16.0.0/12 and 192.168.0.0/16. The 169.254 range is APIPA, which is link-local rather than private in this sense." },
+
+{ d:"network", q:"A mail administrator needs to designate which servers accept mail for a domain. Which DNS record type does this?",
+  a:["A","MX","CNAME","TXT"], c:1,
+  e:"MX records identify mail exchangers for a domain. A maps a name to an IPv4 address, CNAME creates an alias, and TXT holds arbitrary text such as SPF and DKIM data." },
+
+{ d:"network", q:"A small business hosts a web server internally and needs it reachable from the internet on port 443 only. Which SOHO router feature should be configured?",
+  a:["A DMZ host, exposing all ports","Port forwarding for 443 to the server's internal address","Universal Plug and Play","MAC address filtering"], c:1,
+  e:"Port forwarding opens exactly one port to one internal host. Placing the server in a DMZ would expose every port on it, which is far more than the requirement calls for." },
+
+{ d:"network", q:"Three access points in a small office are all set to channel 6 in the 2.4 GHz band, and users report poor throughput. Which channel assignment resolves the overlap?",
+  a:["Channels 1, 6 and 11","Channels 2, 4 and 6","Channels 5, 6 and 7","All three on channel 11"], c:0,
+  e:"In the 2.4 GHz band only channels 1, 6 and 11 do not overlap in North America. Any other combination causes adjacent-channel interference between the access points." },
+
+{ d:"network", q:"A residence is being connected to a fiber-to-the-home service. Which device terminates the fiber and hands off Ethernet inside the house?",
+  a:["A cable modem","An optical network terminal","A DSL modem","A repeater"], c:1,
+  e:"An ONT converts the optical signal to Ethernet for the customer's router. Cable modems serve coaxial service and DSL modems serve telephone lines." },
+
+{ d:"network", q:"An access point must be mounted in a ceiling where no electrical outlet exists. Which technology solves this?",
+  a:["Power over Ethernet","A powerline adapter","A Wi-Fi extender","A USB hub"], c:0,
+  e:"PoE delivers both data and electrical power over the same Ethernet cable, which is exactly why access points and IP cameras are so often installed in places with no outlet." },
+
+/* ---------------- 3.0 Hardware (10) ---------------- */
+{ d:"hardware", q:"A technician needs to add memory to a laptop. Which module format is required?",
+  a:["DIMM","SODIMM","A PCIe x1 card","An M.2 module"], c:1,
+  e:"Laptops use SODIMM modules, which are physically shorter than desktop DIMMs. DDR4 SODIMMs have 260 pins and DDR5 SODIMMs have 262." },
+
+{ d:"hardware", q:"What is the purpose of thermal paste between a CPU and its heat sink?",
+  a:["To glue the heat sink in place","To fill microscopic gaps so heat transfers efficiently into the heat sink","To insulate the CPU electrically","To prevent electrostatic discharge"], c:1,
+  e:"Two machined surfaces still touch only at high points, leaving air gaps that insulate. Thermal paste displaces that air so heat moves into the cooler." },
+
+{ d:"hardware", q:"A customer wants a monitor for fast-paced gaming. Which specification matters most for reducing motion blur and input lag?",
+  a:["A high refresh rate and low response time","A large physical screen size","A high contrast ratio","A matte anti-glare coating"], c:0,
+  e:"Refresh rate sets how many frames per second the panel can display, and response time sets how quickly a pixel changes state. Those two together determine motion clarity." },
+
+{ d:"hardware", q:"Which connector delivers power to a 2.5-inch SATA solid state drive?",
+  a:["A 15-pin SATA power connector","A 4-pin Molex connector only","An 8-pin EPS connector","A 24-pin ATX connector"], c:0,
+  e:"SATA drives use a flat 15-pin power connector from the supply, separate from the narrower data cable that carries the signal." },
+
+{ d:"hardware", q:"A server administrator needs to replace a failed drive without powering the system down. Which capability makes this possible?",
+  a:["Hot swapping","Overclocking","Dual channel memory","Secure Boot"], c:0,
+  e:"Hot swapping lets supported drives be removed and inserted while the system runs, which is standard on server backplanes and part of why RAID arrays can be repaired without downtime." },
+
+{ d:"hardware", q:"A small business server must shut down gracefully during a power outage rather than losing data. Which device is required?",
+  a:["A surge protector","An uninterruptible power supply","A power strip with a circuit breaker","A modular power supply"], c:1,
+  e:"Only a UPS supplies battery power during an outage, giving the operating system time to save state and shut down cleanly. A surge protector defends against voltage spikes but provides no runtime." },
+
+{ d:"hardware", q:"A field technician's laptop is frequently carried between job sites. Which storage choice best suits this use?",
+  a:["A 7,200 RPM hard drive for capacity","A solid state drive, because it has no moving parts","A 5,400 RPM hard drive for lower power","An external optical drive"], c:1,
+  e:"Mechanical drives have spinning platters and moving heads that are vulnerable to shock while in motion. An SSD has no moving parts, and it is also faster and quieter." },
+
+{ d:"hardware", q:"Which single cable carries both video and audio to a modern display?",
+  a:["VGA","DVI-D","HDMI","A 3.5 mm TRS cable"], c:2,
+  e:"HDMI carries digital video and audio together. VGA is analog video only and DVI-D is digital video only, so both require a separate audio connection." },
+
+{ d:"hardware", q:"A technician manages four rack servers from a single monitor, keyboard and mouse. Which device makes this possible?",
+  a:["A KVM switch","A network switch","A docking station","A USB hub"], c:0,
+  e:"A KVM switch shares one keyboard, video display and mouse across multiple systems, letting a technician switch between them without extra peripherals." },
+
+{ d:"hardware", q:"Why do servers commonly use ECC memory?",
+  a:["It runs at higher clock speeds","It detects and corrects single-bit memory errors before they corrupt data","It uses less power than standard memory","It supports more DIMM slots"], c:1,
+  e:"Error-correcting code memory carries extra bits that let the controller catch and fix single-bit errors in flight, which matters on machines that run for months without a reboot." },
+
+/* ---------------- 4.0 Virtualization and Cloud (5) ---------------- */
+{ d:"cloud", q:"A company's monthly cloud invoice varies with the exact amount of storage and compute consumed. Which cloud characteristic does this describe?",
+  a:["Resource pooling","Measured service","High availability","Rapid elasticity"], c:1,
+  e:"Measured, or metered, service means consumption is tracked and billed precisely. Rapid elasticity describes the ability to scale, while measured service describes how it is charged." },
+
+{ d:"cloud", q:"A manufacturer relies on a legacy application that only runs on Windows 7, but all workstations have been upgraded. What is the appropriate solution?",
+  a:["Downgrade one workstation to Windows 7","Run the legacy application in a virtual machine on a supported host","Install the application in compatibility mode on a container","Purchase new hardware for every user"], c:1,
+  e:"A virtual machine provides the complete legacy operating system in isolation on modern hardware, which is the standard answer for legacy software support in the virtualization objective." },
+
+{ d:"cloud", q:"Before deploying four virtual machines on a single host, which requirement is most important to verify?",
+  a:["That the host has enough CPU cores, RAM and storage for all guests plus the hypervisor","That every guest uses the same web browser","That the host has an optical drive","That the guests share one operating system license"], c:0,
+  e:"Each virtual machine consumes real resources from the host, and each guest also needs its own valid license. Over-committing memory in particular is what causes VMs to fail to start or crawl." },
+
+{ d:"cloud", q:"A regulated financial firm must ensure that no other organization's workload ever runs on the same physical infrastructure as theirs. Which deployment model meets this requirement?",
+  a:["Public cloud","Private cloud","Community cloud","Hybrid cloud"], c:1,
+  e:"A private cloud dedicates infrastructure to a single organization, whether hosted internally or by a provider. Public and community models both involve shared tenancy." },
+
+{ d:"cloud", q:"A user edits a document on their laptop and the change appears on their phone moments later without any action. Which cloud capability is at work?",
+  a:["File synchronization","Resource pooling","Virtual desktop infrastructure","Port forwarding"], c:0,
+  e:"File synchronization propagates changes to every device signed into the account, keeping a single current version across endpoints." },
+
+/* ---------------- 5.0 Troubleshooting (11) ---------------- */
+{ d:"trouble", q:"A user reports a burning smell coming from their desktop, which then shut off and will not power on. What should the technician do first?",
+  a:["Press the power button repeatedly","Unplug the system from mains power immediately and inspect the power supply","Replace the CMOS battery","Reinstall the operating system"], c:1,
+  e:"A burning smell means a component is failing electrically and is a fire and safety issue. Removing power is the first action, before any diagnosis begins." },
+
+{ d:"trouble", q:"A workstation has become very slow and a rhythmic clicking noise can be heard from inside the case. Which action takes priority?",
+  a:["Defragment the drive","Back up the user's data immediately","Run a full antivirus scan","Update the storage driver"], c:1,
+  e:"Clicking from a mechanical drive indicates imminent mechanical failure. Every additional minute of operation risks total loss, so capturing the data comes before any repair work." },
+
+{ d:"trouble", q:"A user reports colored blocks and torn geometry appearing on screen during 3D applications, which disappear when the machine is idle. What is the most likely cause?",
+  a:["A failing or overheating graphics card","A failing hard drive","An incorrect subnet mask","A dead CMOS battery"], c:0,
+  e:"Visual artifacts that appear under graphics load and vanish at idle point at the GPU, most often overheating or failing video memory. Check cooling and dust before condemning the card." },
+
+{ d:"trouble", q:"Wireless clients near the office kitchen lose connection whenever the microwave runs. Which change is most likely to resolve it?",
+  a:["Increase the transmit power on all access points","Move the affected clients to the 5 GHz band","Replace the access point antennas with lower gain ones","Switch every device to channel 6"], c:1,
+  e:"Microwave ovens radiate in the 2.4 GHz band. Moving clients to 5 GHz sidesteps the interference entirely, which is a faster fix than trying to out-shout the oven." },
+
+{ d:"trouble", q:"One workstation has no network connectivity, and the link light on its network port is dark while every other machine in the room works normally. What should be checked first?",
+  a:["The DNS server configuration","The patch cable and the switch port it connects to","The DHCP scope on the server","The default gateway address"], c:1,
+  e:"A dark link light means there is no physical connection at all, which happens before any addressing takes place. Cable, jack and switch port come first." },
+
+{ d:"trouble", q:"Every user reports that the network crawls between 1:00 and 3:00 each morning shift, then recovers. What should the technician investigate?",
+  a:["A failing router power supply","A scheduled backup or update job saturating bandwidth in that window","Individual workstation antivirus settings","Duplicate MAC addresses"], c:1,
+  e:"A slowdown that recurs at a fixed time points at something scheduled. Backup jobs and update distribution are the usual culprits, and the fix is rescheduling or throttling them." },
+
+{ d:"trouble", q:"A laptop runs normally on AC power but the battery never charges. The same AC adapter charges an identical laptop correctly. What is the most likely fault?",
+  a:["The AC adapter","The laptop's DC jack or charging circuit","The operating system power plan","The display inverter"], c:1,
+  e:"Swapping the adapter to a known good laptop cleared it as the cause, so the fault lies in the laptop, typically the DC jack, the charging circuit, or the battery itself." },
+
+{ d:"trouble", q:"A printer that previously worked now produces pages of random characters and symbols. What is the most likely cause?",
+  a:["A failing fuser","An incorrect or corrupted print driver","Low toner","A paper weight mismatch"], c:1,
+  e:"Garbled output means the printer is receiving instructions it cannot interpret. Reinstalling the correct driver for that exact model resolves it; consumable and fuser faults produce quality problems, not gibberish." },
+
+{ d:"trouble", q:"After a technician installs additional memory, the workstation begins showing intermittent blue screens. What is the best next step?",
+  a:["Reinstall the operating system","Run a memory diagnostic and test the modules individually","Replace the power supply","Reset the BIOS password"], c:1,
+  e:"The blue screens started immediately after the change, so the change is the prime suspect. Testing modules one at a time identifies a faulty or incompatible stick without guesswork." },
+
+{ d:"trouble", q:"A laptop display shows flickering vertical lines, but an external monitor connected to the same laptop displays perfectly. Which component should be suspected?",
+  a:["The graphics processor","The laptop's panel or its video cable through the hinge","The external monitor","The system memory"], c:1,
+  e:"A clean image on the external output proves the GPU is rendering correctly. That isolates the fault to the internal panel or the cable running through the hinge, which flexes every time the lid moves." },
+
+{ d:"trouble", q:"A desktop has developed a loud grinding noise that changes pitch as the system works harder. What is the most likely source?",
+  a:["A failing fan bearing","A failing solid state drive","The CMOS battery","The network card"], c:0,
+  e:"Noise that tracks with load points at a fan, since fan speed rises with temperature. A bearing that has worn out grinds; SSDs have no moving parts and make no noise at all." }
+];
+
+var EX = { started:false, i:0, answers:[], flags:[], t:3600, timer:null, submitted:false };
+
+function shell(html){ document.getElementById('examShell').innerHTML = html; }
+
+function pageInit(){ startScreen(); }
+
+function startScreen(){
+  var prev = localStorage.getItem('cnm_exam_best');
+  shell('<div class="text-center py-8 px-4 max-w-2xl mx-auto">' +
+    '<i class="fa-solid fa-clipboard-check text-4xl text-sky-600 mb-4"></i>' +
+    '<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">Core 1 Practice Exam</h2>' +
+    '<p class="text-sm text-slate-600 leading-relaxed mb-6">Forty questions, sixty minutes, weighted to match the ' +
+    'published 220-1201 domain percentages. You can flag questions and move freely between them, and nothing is graded ' +
+    'until you submit. Every question is explained afterward, whether you got it right or not.</p>' +
+    '<div class="grid grid-cols-3 gap-3 mb-7 max-w-md mx-auto">' +
+      '<div class="rounded-2xl border border-slate-200 bg-slate-50 p-4"><span class="block text-2xl font-extrabold text-slate-900">40</span><span class="text-[11px] font-mono text-slate-500">questions</span></div>' +
+      '<div class="rounded-2xl border border-slate-200 bg-slate-50 p-4"><span class="block text-2xl font-extrabold text-slate-900">60</span><span class="text-[11px] font-mono text-slate-500">minutes</span></div>' +
+      '<div class="rounded-2xl border border-slate-200 bg-slate-50 p-4"><span class="block text-2xl font-extrabold text-slate-900">5</span><span class="text-[11px] font-mono text-slate-500">domains</span></div>' +
+    '</div>' +
+    (prev ? '<p class="text-xs font-mono text-slate-500 mb-5">Your best attempt on this computer: <b class="text-slate-800">' + prev + '%</b></p>' : '') +
+    '<button type="button" onclick="startExam()" class="px-8 py-3.5 rounded-2xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md shadow-sky-600/20 transition">Begin the exam</button>' +
+    '</div>');
+}
+
+function startExam(){
+  EX = { started:true, i:0, answers:new Array(QUESTIONS.length), flags:new Array(QUESTIONS.length), t:3600, timer:null, submitted:false };
+  EX.timer = setInterval(function(){
+    EX.t--;
+    var el = document.getElementById('examClock');
+    if (el){
+      el.textContent = fmt(EX.t);
+      el.className = 'font-mono font-extrabold text-lg ' + (EX.t <= 300 ? 'text-rose-600' : 'text-slate-900');
+    }
+    if (EX.t <= 0) submitExam(true);
+  }, 1000);
+  paintQ();
+}
+
+function fmt(s){
+  if (s < 0) s = 0;
+  var m = Math.floor(s/60), r = s % 60;
+  return m + ':' + (r < 10 ? '0' : '') + r;
+}
+
+function paintQ(){
+  var q = QUESTIONS[EX.i];
+  var answered = EX.answers.filter(function(a){ return a !== undefined; }).length;
+  shell(
+    '<div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">' +
+      '<div class="flex items-center gap-3">' +
+        '<span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Question ' + (EX.i+1) + ' of ' + QUESTIONS.length + '</span>' +
+        '<span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-600 font-mono">' + DOMAINS[q.d].n + '</span>' +
+      '</div>' +
+      '<div class="flex items-center gap-4">' +
+        '<span class="text-[11px] font-mono text-slate-500">' + answered + ' answered</span>' +
+        '<span class="flex items-center gap-2"><i class="fa-regular fa-clock text-slate-400 text-sm"></i>' +
+        '<span id="examClock" class="font-mono font-extrabold text-lg ' + (EX.t <= 300 ? 'text-rose-600' : 'text-slate-900') + '">' + fmt(EX.t) + '</span></span>' +
+      '</div>' +
+    '</div>' +
+    '<div class="grid gap-6 lg:grid-cols-4">' +
+      '<div class="lg:col-span-3">' +
+        '<p class="text-sm sm:text-base text-slate-900 font-semibold leading-relaxed mb-5">' + q.q + '</p>' +
+        '<div class="space-y-2.5">' + q.a.map(function(opt, j){
+          var sel = EX.answers[EX.i] === j;
+          return '<button type="button" onclick="pick(' + j + ')" class="w-full text-left text-xs sm:text-sm px-4 py-3 rounded-xl border transition flex items-start gap-3 ' +
+            (sel ? 'border-sky-500 bg-sky-50 text-sky-900 font-semibold' : 'border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-slate-50') + '">' +
+            '<span class="font-mono text-[11px] mt-0.5 shrink-0 ' + (sel ? 'text-sky-600' : 'text-slate-400') + '">' + 'ABCD'.charAt(j) + '</span><span>' + opt + '</span></button>';
+        }).join('') + '</div>' +
+        '<div class="flex flex-wrap items-center gap-2.5 mt-6">' +
+          '<button type="button" onclick="go(-1)" ' + (EX.i===0?'disabled':'') + ' class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 disabled:opacity-30 transition"><i class="fa-solid fa-chevron-left mr-1.5"></i>Previous</button>' +
+          '<button type="button" onclick="go(1)" ' + (EX.i===QUESTIONS.length-1?'disabled':'') + ' class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 disabled:opacity-30 transition">Next<i class="fa-solid fa-chevron-right ml-1.5"></i></button>' +
+          '<button type="button" onclick="flag()" class="px-4 py-2.5 rounded-xl text-xs font-semibold border transition ' +
+            (EX.flags[EX.i] ? 'bg-amber-50 text-amber-700 border-amber-300' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50') + '">' +
+            '<i class="fa-solid fa-flag mr-1.5"></i>' + (EX.flags[EX.i] ? 'Flagged' : 'Flag for review') + '</button>' +
+          '<button type="button" onclick="confirmSubmit()" class="ml-auto px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold shadow-sm transition">Submit exam</button>' +
+        '</div>' +
+      '</div>' +
+      '<div>' +
+        '<span class="text-[11px] font-mono text-slate-500 block mb-2">Jump to question</span>' +
+        '<div class="grid grid-cols-8 lg:grid-cols-5 gap-1.5">' + QUESTIONS.map(function(_, k){
+          var st = EX.answers[k] !== undefined, fl = EX.flags[k];
+          var cls = k === EX.i ? 'bg-sky-600 text-white border-sky-600'
+                  : fl ? 'bg-amber-50 text-amber-700 border-amber-300'
+                  : st ? 'bg-slate-800 text-white border-slate-800'
+                  : 'bg-white text-slate-500 border-slate-200 hover:border-sky-300';
+          return '<button type="button" onclick="jump(' + k + ')" class="aspect-square rounded-lg border text-[11px] font-mono font-bold transition ' + cls + '">' + (k+1) + '</button>';
+        }).join('') + '</div>' +
+        '<div class="mt-3 space-y-1 text-[10px] text-slate-500 font-mono">' +
+          '<div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-slate-800 inline-block"></span>answered</div>' +
+          '<div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-amber-300 inline-block"></span>flagged</div>' +
+          '<div class="flex items-center gap-2"><span class="w-3 h-3 rounded border border-slate-300 bg-white inline-block"></span>not answered</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>');
+}
+
+function pick(j){ EX.answers[EX.i] = j; paintQ(); }
+function go(d){ var n = EX.i + d; if (n >= 0 && n < QUESTIONS.length){ EX.i = n; paintQ(); } }
+function jump(k){ EX.i = k; paintQ(); }
+function flag(){ EX.flags[EX.i] = !EX.flags[EX.i]; paintQ(); }
+
+function confirmSubmit(){
+  var un = 0;
+  for (var i=0;i<QUESTIONS.length;i++) if (EX.answers[i] === undefined) un++;
+  if (un > 0){
+    if (!confirm(un + ' question' + (un===1?' is':'s are') + ' still unanswered. Submit anyway?')) return;
+  }
+  submitExam(false);
+}
+
+function submitExam(auto){
+  if (EX.submitted) return;
+  EX.submitted = true;
+  clearInterval(EX.timer);
+  var byDomain = {}, correct = 0;
+  Object.keys(DOMAINS).forEach(function(k){ byDomain[k] = { c:0, t:0 }; });
+  QUESTIONS.forEach(function(q, i){
+    byDomain[q.d].t++;
+    if (EX.answers[i] === q.c){ correct++; byDomain[q.d].c++; }
+  });
+  var pct = Math.round(correct / QUESTIONS.length * 100);
+  var best = parseInt(localStorage.getItem('cnm_exam_best') || '0', 10);
+  if (pct > best) localStorage.setItem('cnm_exam_best', pct);
+  var pass = pct >= 75;
+
+  var domRows = Object.keys(DOMAINS).map(function(k){
+    var d = byDomain[k], p = d.t ? Math.round(d.c/d.t*100) : 0;
+    var bar = p >= 75 ? 'bg-emerald-500' : (p >= 50 ? 'bg-amber-500' : 'bg-rose-500');
+    return '<div class="mb-3.5">' +
+      '<div class="flex justify-between items-baseline mb-1.5">' +
+        '<span class="text-xs font-semibold text-slate-800">' + DOMAINS[k].n + '</span>' +
+        '<span class="text-xs font-mono text-slate-500">' + d.c + ' / ' + d.t + ' &middot; ' + p + '%</span></div>' +
+      '<div class="w-full h-2 rounded-full bg-slate-100 border border-slate-200 overflow-hidden">' +
+        '<div class="h-full ' + bar + '" style="width:' + p + '%"></div></div></div>';
+  }).join('');
+
+  var weakest = Object.keys(DOMAINS).sort(function(a,b){
+    var pa = byDomain[a].t ? byDomain[a].c/byDomain[a].t : 1;
+    var pb = byDomain[b].t ? byDomain[b].c/byDomain[b].t : 1;
+    return pa - pb;
+  })[0];
+
+  shell(
+    '<div class="text-center pb-6 mb-6 border-b border-slate-100">' +
+      (auto ? '<p class="text-xs font-mono text-rose-600 mb-2">Time expired &mdash; the exam was submitted automatically.</p>' : '') +
+      '<span class="text-[11px] font-mono font-bold uppercase tracking-widest ' + (pass ? 'text-emerald-600' : 'text-amber-600') + '">' +
+        (pass ? 'On track' : 'More review needed') + '</span>' +
+      '<h2 class="text-5xl font-extrabold text-slate-900 my-2">' + pct + '%</h2>' +
+      '<p class="text-sm text-slate-600">' + correct + ' of ' + QUESTIONS.length + ' correct in ' + fmt(3600 - EX.t) + '</p>' +
+      '<p class="text-xs text-slate-500 max-w-lg mx-auto mt-3 leading-relaxed">The real exam is scored from 100 to 900 with 675 to pass. ' +
+      'There is no public conversion from percentage correct, so treat 75% here as a working floor and aim consistently higher before you sit the real thing.</p>' +
+    '</div>' +
+    '<div class="grid gap-6 lg:grid-cols-2 mb-6">' +
+      '<div><h3 class="text-sm font-bold text-slate-900 mb-4">Performance by domain</h3>' + domRows + '</div>' +
+      '<div class="rounded-2xl border border-sky-200 bg-sky-50 p-5">' +
+        '<h3 class="text-sm font-bold text-sky-900 mb-2"><i class="fa-solid fa-compass-drafting mr-2"></i>Where to spend your next study session</h3>' +
+        '<p class="text-xs text-sky-900 leading-relaxed mb-3">Your weakest area was <b>' + DOMAINS[weakest].n + '</b>, which carries ' + DOMAINS[weakest].w + '% of the real exam.</p>' +
+        '<p class="text-xs text-sky-900 leading-relaxed">Go back through the activities that cover it, then retake this exam. Read the explanations below for every question, including the ones you answered correctly &mdash; a right answer for the wrong reason will not survive a rephrased question.</p>' +
+      '</div>' +
+    '</div>' +
+    '<div class="flex flex-wrap gap-2.5 mb-6">' +
+      '<button type="button" onclick="startExam()" class="px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition">Retake the exam</button>' +
+      '<a href="index.html" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 transition">Back to the launch pad</a>' +
+    '</div>' +
+    '<h3 class="text-sm font-bold text-slate-900 mb-4 pt-5 border-t border-slate-100">Every question, explained</h3>' +
+    QUESTIONS.map(function(q, i){
+      var given = EX.answers[i], right = given === q.c;
+      return '<div class="rounded-2xl border ' + (right ? 'border-emerald-200 bg-emerald-50/40' : 'border-slate-200 bg-white') + ' p-5 mb-3">' +
+        '<div class="flex items-start gap-3 mb-2.5">' +
+          '<span class="w-7 h-7 shrink-0 rounded-lg flex items-center justify-center text-xs font-mono font-bold ' +
+            (right ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700') + '">' + (i+1) + '</span>' +
+          '<div class="flex-1"><p class="text-sm font-semibold text-slate-900 leading-relaxed">' + q.q + '</p>' +
+          '<span class="text-[10px] font-mono text-slate-400">' + DOMAINS[q.d].n + '</span></div></div>' +
+        '<div class="pl-10 space-y-1.5 mb-3">' +
+          '<p class="text-xs"><span class="font-mono text-slate-400 mr-1.5">correct</span><span class="text-emerald-700 font-semibold">' + q.a[q.c] + '</span></p>' +
+          (given === undefined
+            ? '<p class="text-xs"><span class="font-mono text-slate-400 mr-1.5">yours</span><span class="text-slate-400 italic">not answered</span></p>'
+            : (right ? '' : '<p class="text-xs"><span class="font-mono text-slate-400 mr-1.5">yours</span><span class="text-rose-700">' + q.a[given] + '</span></p>')) +
+        '</div>' +
+        '<p class="pl-10 text-xs text-slate-600 leading-relaxed">' + q.e + '</p></div>';
+    }).join(''));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+</script>
+</body>
+</html>

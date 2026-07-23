@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity 05 &middot; RAID Storage Configurator | CNM CIS A+ Core 1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: {
+  sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] } } } }
+</script>
+<style>
+  body{
+    background-color:#F8FAFC;color:#0F172A;
+    background-image:
+      radial-gradient(at 10% 10%, rgba(14,165,233,.08) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(168,85,247,.08) 0px, transparent 50%);
+    background-attachment:fixed;
+  }
+  .glass{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(226,232,240,.9);
+    box-shadow:0 4px 20px -2px rgba(15,23,42,.04);
+  }
+  :focus-visible{outline:2px solid #0284c7;outline-offset:2px;border-radius:4px}
+  ::-webkit-scrollbar{width:8px}
+  ::-webkit-scrollbar-track{background:#F1F5F9}
+  ::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+  table.ref{width:100%;border-collapse:collapse;font-size:.78rem}
+  table.ref th{background:#F1F5F9;color:#334155;font-weight:600;text-align:left;padding:.55rem .7rem;border:1px solid #E2E8F0;white-space:nowrap}
+  table.ref td{padding:.55rem .7rem;border:1px solid #E2E8F0;vertical-align:top;color:#334155}
+  table.ref tbody tr:nth-child(even){background:#F8FAFC}
+  .tbl-wrap{overflow-x:auto;border-radius:1rem;border:1px solid #E2E8F0;background:#fff}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="sticky top-0 z-40 glass border-b border-slate-200/80 px-4 lg:px-8 py-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2.5 group min-w-0">
+      <span class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+        <i class="fa-solid fa-arrow-left text-sm"></i>
+      </span>
+      <span class="min-w-0">
+        <span class="block text-sm font-bold text-slate-900 group-hover:text-sky-700 transition leading-tight truncate">Back to Launch Pad</span>
+        <span class="block text-[11px] text-slate-500 font-mono truncate">Activity 05 of 10 &middot; 220-1201</span>
+      </span>
+    </a>
+    <button id="doneBtn" type="button" onclick="toggleDone()"
+      class="shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2">
+      <i id="doneIcon" class="fa-solid fa-circle text-[10px]"></i><span id="doneLabel">Mark done</span>
+    </button>
+  </div>
+</nav>
+
+<header class="max-w-6xl mx-auto px-4 lg:px-8 pt-8 pb-2 w-full">
+  <div class="glass rounded-3xl p-6 md:p-8 bg-white/90 relative overflow-hidden">
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 space-y-3">
+      <span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Domain 3.0 &middot; Hardware (25% of the exam)</span>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">RAID Storage Configurator</h1>
+      <p class="text-slate-600 text-sm sm:text-base max-w-3xl leading-relaxed">RAID questions come in two flavors: arithmetic, and judgement. The calculator handles the first &mdash; change the level and drive count until the capacity formulas are automatic. The client challenge handles the second, where the right answer depends on what the business actually needs.</p>
+      <div class="flex flex-wrap gap-2 pt-1"><span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-gamepad text-purple-600 mr-1.5"></i>Interactive game</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clock text-slate-500 mr-1.5"></i>25 minutes</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-signal text-amber-600 mr-1.5"></i>Intermediate</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-briefcase text-sky-600 mr-1.5"></i>6 client scenarios</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 lg:px-8 py-6 w-full flex-1 space-y-6">
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-hard-drive text-sky-600"></i><span>RAID array calculator</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Change the level and the drive count, and watch what happens to usable capacity and fault tolerance.</p>
+  </div>
+<div class="grid gap-5 lg:grid-cols-2">  <div class="space-y-4">    <div><span class="text-xs font-mono text-slate-500 block mb-2">RAID level</span>      <div class="grid grid-cols-5 gap-2" id="lvlBtns"></div></div>    <div><label for="dcount" class="text-xs font-mono text-slate-500 block mb-2">Number of drives: <span id="dcountVal" class="font-bold text-slate-900">4</span></label>      <input id="dcount" type="range" min="2" max="12" value="4" class="w-full accent-sky-600" oninput="calcRaid()"></div>    <div><label for="dsize" class="text-xs font-mono text-slate-500 block mb-2">Size of each drive: <span id="dsizeVal" class="font-bold text-slate-900">4 TB</span></label>      <input id="dsize" type="range" min="1" max="20" value="4" class="w-full accent-sky-600" oninput="calcRaid()"></div>  </div>  <div id="raidOut" class="rounded-2xl border border-slate-200 bg-slate-50 p-5"></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">  <div class="mb-5 pb-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3">    <div><h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-briefcase text-sky-600"></i><span>Client build challenge</span></h2>    <p class="text-xs text-slate-500 mt-1">Six clients, six sets of constraints. Pick the array that fits the requirement, not the one with the biggest number.</p></div>    <span id="raidScore" class="text-sm font-mono font-bold text-slate-500">0 / 6 solved</span>  </div>  <div id="scenarios" class="space-y-3.5"></div></section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-table-list text-sky-600"></i><span>Reference table</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Minimum drive counts and capacity formulas are straight recall &mdash; learn them cold.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th>Level</th><th>Minimum drives</th><th>Usable capacity</th><th>Survives</th><th>Why anyone chooses it</th></tr></thead><tbody><tr><td><b>RAID 0</b><br><span class='text-slate-400 text-[10px] font-mono'>striping</span></td><td>2</td><td>100%</td><td>Nothing &mdash; one failure destroys the array</td><td>Raw speed and full capacity. Scratch space for video editing, never for data you need.</td></tr><tr><td><b>RAID 1</b><br><span class='text-slate-400 text-[10px] font-mono'>mirroring</span></td><td>2</td><td>50%</td><td>One drive in the pair</td><td>Simplest redundancy. Common for the boot volume of a small server.</td></tr><tr><td><b>RAID 5</b><br><span class='text-slate-400 text-[10px] font-mono'>striping with distributed parity</span></td><td>3</td><td>(n&minus;1) of n drives</td><td>Any one drive</td><td>The efficiency compromise: redundancy with only one drive's worth of overhead. Slower writes due to parity.</td></tr><tr><td><b>RAID 6</b><br><span class='text-slate-400 text-[10px] font-mono'>double parity</span></td><td>4</td><td>(n&minus;2) of n drives</td><td>Any two drives</td><td>Large arrays where a second drive could fail during the hours a rebuild takes.</td></tr><tr><td><b>RAID 10</b><br><span class='text-slate-400 text-[10px] font-mono'>mirrored sets, striped</span></td><td>4 (even)</td><td>50%</td><td>One drive in each mirrored pair</td><td>Redundancy plus fast writes. The usual answer for busy database servers.</td></tr></tbody></table></div><div class="mt-4"><div class="bg-rose-50 border-rose-200 text-rose-900 border rounded-2xl p-4 text-xs leading-relaxed flex gap-3"><i class="fa-solid fa-circle-exclamation text-rose-600 mt-0.5"></i><div><span class="font-bold block mb-0.5">The distinction that gets tested</span>RAID is <b>availability, not backup</b>. It keeps a server running through a drive failure. It does nothing about deleted files, ransomware, fire or a failed controller, and every exam question that offers "RAID replaces backups" is offering a wrong answer.</div></div></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-circle-question text-sky-600"></i><span>Check your understanding</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Immediate feedback with the reasoning the exam expects.</p>
+  </div>
+<div id="q5"></div>
+</section>
+</main>
+
+<footer class="glass border-t border-slate-200 mt-10 py-7 px-4 lg:px-8 bg-white/80">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+    <div>
+      <p class="text-sm font-semibold text-slate-800">Allison Ward-Osborne</p>
+      <p class="text-xs text-slate-500 mt-0.5">Computer Information Systems &bull; Central New Mexico Community College</p>
+    </div>
+    <a href="index.html" class="text-xs font-semibold text-sky-700 hover:text-sky-900 font-mono">&larr; All 10 activities</a>
+  </div>
+</footer>
+
+<script>
+/* ---- progress tracking, shared with the launch pad ---- */
+var ACT_ID = 5;
+function getDone(){ try { return JSON.parse(localStorage.getItem('cnm_ai_completed') || '[]'); } catch(e){ return []; } }
+function paintDone(){
+  var on = getDone().indexOf(ACT_ID) !== -1;
+  var b = document.getElementById('doneBtn');
+  b.className = 'shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2 ' +
+    (on ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200');
+  document.getElementById('doneIcon').className = 'fa-solid text-[10px] ' + (on ? 'fa-circle-check text-emerald-600' : 'fa-circle');
+  document.getElementById('doneLabel').textContent = on ? 'Completed' : 'Mark done';
+}
+function toggleDone(){
+  var d = getDone(), i = d.indexOf(ACT_ID);
+  if (i === -1) d.push(ACT_ID); else d.splice(i,1);
+  localStorage.setItem('cnm_ai_completed', JSON.stringify(d));
+  paintDone();
+}
+
+/* ---- shared quiz engine ---- */
+function buildQuiz(containerId, questions){
+  var c = document.getElementById(containerId);
+  var state = { answered: 0, correct: 0, total: questions.length };
+  var html = '<div class="flex items-center justify-between gap-3 mb-4 px-1">' +
+    '<span class="text-xs font-mono text-slate-500">Answer each question &mdash; feedback appears immediately.</span>' +
+    '<span id="' + containerId + '-score" class="text-xs font-mono font-bold text-slate-500 whitespace-nowrap">0 / ' + questions.length + '</span></div>';
+  html += questions.map(function(q, i){
+    return '<div class="glass rounded-2xl p-5 mb-3.5 bg-white" data-i="' + i + '">' +
+      '<p class="text-sm font-semibold text-slate-900 mb-3 leading-relaxed">' +
+        '<span class="font-mono text-sky-700 mr-2">Q' + (i+1) + '</span>' + q.q + '</p>' +
+      '<div class="space-y-2">' + q.a.map(function(opt, j){
+        return '<button type="button" data-j="' + j + '" class="opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-sky-300 text-slate-700 transition flex items-start gap-2.5">' +
+          '<span class="font-mono text-[10px] text-slate-400 mt-0.5 shrink-0">' + 'ABCDE'.charAt(j) + '</span><span>' + opt + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="exp hidden mt-3 text-xs leading-relaxed rounded-xl p-3.5 border"></div></div>';
+  }).join('');
+  c.innerHTML = html;
+
+  c.addEventListener('click', function(ev){
+    var btn = ev.target.closest('.opt');
+    if (!btn) return;
+    var card = btn.closest('[data-i]');
+    if (card.dataset.locked) return;
+    card.dataset.locked = '1';
+    var q = questions[+card.dataset.i];
+    var picked = +btn.dataset.j;
+    var opts = card.querySelectorAll('.opt');
+    for (var k = 0; k < opts.length; k++){
+      opts[k].disabled = true;
+      if (k === q.c) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold flex items-start gap-2.5';
+      else if (k === picked) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-900 flex items-start gap-2.5';
+      else opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-400 flex items-start gap-2.5';
+    }
+    var right = picked === q.c;
+    var exp = card.querySelector('.exp');
+    exp.className = 'exp mt-3 text-xs leading-relaxed rounded-xl p-3.5 border ' +
+      (right ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900');
+    exp.innerHTML = '<span class="font-bold">' + (right ? 'Correct. ' : 'Not quite. ') + '</span>' + q.e;
+    state.answered++; if (right) state.correct++;
+    var s = document.getElementById(containerId + '-score');
+    s.textContent = state.correct + ' / ' + state.total;
+    s.className = 'text-xs font-mono font-bold whitespace-nowrap ' +
+      (state.answered < state.total ? 'text-sky-700' : (state.correct === state.total ? 'text-emerald-600' : 'text-slate-700'));
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  paintDone();
+  if (typeof pageInit === 'function') pageInit();
+});
+</script>
+<script>
+
+var LEVELS = {
+  '0':  { min:2, name:"RAID 0", sub:"Striping",
+          cap:function(n){ return n; }, tol:"None. Losing any single drive loses the entire array.",
+          why:"Splits data across every drive so reads and writes run in parallel. Fastest option and no capacity lost, with zero protection.",
+          tone:"rose" },
+  '1':  { min:2, name:"RAID 1", sub:"Mirroring",
+          cap:function(n){ return Math.floor(n/2); }, tol:"One drive per mirrored pair.",
+          why:"Writes an identical copy to a second drive. Half the capacity buys the simplest possible redundancy.",
+          tone:"emerald" },
+  '5':  { min:3, name:"RAID 5", sub:"Striping with distributed parity",
+          cap:function(n){ return n-1; }, tol:"Any one drive.",
+          why:"Spreads parity across all drives, costing one drive of capacity total. Good balance, but writes carry a parity penalty and rebuilds are slow.",
+          tone:"emerald" },
+  '6':  { min:4, name:"RAID 6", sub:"Double distributed parity",
+          cap:function(n){ return n-2; }, tol:"Any two drives at the same time.",
+          why:"Two parity blocks instead of one, so a second drive can fail during a long rebuild without losing data.",
+          tone:"emerald" },
+  '10': { min:4, name:"RAID 10", sub:"Mirrored pairs, striped together",
+          cap:function(n){ return Math.floor(n/2); }, tol:"One drive in each mirrored pair.",
+          why:"Mirrors first, then stripes the mirrors. Combines redundancy with high write performance, at half the raw capacity.",
+          tone:"emerald" }
+};
+var lvl = '5';
+
+function setLvl(k){ lvl = k; paintLvlBtns(); calcRaid(); }
+function paintLvlBtns(){
+  document.getElementById('lvlBtns').innerHTML = Object.keys(LEVELS).map(function(k){
+    return '<button type="button" onclick="setLvl(\'' + k + '\')" class="py-2.5 rounded-xl text-xs font-bold border transition ' +
+      (k===lvl ? 'bg-sky-600 text-white border-sky-600 shadow-sm' : 'bg-white text-slate-700 border-slate-200 hover:border-sky-300 hover:bg-slate-50') + '">' + k + '</button>';
+  }).join('');
+}
+
+function calcRaid(){
+  var n = +document.getElementById('dcount').value;
+  var s = +document.getElementById('dsize').value;
+  document.getElementById('dcountVal').textContent = n;
+  document.getElementById('dsizeVal').textContent = s + ' TB';
+  var L = LEVELS[lvl];
+  var valid = n >= L.min && !(lvl === '10' && n % 2 !== 0);
+  var out = document.getElementById('raidOut');
+  if (!valid){
+    var why = n < L.min ? (L.name + ' needs at least ' + L.min + ' drives.') : (L.name + ' needs an even number of drives, because every drive must have a mirror partner.');
+    out.innerHTML = '<div class="h-full flex flex-col items-center justify-center text-center py-8">' +
+      '<i class="fa-solid fa-circle-exclamation text-3xl text-rose-500 mb-3"></i>' +
+      '<p class="text-sm font-bold text-rose-700 mb-1">This array cannot be built</p>' +
+      '<p class="text-xs text-slate-600 max-w-xs leading-relaxed">' + why + '</p></div>';
+    return;
+  }
+  var usable = L.cap(n) * s, raw = n * s;
+  var pct = Math.round(usable/raw*100);
+  out.innerHTML =
+    '<div class="flex items-baseline justify-between mb-4 pb-3 border-b border-slate-200">' +
+      '<div><h3 class="text-lg font-bold text-slate-900">' + L.name + '</h3>' +
+      '<p class="text-[11px] font-mono text-slate-500">' + L.sub + '</p></div>' +
+      '<span class="text-xs font-mono text-slate-500">min ' + L.min + ' drives</span></div>' +
+    '<div class="grid grid-cols-2 gap-3 mb-4">' +
+      '<div class="rounded-xl bg-white border border-slate-200 p-3.5 text-center">' +
+        '<span class="text-[11px] font-mono text-slate-500 block">Usable capacity</span>' +
+        '<span class="text-2xl font-extrabold text-sky-700">' + usable + ' TB</span>' +
+        '<span class="text-[11px] text-slate-400 block">of ' + raw + ' TB raw</span></div>' +
+      '<div class="rounded-xl bg-white border border-slate-200 p-3.5 text-center">' +
+        '<span class="text-[11px] font-mono text-slate-500 block">Capacity retained</span>' +
+        '<span class="text-2xl font-extrabold text-slate-900">' + pct + '%</span>' +
+        '<span class="text-[11px] text-slate-400 block">' + (raw-usable) + ' TB overhead</span></div></div>' +
+    '<div class="rounded-xl p-3.5 border mb-3 ' + (L.tone==='rose' ? 'bg-rose-50 border-rose-200' : 'bg-emerald-50 border-emerald-200') + '">' +
+      '<span class="text-[11px] font-bold uppercase tracking-wider block mb-1 ' + (L.tone==='rose'?'text-rose-700':'text-emerald-700') + '">Fault tolerance</span>' +
+      '<p class="text-xs leading-relaxed ' + (L.tone==='rose'?'text-rose-900':'text-emerald-900') + '">' + L.tol + '</p></div>' +
+    '<p class="text-xs text-slate-600 leading-relaxed">' + L.why + '</p>';
+}
+
+var SCEN = [
+  { c:"A video editor needs the fastest possible scratch volume for footage that is already archived on a NAS. Nothing on this volume is irreplaceable.",
+    o:["0","1","5","10"], a:"0",
+    e:"The data is disposable and already backed up elsewhere, so redundancy buys nothing. RAID 0 stripes across every drive for maximum throughput and keeps all of the capacity." },
+  { c:"A dental office server has exactly two drive bays. Patient records must survive a single drive failure without downtime.",
+    o:["0","1","5","6"], a:"1",
+    e:"Two bays rules out RAID 5, which needs three. RAID 1 mirrors the pair, so the server keeps running on the surviving drive." },
+  { c:"A small business file server has five 4 TB drives. They want protection from one drive failure while losing as little capacity as possible.",
+    o:["1","5","6","10"], a:"5",
+    e:"RAID 5 costs one drive of capacity total, giving 16 TB usable from 20 TB raw. RAID 1 or 10 would cut them to 10 TB for the same single-drive protection." },
+  { c:"A transaction database writes constantly and cannot slow down, but it must also survive a drive failure. Budget allows four drives.",
+    o:["0","5","6","10"], a:"10",
+    e:"RAID 5 and 6 pay a parity penalty on every write, which hurts a write-heavy database. RAID 10 mirrors and stripes with no parity calculation, so writes stay fast." },
+  { c:"A twelve-drive archive of 18 TB drives takes more than a day to rebuild after a failure. Management is worried a second drive could die mid-rebuild.",
+    o:["1","5","6","0"], a:"6",
+    e:"RAID 6 keeps two independent parity blocks, so the array survives a second failure during the long rebuild window. That risk is exactly why large arrays move from 5 to 6." },
+  { c:"A manager says the new RAID 10 array means the company can stop paying for offsite backups.",
+    o:["Agree, RAID 10 is redundant","Suggest RAID 6 instead for more protection","Explain that RAID protects against drive failure but not deletion, ransomware or fire","Add a hot spare and cancel the backups"], a:"Explain that RAID protects against drive failure but not deletion, ransomware or fire",
+    e:"RAID keeps a system available through hardware failure. It faithfully mirrors a deleted file, an encrypted file and a corrupted file, and it burns just as well in a fire. Backups are a separate control." }
+];
+var solved = [];
+
+function paintScen(){
+  document.getElementById('scenarios').innerHTML = SCEN.map(function(s, i){
+    return '<div class="rounded-2xl border border-slate-200 bg-white p-5" data-s="' + i + '">' +
+      '<p class="text-sm text-slate-800 leading-relaxed mb-3.5"><span class="font-mono text-xs text-sky-700 font-bold mr-2">CLIENT ' + (i+1) + '</span>' + s.c + '</p>' +
+      '<div class="flex flex-wrap gap-2">' + s.o.map(function(o){
+        var label = o.length <= 2 ? 'RAID ' + o : o;
+        return '<button type="button" onclick="pickScen(' + i + ',this)" data-v="' + o.replace(/"/g,'') + '" class="sc-opt text-xs px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:border-sky-400 hover:bg-sky-50 text-slate-700 font-medium transition">' + label + '</button>';
+      }).join('') + '</div>' +
+      '<div class="sc-exp hidden mt-3 text-xs leading-relaxed rounded-xl p-3.5 border"></div></div>';
+  }).join('');
+}
+function pickScen(i, btn){
+  var card = document.querySelector('[data-s="' + i + '"]');
+  if (card.dataset.locked) return;
+  card.dataset.locked = '1';
+  var s = SCEN[i], right = btn.dataset.v === s.a;
+  var opts = card.querySelectorAll('.sc-opt');
+  for (var k=0;k<opts.length;k++){
+    opts[k].disabled = true;
+    if (opts[k].dataset.v === s.a) opts[k].className = 'sc-opt text-xs px-3.5 py-2 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 font-bold';
+    else if (opts[k] === btn) opts[k].className = 'sc-opt text-xs px-3.5 py-2 rounded-xl border border-rose-300 bg-rose-50 text-rose-900';
+    else opts[k].className = 'sc-opt text-xs px-3.5 py-2 rounded-xl border border-slate-200 bg-white text-slate-400';
+  }
+  var e = card.querySelector('.sc-exp');
+  e.className = 'sc-exp mt-3 text-xs leading-relaxed rounded-xl p-3.5 border ' + (right ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900');
+  e.innerHTML = '<b>' + (right ? 'Correct. ' : 'Not the best fit. ') + '</b>' + s.e;
+  if (right) solved.push(i);
+  document.getElementById('raidScore').textContent = solved.length + ' / 6 solved';
+  document.getElementById('raidScore').className = 'text-sm font-mono font-bold ' + (solved.length === 6 ? 'text-emerald-600' : 'text-sky-700');
+}
+
+function pageInit(){
+  paintLvlBtns(); calcRaid(); paintScen();
+  buildQuiz('q5', [
+    { q:"What is the minimum number of drives required for RAID 5?",
+      a:["2","3","4","5"], c:1,
+      e:"RAID 5 stripes data with distributed parity, which requires at least three drives so parity can live on a drive other than the two holding the stripe." },
+    { q:"Six 2 TB drives are configured in RAID 5. How much usable capacity results?",
+      a:["6 TB","10 TB","12 TB","4 TB"], c:1,
+      e:"RAID 5 costs exactly one drive of capacity, so five of the six drives are usable: 5 x 2 TB = 10 TB." },
+    { q:"Which array offers no fault tolerance at all?",
+      a:["RAID 1","RAID 5","RAID 0","RAID 10"], c:2,
+      e:"RAID 0 stripes for speed with no parity and no mirror. Losing any single drive destroys the entire array." },
+    { q:"A server administrator wants both redundancy and the best write performance for a busy database. Which level fits?",
+      a:["RAID 0","RAID 5","RAID 6","RAID 10"], c:3,
+      e:"RAID 5 and 6 recalculate parity on every write. RAID 10 has no parity to compute, so it delivers redundancy without that write penalty." },
+    { q:"Eight 4 TB drives are configured in RAID 10. What is the usable capacity?",
+      a:["32 TB","28 TB","16 TB","24 TB"], c:2,
+      e:"RAID 10 mirrors every drive, so exactly half the raw capacity is usable: 8 x 4 TB = 32 TB raw, giving 16 TB usable." },
+    { q:"An organization loses a week of files to ransomware. Their RAID 6 array was fully healthy throughout. Why did RAID not help?",
+      a:["RAID 6 only protects against two failures","RAID replicates whatever is written, including malicious encryption","The array needed a hot spare","Ransomware disables parity"], c:1,
+      e:"RAID protects against hardware failure only. Encrypted files are written to the array exactly as any other data, which is why backups remain a separate requirement." },
+    { q:"Why is RAID 6 increasingly recommended over RAID 5 for arrays built from very large drives?",
+      a:["RAID 6 is faster","Rebuilding a large array takes so long that a second drive failure becomes likely","RAID 5 no longer supports drives over 4 TB","RAID 6 uses less capacity"], c:1,
+      e:"Rebuilds on multi-terabyte drives can run for a day or more under heavy load. RAID 6's second parity block covers the window where a second failure would otherwise be fatal." },
+    { q:"A technician configures RAID 10 with five drives and the controller rejects it. Why?",
+      a:["RAID 10 requires exactly four drives","RAID 10 requires an even number of drives so every drive has a mirror partner","Five drives exceeds the limit","RAID 10 requires identical firmware"], c:1,
+      e:"RAID 10 stripes across mirrored pairs, so drives have to arrive two at a time. Odd counts leave one drive without a partner." },
+  ]);
+}
+
+</script>
+</body>
+</html>

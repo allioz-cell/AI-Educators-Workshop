@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity 02 &middot; Ports &amp; Protocols Speed Match | CNM CIS A+ Core 1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: {
+  sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] } } } }
+</script>
+<style>
+  body{
+    background-color:#F8FAFC;color:#0F172A;
+    background-image:
+      radial-gradient(at 10% 10%, rgba(14,165,233,.08) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(168,85,247,.08) 0px, transparent 50%);
+    background-attachment:fixed;
+  }
+  .glass{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(226,232,240,.9);
+    box-shadow:0 4px 20px -2px rgba(15,23,42,.04);
+  }
+  :focus-visible{outline:2px solid #0284c7;outline-offset:2px;border-radius:4px}
+  ::-webkit-scrollbar{width:8px}
+  ::-webkit-scrollbar-track{background:#F1F5F9}
+  ::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+  table.ref{width:100%;border-collapse:collapse;font-size:.78rem}
+  table.ref th{background:#F1F5F9;color:#334155;font-weight:600;text-align:left;padding:.55rem .7rem;border:1px solid #E2E8F0;white-space:nowrap}
+  table.ref td{padding:.55rem .7rem;border:1px solid #E2E8F0;vertical-align:top;color:#334155}
+  table.ref tbody tr:nth-child(even){background:#F8FAFC}
+  .tbl-wrap{overflow-x:auto;border-radius:1rem;border:1px solid #E2E8F0;background:#fff}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="sticky top-0 z-40 glass border-b border-slate-200/80 px-4 lg:px-8 py-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2.5 group min-w-0">
+      <span class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+        <i class="fa-solid fa-arrow-left text-sm"></i>
+      </span>
+      <span class="min-w-0">
+        <span class="block text-sm font-bold text-slate-900 group-hover:text-sky-700 transition leading-tight truncate">Back to Launch Pad</span>
+        <span class="block text-[11px] text-slate-500 font-mono truncate">Activity 02 of 10 &middot; 220-1201</span>
+      </span>
+    </a>
+    <button id="doneBtn" type="button" onclick="toggleDone()"
+      class="shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2">
+      <i id="doneIcon" class="fa-solid fa-circle text-[10px]"></i><span id="doneLabel">Mark done</span>
+    </button>
+  </div>
+</nav>
+
+<header class="max-w-6xl mx-auto px-4 lg:px-8 pt-8 pb-2 w-full">
+  <div class="glass rounded-3xl p-6 md:p-8 bg-white/90 relative overflow-hidden">
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 space-y-3">
+      <span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest">Domain 2.0 &middot; Networking (23% of the exam)</span>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">Ports &amp; Protocols Speed Match</h1>
+      <p class="text-slate-600 text-sm sm:text-base max-w-3xl leading-relaxed">Port numbers are pure recall, and recall gets faster under mild pressure. Play the sixty-second round until you can clear it without a miss, then use the reference table and scenario questions to attach each port to the situation the exam will describe.</p>
+      <div class="flex flex-wrap gap-2 pt-1"><span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-gamepad text-purple-600 mr-1.5"></i>Interactive game</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-clock text-slate-500 mr-1.5"></i>20 minutes</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-signal text-amber-600 mr-1.5"></i>Intermediate</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-mono border border-slate-200"><i class="fa-solid fa-list-ol text-sky-600 mr-1.5"></i>15 ports covered</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 lg:px-8 py-6 w-full flex-1 space-y-6">
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">  <div class="grid gap-5 lg:grid-cols-3">    <div class="lg:col-span-2 space-y-4">      <div id="gameStage" class="rounded-3xl border-2 border-slate-200 bg-slate-50 p-6 sm:p-8 min-h-[300px] flex flex-col items-center justify-center text-center"></div>    </div>    <div class="space-y-3">      <div class="rounded-2xl border border-slate-200 bg-white p-4">        <div class="flex justify-between items-baseline"><span class="text-xs font-mono text-slate-500">Time left</span>        <span id="clock" class="text-2xl font-extrabold font-mono text-slate-900">60</span></div>        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-2 border border-slate-200">          <div id="clockBar" class="bg-gradient-to-r from-sky-500 to-indigo-600 h-full w-full"></div></div>      </div>      <div class="grid grid-cols-2 gap-3">        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-center">          <span class="text-xs font-mono text-slate-500 block">Score</span>          <span id="score" class="text-2xl font-extrabold text-sky-700">0</span></div>        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-center">          <span class="text-xs font-mono text-slate-500 block">Streak</span>          <span id="streak" class="text-2xl font-extrabold text-amber-600">0</span></div>      </div>      <div class="rounded-2xl border border-slate-200 bg-white p-4">        <span class="text-xs font-mono text-slate-500 block mb-2">Best score on this computer</span>        <span id="best" class="text-lg font-extrabold text-slate-900 font-mono">&mdash;</span>      </div>      <div class="rounded-2xl border border-sky-200 bg-sky-50 p-4 text-xs text-sky-900 leading-relaxed">        <span class="font-bold block mb-1">Scoring</span>        A correct answer is worth 10 points, plus 2 more for every answer in your current streak. One wrong answer         resets the streak and costs you three seconds.      </div>    </div>  </div></section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-table-list text-sky-600"></i><span>Every port the 220-1201 objectives can ask about</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Memorize the number, the name and one sentence about what it does. The exam asks for all three.</p>
+  </div>
+<div class="tbl-wrap"><table class="ref"><thead><tr><th>Port</th><th>Protocol</th><th>What it is for</th><th>Watch for</th></tr></thead><tbody><tr><td>20 / 21</td><td>FTP</td><td>File transfer &mdash; 20 moves data, 21 carries commands</td><td>Unencrypted; SFTP rides on 22 instead</td></tr><tr><td>22</td><td>SSH / SFTP / SCP</td><td>Encrypted remote command line and file transfer</td><td>The secure replacement for Telnet</td></tr><tr><td>23</td><td>Telnet</td><td>Remote command line, in plain text</td><td>Never the right answer when a question says secure</td></tr><tr><td>25</td><td>SMTP</td><td>Sending mail between servers</td><td>587 is the modern client submission port</td></tr><tr><td>53</td><td>DNS</td><td>Resolves names to IP addresses</td><td>Symptom: sites fail by name but work by IP</td></tr><tr><td>67 / 68</td><td>DHCP</td><td>Hands out IP configuration automatically</td><td>67 is the server, 68 is the client</td></tr><tr><td>80</td><td>HTTP</td><td>Unencrypted web traffic</td><td>Paired with 443 in almost every firewall question</td></tr><tr><td>110</td><td>POP3</td><td>Downloads mail to one device</td><td>Compare with IMAP on 143</td></tr><tr><td>137&ndash;139</td><td>NetBIOS / NetBT</td><td>Legacy Windows name service and sessions</td><td>Old file sharing; 445 replaced it</td></tr><tr><td>143</td><td>IMAP</td><td>Server-side mail that syncs across devices</td><td>Secure on 993</td></tr><tr><td>161 / 162</td><td>SNMP</td><td>Monitoring and managing network devices</td><td>161 polls, 162 receives traps</td></tr><tr><td>389</td><td>LDAP</td><td>Directory lookups, including Active Directory</td><td>LDAPS runs on 636</td></tr><tr><td>443</td><td>HTTPS</td><td>Web traffic encrypted with TLS</td><td>Also the port most VPNs hide inside</td></tr><tr><td>445</td><td>SMB / CIFS</td><td>Windows file and printer sharing</td><td>Blocked at the network edge on any sane network</td></tr><tr><td>3389</td><td>RDP</td><td>Microsoft remote desktop</td><td>A favorite exam answer for remote GUI access</td></tr></tbody></table></div>
+</section>
+
+<section class="glass rounded-3xl p-5 sm:p-7 bg-white">
+  <div class="mb-5 pb-4 border-b border-slate-100">
+    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5"><i class="fa-solid fa-circle-question text-sky-600"></i><span>Scenario questions</span></h2>
+    <p class="text-xs text-slate-500 mt-1">Immediate feedback with the reasoning the exam expects.</p>
+  </div>
+<div id="q2"></div>
+</section>
+</main>
+
+<footer class="glass border-t border-slate-200 mt-10 py-7 px-4 lg:px-8 bg-white/80">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+    <div>
+      <p class="text-sm font-semibold text-slate-800">Allison Ward-Osborne</p>
+      <p class="text-xs text-slate-500 mt-0.5">Computer Information Systems &bull; Central New Mexico Community College</p>
+    </div>
+    <a href="index.html" class="text-xs font-semibold text-sky-700 hover:text-sky-900 font-mono">&larr; All 10 activities</a>
+  </div>
+</footer>
+
+<script>
+/* ---- progress tracking, shared with the launch pad ---- */
+var ACT_ID = 2;
+function getDone(){ try { return JSON.parse(localStorage.getItem('cnm_ai_completed') || '[]'); } catch(e){ return []; } }
+function paintDone(){
+  var on = getDone().indexOf(ACT_ID) !== -1;
+  var b = document.getElementById('doneBtn');
+  b.className = 'shrink-0 text-xs font-semibold px-3 py-2 rounded-lg border transition flex items-center gap-2 ' +
+    (on ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200');
+  document.getElementById('doneIcon').className = 'fa-solid text-[10px] ' + (on ? 'fa-circle-check text-emerald-600' : 'fa-circle');
+  document.getElementById('doneLabel').textContent = on ? 'Completed' : 'Mark done';
+}
+function toggleDone(){
+  var d = getDone(), i = d.indexOf(ACT_ID);
+  if (i === -1) d.push(ACT_ID); else d.splice(i,1);
+  localStorage.setItem('cnm_ai_completed', JSON.stringify(d));
+  paintDone();
+}
+
+/* ---- shared quiz engine ---- */
+function buildQuiz(containerId, questions){
+  var c = document.getElementById(containerId);
+  var state = { answered: 0, correct: 0, total: questions.length };
+  var html = '<div class="flex items-center justify-between gap-3 mb-4 px-1">' +
+    '<span class="text-xs font-mono text-slate-500">Answer each question &mdash; feedback appears immediately.</span>' +
+    '<span id="' + containerId + '-score" class="text-xs font-mono font-bold text-slate-500 whitespace-nowrap">0 / ' + questions.length + '</span></div>';
+  html += questions.map(function(q, i){
+    return '<div class="glass rounded-2xl p-5 mb-3.5 bg-white" data-i="' + i + '">' +
+      '<p class="text-sm font-semibold text-slate-900 mb-3 leading-relaxed">' +
+        '<span class="font-mono text-sky-700 mr-2">Q' + (i+1) + '</span>' + q.q + '</p>' +
+      '<div class="space-y-2">' + q.a.map(function(opt, j){
+        return '<button type="button" data-j="' + j + '" class="opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-sky-300 text-slate-700 transition flex items-start gap-2.5">' +
+          '<span class="font-mono text-[10px] text-slate-400 mt-0.5 shrink-0">' + 'ABCDE'.charAt(j) + '</span><span>' + opt + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="exp hidden mt-3 text-xs leading-relaxed rounded-xl p-3.5 border"></div></div>';
+  }).join('');
+  c.innerHTML = html;
+
+  c.addEventListener('click', function(ev){
+    var btn = ev.target.closest('.opt');
+    if (!btn) return;
+    var card = btn.closest('[data-i]');
+    if (card.dataset.locked) return;
+    card.dataset.locked = '1';
+    var q = questions[+card.dataset.i];
+    var picked = +btn.dataset.j;
+    var opts = card.querySelectorAll('.opt');
+    for (var k = 0; k < opts.length; k++){
+      opts[k].disabled = true;
+      if (k === q.c) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold flex items-start gap-2.5';
+      else if (k === picked) opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-900 flex items-start gap-2.5';
+      else opts[k].className = 'opt w-full text-left text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-400 flex items-start gap-2.5';
+    }
+    var right = picked === q.c;
+    var exp = card.querySelector('.exp');
+    exp.className = 'exp mt-3 text-xs leading-relaxed rounded-xl p-3.5 border ' +
+      (right ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900');
+    exp.innerHTML = '<span class="font-bold">' + (right ? 'Correct. ' : 'Not quite. ') + '</span>' + q.e;
+    state.answered++; if (right) state.correct++;
+    var s = document.getElementById(containerId + '-score');
+    s.textContent = state.correct + ' / ' + state.total;
+    s.className = 'text-xs font-mono font-bold whitespace-nowrap ' +
+      (state.answered < state.total ? 'text-sky-700' : (state.correct === state.total ? 'text-emerald-600' : 'text-slate-700'));
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  paintDone();
+  if (typeof pageInit === 'function') pageInit();
+});
+</script>
+<script>
+
+var PORTS = [
+  { p:"20 / 21", n:"FTP",       d:"Transfers files; port 21 carries the commands and 20 carries the data." },
+  { p:"22",      n:"SSH",       d:"Encrypted remote terminal access. SFTP and SCP ride on the same port." },
+  { p:"23",      n:"Telnet",    d:"Remote terminal access in clear text. Superseded by SSH." },
+  { p:"25",      n:"SMTP",      d:"Sends outgoing mail between servers." },
+  { p:"53",      n:"DNS",       d:"Resolves host names into IP addresses." },
+  { p:"67 / 68", n:"DHCP",      d:"Assigns IP configuration automatically. 67 is the server, 68 is the client." },
+  { p:"80",      n:"HTTP",      d:"Unencrypted web traffic." },
+  { p:"110",     n:"POP3",      d:"Downloads mail to a single device." },
+  { p:"137-139", n:"NetBIOS",   d:"Legacy Windows name resolution and session service." },
+  { p:"143",     n:"IMAP",      d:"Server-side mail that stays in sync across devices." },
+  { p:"161 / 162", n:"SNMP",    d:"Monitors and manages network devices. 161 polls, 162 receives traps." },
+  { p:"389",     n:"LDAP",      d:"Directory service lookups, including Active Directory." },
+  { p:"443",     n:"HTTPS",     d:"Web traffic encrypted with TLS." },
+  { p:"445",     n:"SMB / CIFS",d:"Windows file and printer sharing." },
+  { p:"3389",    n:"RDP",       d:"Microsoft Remote Desktop, for full graphical remote control." }
+];
+
+var G = { running:false, t:60, score:0, streak:0, cur:null, missed:[], timer:null, asked:[] };
+
+function stage(html){ document.getElementById('gameStage').innerHTML = html; }
+
+function pageInit(){
+  var b = localStorage.getItem('cnm_ports_best');
+  document.getElementById('best').textContent = b ? b + ' pts' : '\u2014';
+  stage('<i class="fa-solid fa-bolt text-4xl text-amber-500 mb-4"></i>' +
+    '<h2 class="text-2xl font-extrabold text-slate-900 mb-2">Port &amp; Protocol Speed Match</h2>' +
+    '<p class="text-sm text-slate-600 max-w-md mb-6 leading-relaxed">You get sixty seconds. Match each protocol to the ' +
+    'port it runs on. Anything you miss is listed at the end with an explanation.</p>' +
+    '<button type="button" onclick="startGame()" class="px-7 py-3 rounded-2xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md shadow-sky-600/20 transition">Start the round</button>');
+  buildQuiz('q2', [
+    { q:"A technician must open a firewall rule so administrators can reach a Linux server's command line securely from off site. Which port is required?",
+      a:["23","22","3389","443"], c:1,
+      e:"SSH on port 22 gives an encrypted command line. Telnet on 23 does the same job in plain text, which fails the secure requirement." },
+    { q:"Users can reach websites by typing an IP address but not by name. Which service should you investigate?",
+      a:["DHCP on 67/68","DNS on 53","SMB on 445","SNMP on 161"], c:1,
+      e:"Name resolution is DNS on port 53. Connectivity clearly works, since raw IP addresses still load, so only the name-to-address translation is broken." },
+    { q:"A help desk technician needs full graphical control of a Windows server's desktop. Which port must be reachable?",
+      a:["3389","22","445","389"], c:0,
+      e:"RDP uses port 3389 and provides a full remote desktop. Port 445 is file sharing and 389 is LDAP directory lookups." },
+    { q:"After connecting to a new network, a laptop has an address of 169.254.10.8 and cannot reach anything. Which protocol failed?",
+      a:["DNS","DHCP","LDAP","SNMP"], c:1,
+      e:"That is an APIPA address, which Windows assigns only when no DHCP server answered on ports 67 and 68." },
+    { q:"Network monitoring software needs to collect statistics from switches and receive alerts when a link goes down. Which ports should be permitted?",
+      a:["161 and 162","20 and 21","137 and 139","110 and 143"], c:0,
+      e:"SNMP polls devices on port 161 and receives unsolicited trap messages on 162." },
+    { q:"A company blocks port 445 at its internet edge. What are they preventing?",
+      a:["Web browsing","Windows file and printer sharing from the internet","Outbound email","DNS lookups"], c:1,
+      e:"Port 445 carries SMB, the Windows file and printer sharing protocol. Exposing it to the internet is a well-known route for ransomware, so it is blocked at the perimeter." },
+    { q:"An application must authenticate users against Active Directory. Which port does an unencrypted directory query use?",
+      a:["443","389","53","25"], c:1,
+      e:"LDAP queries a directory service on port 389, with the encrypted LDAPS variant on 636." },
+    { q:"A user's mail client sends messages successfully but never receives any. Which port should you check first?",
+      a:["25","143","80","3389"], c:1,
+      e:"Sending works, so SMTP on 25 or 587 is fine. Incoming mail arrives over IMAP on 143 or POP3 on 110, so the retrieval side is the place to look." },
+  ]);
+}
+
+function startGame(){
+  G = { running:true, t:60, score:0, streak:0, cur:null, missed:[], timer:null, asked:[] };
+  document.getElementById('score').textContent = '0';
+  document.getElementById('streak').textContent = '0';
+  tick(); nextRound();
+  G.timer = setInterval(function(){ G.t--; tick(); if (G.t <= 0) endGame(); }, 1000);
+}
+
+function tick(){
+  var t = Math.max(0, G.t);
+  document.getElementById('clock').textContent = t;
+  document.getElementById('clockBar').style.width = (t/60*100) + '%';
+  document.getElementById('clock').className = 'text-2xl font-extrabold font-mono ' + (t <= 10 ? 'text-rose-600' : 'text-slate-900');
+}
+
+function shuffle(a){ for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+
+function nextRound(){
+  if (!G.running) return;
+  if (G.asked.length >= PORTS.length) G.asked = [];
+  var pool = PORTS.filter(function(p){ return G.asked.indexOf(p.n) === -1; });
+  var q = pool[Math.floor(Math.random()*pool.length)];
+  G.asked.push(q.n);
+  G.cur = q;
+  var wrong = shuffle(PORTS.filter(function(p){ return p.n !== q.n; })).slice(0,3);
+  var opts = shuffle([q].concat(wrong));
+  stage('<span class="text-[11px] font-mono font-bold text-sky-700 uppercase tracking-widest mb-3">Which port does this use?</span>' +
+    '<h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-7 tracking-tight">' + q.n + '</h2>' +
+    '<div class="grid grid-cols-2 gap-3 w-full max-w-md">' + opts.map(function(o){
+      return '<button type="button" onclick="answer(\'' + o.n + '\')" class="py-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-sky-500 hover:bg-sky-50 text-lg font-bold font-mono text-slate-800 transition">' + o.p + '</button>';
+    }).join('') + '</div>');
+}
+
+function answer(name){
+  if (!G.running) return;
+  var right = name === G.cur.n;
+  if (right){
+    G.score += 10 + G.streak*2;
+    G.streak++;
+  } else {
+    G.streak = 0;
+    G.t -= 3; tick();
+    if (G.missed.indexOf(G.cur) === -1) G.missed.push(G.cur);
+  }
+  document.getElementById('score').textContent = G.score;
+  document.getElementById('streak').textContent = G.streak;
+  var flash = right
+    ? '<i class="fa-solid fa-circle-check text-5xl text-emerald-500 mb-4"></i><p class="text-xl font-bold text-emerald-700">' + G.cur.n + ' &rarr; ' + G.cur.p + '</p>'
+    : '<i class="fa-solid fa-circle-xmark text-5xl text-rose-500 mb-4"></i><p class="text-xl font-bold text-rose-700">' + G.cur.n + ' runs on ' + G.cur.p + '</p><p class="text-xs text-slate-500 mt-2 max-w-sm">' + G.cur.d + '</p>';
+  stage(flash);
+  setTimeout(nextRound, right ? 400 : 1400);
+}
+
+function endGame(){
+  G.running = false;
+  clearInterval(G.timer);
+  var best = parseInt(localStorage.getItem('cnm_ports_best') || '0', 10);
+  var isBest = G.score > best;
+  if (isBest){ localStorage.setItem('cnm_ports_best', G.score); document.getElementById('best').textContent = G.score + ' pts'; }
+  var missedHtml = G.missed.length
+    ? '<div class="w-full max-w-lg text-left mt-5"><span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">Review these</span>' +
+      G.missed.map(function(m){
+        return '<div class="rounded-xl border border-amber-200 bg-amber-50 p-3 mb-2"><p class="text-xs font-bold text-amber-900">' + m.n + ' &mdash; port ' + m.p + '</p><p class="text-xs text-amber-800 mt-0.5 leading-relaxed">' + m.d + '</p></div>';
+      }).join('') + '</div>'
+    : '<p class="text-sm text-emerald-700 font-semibold mt-4"><i class="fa-solid fa-star mr-1"></i>Clean round &mdash; you did not miss a single port.</p>';
+  stage('<i class="fa-solid fa-flag-checkered text-4xl text-slate-700 mb-3"></i>' +
+    '<h2 class="text-3xl font-extrabold text-slate-900">' + G.score + ' points</h2>' +
+    (isBest ? '<p class="text-xs font-bold text-amber-600 mt-1">New personal best</p>' : '') +
+    missedHtml +
+    '<button type="button" onclick="startGame()" class="mt-6 px-7 py-3 rounded-2xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md shadow-sky-600/20 transition">Play again</button>');
+}
+
+</script>
+</body>
+</html>
